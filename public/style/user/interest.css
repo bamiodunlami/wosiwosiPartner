@@ -1,0 +1,34 @@
+.interest-form-bar,
+.interest-form-success{
+    padding: 5% 24%;
+}
+.interest-form{
+    padding: 40px;
+    background-color: #f7f7f7;
+    border-radius: 10px;
+}
+
+.fa-interest-success{
+    font-size: 90px;
+    padding: 6px;
+}
+
+
+@media (max-width:520px){
+    .interest-form-bar,
+    .interest-form-success{
+        padding: 15% 5%;
+    }
+
+    .interest-form{
+        padding: 20px;
+        background-color: #f7f7f7;
+        border-radius: 10px;
+    }
+    
+    .fa-interest-success{
+        font-size: 70px;
+        padding: 5px;
+    }
+    
+}

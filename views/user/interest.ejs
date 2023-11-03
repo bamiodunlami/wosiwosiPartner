@@ -1,0 +1,50 @@
+<%- include('include/userHeader') -%>
+
+<div class="interestForm">
+    <div class="container">
+        <div class="row interest-form-bar">
+            <div class="col-12">
+                <div>
+                    <h4>The profitable partnership</h4>
+                    <p>Join us as a partner and embark on a journey that involves the importation and distribution of authentic African products, contributing to culture and finances.</p>
+                </div>
+                <div class="interest-form">
+                    <form action="/interest" method="post">
+                        <div class="mb-2">
+                            <label class="form-label">First Name</label>
+                            <input type="text" name="fname" class="form-control" id="exampleFormControlInput1" required>
+                          </div>
+                          <div class="mb-2">
+                            <label class="form-label">Last Name</label>
+                            <input type="text" name="lname" class="form-control" id="exampleFormControlTextarea1" required>
+                          </div>
+                          <div class="mb-2">
+                            <label class="form-label">Email</label>
+                            <input type="email" name="email" class="form-control" id="exampleFormControlTextarea1" required>
+                          </div>
+                          <div class="mb-2">
+                            <label class="form-label">Phone</label>
+                            <input type="text" name="phone" class="form-control" id="exampleFormControlTextarea1" required>
+                          </div>
+                          <div class="mb-2">
+                            <label class="form-label">Interested number of lots</label>
+                            <select class="form-select" aria-label="Default select example" required>
+                                <option value="1">1 Lot (£5,000)</option>
+                                <option value="2">2 Lots (£10,000)</option>
+                                <option value="3">3 Lots (£15,000)</option>
+                                <option value="4">above 3 Lots</option>
+                              </select>
+                          </div>
+                          <div class="mb-2">
+                            <label class="form-label">Country</label>
+                            <input type="text" name="country" class="form-control" id="exampleFormControlTextarea1" required>
+                          </div>
+                          <button class="btn btn-success btn-sm">Submit</button>
+                    </form>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+<%- include('include/userFooter') -%>
