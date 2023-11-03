@@ -1,0 +1,118 @@
+*{
+    padding: 0;
+    margin: 0;
+    box-sizing: border-box;
+}
+
+body{
+    font-family: 'Poppins', sans-serif;
+}
+
+h2{
+    font-size: 44px;
+    font-weight: 700;
+}
+
+h3{
+    font-size: 38px;
+    font-weight: 600;
+}
+
+h4{
+    font-size: 28px;
+    font-weight: 600;
+}
+
+h5{
+    font-size: 22px;
+    font-weight: 600;
+}
+
+h6{
+    font-size: 18px;
+    font-weight: 600;
+}
+
+.navbar{
+    padding: 20px 0px;
+}
+
+.logo{
+    width: 17%;
+    height: auto;
+}
+
+.main-dashboard{
+    height: 100%;
+}
+
+.user-details{
+    padding: 70px 0 0;
+}
+
+.user-details p{
+    line-height: 0;
+    color: #007519 ;
+}
+
+.menu-row{
+    padding: 0 15%;
+}
+
+.menu-item-bar{
+    padding: 10px 20px 0;
+}
+
+.menu-link{
+    text-decoration: none;
+    color:#000;
+}
+
+.menu-item{
+    cursor: pointer;
+    padding: 20px;
+    background-color: #f3f3f3;
+    border-radius: 10px;
+}
+
+.menu-item:hover{
+    background-color: #04ab3123;
+}
+
+.menu-item p{
+    font-size: 13px;
+}
+
+.logout-btn{
+    padding: 30px;
+}
+
+
+/* Footer */
+/* .footer{
+    color: #fff;
+    width: 100%;
+} */
+
+  /* mobile */
+  @media (max-width:520px){
+
+    .logo{
+        width: 50%;
+        height: auto;
+    }
+
+    .menu-row{
+        padding: 0 5%;
+    }
+    
+    .menu-item-bar{
+        padding: 10px 20px 0;
+    }
+    .menu-item{
+        padding: 15px;
+        background-color: #f3f3f3;
+    }
+    
+    
+  }

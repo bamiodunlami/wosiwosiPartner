@@ -1,0 +1,108 @@
+<%- include('include/adminHeader') -%>
+
+<div class="main-dashboard">
+  <div class="container">
+
+    <div class="user-details">
+        <div class="text-center">
+            <a class="btn btn-warning btn-sm" href="/adashboard"><i class="fa-solid fa-arrow-left fa-lg"></i> Back to dashvoard</a>
+        </div>
+    </div>
+
+    <div class="row menu-row align-items-center">
+        <div class="col-sm-4 menu-item-bar text-center">
+            <div class="menu-item">
+                <div class="">
+                    <h6>Add new partner</h6>
+                    <p>Add new partner</p>
+                </div>
+
+                    <!-- Button trigger modal -->
+                    <button type="button" class="btn btn-secondary btn-md" data-bs-toggle="modal" data-bs-target="#staticBackdrop">Add Partner</button>
+                    
+                    <!-- Modal -->
+                    <div class="modal fade" id="staticBackdrop" data-bs-backdrop="static" data-bs-keyboard="false" tabindex="-1" aria-labelledby="staticBackdropLabel" aria-hidden="true">
+                        <div class="modal-dialog">
+                        <div class="modal-content">
+                            <div class="modal-header">
+                            <h1 class="modal-title fs-5" id="staticBackdropLabel">Add new patner</h1>
+                            <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                            </div>
+                            <div class="modal-body">
+                            <div class="text-start">
+                                <form action="">
+                                    <div class="mb-2">
+                                        <label for="exampleFormControlInput1" class="form-label">First Name</label>
+                                        <input type="text" class="form-control" id="exampleFormControlInput1">
+                                      </div>
+                                      <div class="mb-2">
+                                        <label for="exampleFormControlTextarea1" class="form-label">Last Name</label>
+                                        <input type="text" class="form-control" id="exampleFormControlInput1" >
+                                      </div>
+                                      <div class="mb-2">
+                                        <label for="exampleFormControlTextarea1" class="form-label">Email</label>
+                                        <input type="email" class="form-control" id="exampleFormControlInput1" >
+                                      </div>
+                                      <div class="mb-2">
+                                        <label for="exampleFormControlTextarea1" class="form-label">Phone number</label>
+                                        <input type="text" class="form-control" id="exampleFormControlInput1" >
+                                      </div>
+                                      <div class="mb-2">
+                                        <label for="exampleFormControlTextarea1" class="form-label">Password</label>
+                                        <input type="text" class="form-control" id="exampleFormControlInput1">
+                                      </div>
+                                      <div class="mb-2">
+                                        <label for="exampleFormControlTextarea1" class="form-label">Investment type</label>
+                                        <input type="text" class="form-control" id="exampleFormControlInput1" >
+                                      </div>
+                                      <div class="mb-2">
+                                        <label for="exampleFormControlTextarea1" class="form-label">Amount Paid</label>
+                                        <input type="text" class="form-control" id="exampleFormControlInput1" >
+                                      </div>
+                                      <div class="mb-2">
+                                        <label for="exampleFormControlTextarea1" class="form-label">Date invested</label>
+                                        <input type="date" class="form-control" id="exampleFormControlInput1" >
+                                      </div>
+                                      <button type="button" id="newPartner" data-bs-dismiss="modal" class="btn btn-success">Create Partner</button>
+                                </form>    
+                            </div>
+                            </div>
+                            <!-- <div class="modal-footer text-start">
+                            <button type="button"  class="btn btn-success" data-bs-dismiss="modal">Create partner</button>
+                            </div> -->
+                        </div>
+                        </div>
+                    </div>
+            </div>
+        </div>
+
+      <div class="col-sm-4 menu-item-bar text-center">
+        <div class="menu-item">
+          <div>
+              <h6>Delete partner</h6>
+              <p>Delete partner</p>
+          </div>
+        </div>
+      </div>
+
+      <div class="col-sm-4 menu-item-bar text-center">
+        <a class="menu-link" href="/adashboard/editpartner">
+        <div class="menu-item">
+          <div>
+              <h6>Un/block partner</h6>
+              <p>Temporary block and unblock user </p>
+          </div>
+        </div>
+        </a>
+      </div>
+    </div>
+
+    <div class="logout-btn text-center">
+        <!-- <a href="/logout" class="btn btn-danger btn-sm">Logout</a> -->
+    </div>
+
+  </div>
+</div>
+
+<%-include('include/adminFooter') -%>
+<script src="/js/editPartner.js"></script>

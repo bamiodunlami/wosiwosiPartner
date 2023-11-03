@@ -1,0 +1,60 @@
+<%- include('include/adminHeader') -%>
+
+<div class="main-dashboard">
+  <div class="container">
+
+    <div class="user-details">
+        <div class="text-center">
+            <p>Welcome back</p>
+            <!-- <h5><%=user.username%></h5> -->
+        </div>
+    </div>
+
+    <div class="row menu-row align-items-center">
+        <div class="col-sm-4 menu-item-bar text-center">
+            <div class="menu-item">
+                <div>
+                    <h6>Post Information</h6>
+                    <p>Send message or notificaton to Partners</p>
+                </div>
+            </div>
+        </div>
+
+      <div class="col-sm-4 menu-item-bar text-center">
+        <div class="menu-item">
+          <div>
+              <h6>New investment</h6>
+              <p>Create or edit investment opportunity for partners </p>
+          </div>
+        </div>
+      </div>
+
+      <div class="col-sm-4 menu-item-bar text-center">
+        <a class="menu-link" href="/adashboard/editpartner">
+        <div class="menu-item">
+          <div>
+              <h6>Edit Partner</h6>
+              <p>Create a new partner, set username, and delete partner.</p>
+          </div>
+        </div>
+        </a>
+      </div>
+
+      <div class="col-sm-4 menu-item-bar text-center">
+        <div class="menu-item">
+          <div>
+              <h6>Edit Admin</h6>
+              <p>Create, edit or delete admin, make change to admin level.</p>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <div class="logout-btn text-center">
+        <a href="/logout" class="btn btn-danger btn-sm">Logout</a>
+    </div>
+
+  </div>
+</div>
+
+<%-include('include/adminFooter') -%>
