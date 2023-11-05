@@ -40,36 +40,6 @@ const renderAdminLogin = (req, res) => {
   });
 };
 
-const adashboard = (req, res) => {
-  if (req.isAuthenticated()) {
-    res.render("admin/adashboard", {
-      title: "Admin Dashboard",
-      user: req.user,
-    });
-  } else {
-    res.redirect("/adminlogin");
-  }
-};
-
-const adminOperation = (req, res) => {
-  if (req.isAuthenticated()) {
-    const operation = req.params.operation;
-    switch (operation) {
-      case "editpartner":
-        res.render('admin/partner', {
-            user:req.user,
-            title:"Edit Patner"
-        });
-        break;
-      default:
-        console.log("nooo");
-        break;
-    }
-  } else {
-    res.redirect("/adminLogin");
-  }
-};
-
 const logout = (req, res) => {
   req.logout((err) => {
     if (err) {
@@ -82,7 +52,5 @@ module.exports = {
   renderAdminLogin: renderAdminLogin,
   renderMasterAdminReg: renderMasterAdminReg,
   masterAdminReg: masterAdminReg,
-  adashboard: adashboard,
-  adminOperation: adminOperation,
   logout: logout,
 };

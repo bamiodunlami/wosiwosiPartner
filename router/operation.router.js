@@ -8,10 +8,12 @@ const rootPath = path.resolve(process.cwd())
 appRoot.setPath(rootPath);
 
 
-const dashboard = require(appRoot + '/controller/userDashboard.controller.js')
+const dashboard = require(appRoot + '/controller/operation.controller.js')
 
 router
-.get('/dashboard', dashboard.dashboardGetmethod)
 
+.get('/interest', dashboard.interestForm)
+
+.post('/interest', dashboard.interestFormSubmitted)
 
 module.exports=router

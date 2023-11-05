@@ -8,3 +8,12 @@ appRoot.setPath(rootPath)
 
 const dash = require (appRoot +'/controller/adminDashboard.controller.js')
 
+router
+.get ('/adashboard', dash.adashboard)
+
+.get ('/adashboard/:operation', dash.adminOperation)
+
+// .get('/adashboard/interest', dash.renderInterest)
+
+module.exports=router
+

@@ -35,12 +35,18 @@ const userDashboardRoute = require (appRoot + '/router/userDashboard.router.js')
 
 // admin routers
 const masterAdminRegRoute =  require (appRoot + '/router/adminAuth.router.js')
+const adminDashboard =  require (appRoot + '/router/adminDashboard.router.js')
+
+// other operations
+const operation = require (appRoot + '/router/operation.router.js')
 
 
 // Decalre router use
 app.use(userLoginRoute)
 app.use(userDashboardRoute)
 app.use(masterAdminRegRoute)
+app.use(adminDashboard)
+app.use(operation)
 
 
 // 404

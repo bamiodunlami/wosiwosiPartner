@@ -20,10 +20,6 @@ router
 
 .post('/mreg', adminAuth.masterAdminReg)
 
-.get ('/adashboard', adminAuth.adashboard)
-
-.get ('/adashboard/:operation', adminAuth.adminOperation)
-
 
 // logout
 .get("/logout", adminAuth.logout)
