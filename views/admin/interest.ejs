@@ -3,10 +3,49 @@
 <div class="interest-page-dashboard">
   <div class="container">
 
-    <div class="user-details">
-        <div class="text-center">
-            <a class="btn btn-warning btn-sm" href="/adashboard"><i class="fa-solid fa-arrow-left fa-lg"></i> Back to dashvoard</a>
+    <div class="row">
+      <div class="user-details">
+          <div class="text-center">
+              <a class="btn btn-warning btn-sm" href="/adashboard"><i class="fa-solid fa-arrow-left fa-lg"></i> Back to dashvoard</a>
+          </div>
+      </div>
+    </div>
+
+    <div class="row">
+      <div class="col-sm-12">
+        <div class="interest-page-bar">
+          <h5 class="text-center">Partnership Interest </h5>
+          <p class="text-center">Data of form filled by people interested in partnership</p>
+            <div class="interest-table">
+              <table class="table table-striped table-hover ">
+                <thead>
+                  <tr>
+                    <th scope="col">SN</th>
+                    <th scope="col">First Name</th>
+                    <th scope="col">Last Name</th>
+                    <!-- <th scope="col">Email</th> -->
+                    <!-- <th class="scope">Phone</th>
+                    <th class="scope">Interest</th>
+                    <th class="scope">Country</th> -->
+                  </tr>
+                </thead>
+                <tbody>
+                  <% for (i=int.length-1; i>=0; i--){%>
+                    <tr>
+                      <td><%=i+1%></td>
+                      <td><%=int[i].fname%></td>
+                      <td><%=int[i].lname%></td>
+<!-- "                      <td><%=int[i].email%></td>
+                      <td><%=int[i].phone%></td>
+                      <td><%=int[i].interest%></td>
+                      <td><%=int[i].country%></td>" -->
+                    </tr>
+                  <%}%>
+                </tbody>
+              </table>
+            </div>
         </div>
+      </div>
     </div>
 
   </div>

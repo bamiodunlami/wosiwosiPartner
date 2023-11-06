@@ -36,7 +36,6 @@ if (req.isAuthenticated()) {
         // render interest
     case "interest":
         const interest= await interestDB.find()
-        console.log(interest)
         res.render('admin/interest', {
             int:interest,
             title:"Interests"
