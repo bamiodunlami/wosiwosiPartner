@@ -9,6 +9,7 @@ appRoot.setPath(rootPath);
 
 const model = require(appRoot + '/model/operation.model.js')
 const InterestForm = model.InterestForm
+const mailer = require(appRoot + '/util/mailer.util.js')
 
 const interestForm = (req, res)=>{
     res.render('user/interest', {
@@ -27,6 +28,7 @@ const interestFormSubmitted = async (req, res)=>{
             country:req.body.country
         })
         saveInterest.save();
+        mailer.interestFormResponse(req.body.email,req.body.fname);
         res.render('user/interestFormSuccess', {
             title:"Success"
         })
