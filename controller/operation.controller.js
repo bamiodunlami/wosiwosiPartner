@@ -27,11 +27,22 @@ const interestFormSubmitted = async (req, res)=>{
             interest:req.body.interest,
             country:req.body.country
         })
-        saveInterest.save();
-        mailer.interestFormResponse(req.body.email,req.body.fname);
-        res.render('user/interestFormSuccess', {
-            title:"Success"
-        })
+        response = await InterestForm.find({email:req.body.email});
+        if(response.length>0){
+            mailer.interestFormResponse(req.body.email,req.body.fname);
+            res.render('user/interestFormSuccess', {
+                data:false,
+                title:"Response"
+            })
+        }else{
+            saveInterest.save();
+            mailer.interestFormResponse(req.body.email,req.body.fname);
+            res.render('user/interestFormSuccess', {
+                data:true,
+                title:"Success"
+            })
+        }
+
     }catch(e){
         console.log(e)
     }
