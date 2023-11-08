@@ -18,12 +18,12 @@ let transporter = nodemailer.createTransport({
 
 const interestFormResponse = (to, fname) => {
   const mailOptions = {
-      from: '"Wosiwosi Money" <info@wosiwosi.co.uk>',
+      from: '"Wosiwosi Partnership" <info@wosiwosi.co.uk>',
       to: to,
       subject: "Wosiwosi Partnership",
       attachments: [
         {  
-            filename: 'brochure.jpg',
+            filename: 'brochure.pdf',
             path: appRoot + "/file/brochure.pdf" // stream this file
         }],
       html: 
@@ -55,7 +55,7 @@ const interestFormResponse = (to, fname) => {
               <div class="container">
                   <p>Dear ${fname},</p>     
                   <p>Thank you for your interest in joining Wosiwosi Partnership. We appreciate your enthusiasm for our unique investment opportunity.</p>
-                  <p>Kindly click on the download brochure button to download Wosiwosi Partnership brochure that provides comprehensive information about the partnership. We encourage you to review it carefully to understand the benefits and opportunities that await you.</p>
+                  <p>Kindly download the attached Wosiwosi Partnership Brochure that provides comprehensive information about the partnership. We encourage you to review it carefully to understand the benefits and opportunities that await you.</p>
                   <p>If you're ready to take the next step and become a partner, please feel free to reach out to us. Our dedicated team is here to assist you. Simply click the "Contact Us Now" button below or reply to this email, and we will be in touch shortly.</p>
                   
                   <br>
@@ -64,11 +64,6 @@ const interestFormResponse = (to, fname) => {
                   </a>
                   <br>
                   
-                  <br>
-                  <a href="https://mywosiwosi.co.uk/wp-content/uploads/2023/11/Patnership-brochure_.pdf">
-                    <button style="background-color: #007519; color: white; padding: 10px 20px; border: none; cursor: pointer;">Download brochure</button>
-                  </a>
-                  <br>
 
                   <p>We look forward to welcoming you to the Wosiwosi Partnership family and embarking on a mutually rewarding journey.</p>
                   <p>Best regards,<br>Seyi Awobadejo<br>CEO, Wosiwosi Foods UK Limited</p>
@@ -77,10 +72,14 @@ const interestFormResponse = (to, fname) => {
           </html>`
   };
 
-  transporter.sendMail(mailOptions, (err)=>{
-    if(err){
-      console.log(err)
-    }
+  // <br>
+  // <a href="https://mywosiwosi.co.uk/wp-content/uploads/2023/11/Patnership-brochure_.pdf">
+  //   <button style="background-color: #007519; color: white; padding: 10px 20px; border: none; cursor: pointer;">Download brochure</button>
+  // </a>
+  // <br>
+
+  transporter.sendMail(mailOptions, (e)=>{
+console.log(e)
   });
 };
 

@@ -40,7 +40,7 @@ if (req.isAuthenticated()) {
             int:interest,
             title:"Interests"
         });
-        break;
+        break; 
     
     // default
     default:
