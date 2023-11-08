@@ -48,6 +48,7 @@ const interestFormResponse = (to, fname) => {
                   }
                   p {
                       margin: 15px 0;
+                      font-size:18px;
                   }
               </style>
           </head>
