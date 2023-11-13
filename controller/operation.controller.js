@@ -25,6 +25,8 @@ const interestFormSubmitted = async (req, res)=>{
             email:req.body.email,
             phone:req.body.phone,
             interest:req.body.interest,
+            address:req.body.address,
+            postcode:req.body.postcode,
             country:req.body.country
         })
         response = await InterestForm.find({email:req.body.email});
