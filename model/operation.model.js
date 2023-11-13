@@ -8,6 +8,8 @@ const interestFormSchema = new mongoose.Schema({
     email:"string",
     phone:"string",
     interest:"string",
+    address:"string",
+    postcode:"string",
     country:"string"
 })
 
