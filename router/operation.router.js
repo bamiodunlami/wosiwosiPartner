@@ -16,4 +16,8 @@ router
 
 .post('/interest', dashboard.interestFormSubmitted)
 
+.get('/subscribe', dashboard.subscriptionForm)
+
+.post ('/subscribe', dashboard.subscriptionFormSumitted)
+
 module.exports=router

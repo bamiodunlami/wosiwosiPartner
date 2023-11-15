@@ -9,6 +9,7 @@ appRoot.setPath(rootPath);
 
 const model = require(appRoot + '/model/operation.model.js')
 const InterestForm = model.InterestForm
+const SubscriptionForm = model.SubscriptionForm
 const mailer = require(appRoot + '/util/mailer.util.js')
 
 const interestForm = (req, res)=>{
@@ -39,6 +40,51 @@ const interestFormSubmitted = async (req, res)=>{
         }else{
             saveInterest.save();
             mailer.interestFormResponse(req.body.email,req.body.fname);
+            mailer.adminInterestNotification("partners@mywosiwosi.co.uk")
+            res.render('user/interestFormSuccess', {
+                data:true,
+                title:"Success"
+            })
+        }
+
+    }catch(e){
+        console.log(e)
+    }
+}
+
+const subscriptionForm = (req, res)=>{
+    res.render('user/subscriptionForm', {
+        title:"Subscription Form"
+    })
+
+}
+
+const subscriptionFormSumitted = async (req, res)=>{
+    try{
+        const saveSubscription = new SubscriptionForm({
+            fname:req.body.fname,
+            lname:req.body.lname,
+            email:req.body.email,
+            phone:req.body.phone,
+            address:req.body.address,
+            postcode:req.body.postcode,
+            country:req.body.country,
+            interest:req.body.interest,
+            startDate:req.body.startDate,
+            nextOfKin:req.body.nextOfKinName,
+            nextOfKinEmail:req.body.nextOfKinEmail,
+            nextOfKinPhone:req.body.nextOfKinPhone,
+        })
+        response = await SubscriptionForm.find({email:req.body.email});
+        if(response.length>0){
+            res.render('user/interestFormSuccess', {
+                data:false,
+                title:"Response"
+            })
+        }else{
+            saveSubscription.save();
+            mailer.subscriptionFormResponse(req.body.email,req.body.fname, req.body.interest, req.body.startDate);
+            mailer.adminSubscribeNotification("partners@mywosiwosi.co.uk")
             res.render('user/interestFormSuccess', {
                 data:true,
                 title:"Success"
@@ -52,5 +98,7 @@ const interestFormSubmitted = async (req, res)=>{
 
 module.exports ={
     interestForm:interestForm, 
-    interestFormSubmitted:interestFormSubmitted
+    interestFormSubmitted:interestFormSubmitted,
+    subscriptionForm:subscriptionForm,
+    subscriptionFormSumitted,
 }
