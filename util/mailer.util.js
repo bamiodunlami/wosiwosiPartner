@@ -66,7 +66,7 @@ const interestFormResponse = (to, fname) => {
                   <br>
                   
                   <br>
-                  <a href="https://mywosiwosi.co.uk/wp-content/uploads/2023/11/Patnership_Brochure.pdf">
+                  <a href="https://mywosiwosi.co.uk/wp-content/uploads/2023/11/Patnership.Brochure.pdf">
                     <button style="background-color: #007519; color: white; padding: 10px 20px; border: none; cursor: pointer;">Download brochure</button>
                   </a>
                   <br>
