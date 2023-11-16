@@ -87,6 +87,18 @@ h6{
     padding: 30px;
 }
 
+/* subscriber table (Edit partner page) */
+.subscriber-row{
+    padding: 50px 0%;
+}
+.subscriber-bar-main{
+    height: 50vh;
+    overflow-y: scroll;
+    background-color: #fafafa;
+    padding: 30px;
+    border-radius: 10px;
+}
+
 
 /* Footer */
 /* .footer{

@@ -13,7 +13,7 @@ router
 
 .get ('/adashboard/:operation', dash.adminOperation)
 
-// .get('/adashboard/interest', dash.renderInterest)
+.post('/createuser', dash.createUser)
 
 module.exports=router
 

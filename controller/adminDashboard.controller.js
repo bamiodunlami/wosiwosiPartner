@@ -8,6 +8,7 @@ appRoot.setPath(rootPath)
 
 const passport = require(appRoot + "/util/passport.util.js");
 const interestDB = require(appRoot + "/model/operation.model.js").InterestForm;
+const subscrberDB = require(appRoot + "/model/operation.model.js").SubscriptionForm;
 const Admin = require(appRoot + "/model/admin.model.js");
 
 const adashboard = (req, res) => {
@@ -27,8 +28,10 @@ if (req.isAuthenticated()) {
     switch (operation) {
         // redner edit partner
     case "editpartner":
+       const subscriberData = await subscrberDB.find()
         res.render('admin/partner', {
             user:req.user,
+            subscrber:subscriberData,
             title:"Edit Patner"
         });
         break;
@@ -52,21 +55,13 @@ if (req.isAuthenticated()) {
 }
 };
 
-// const renderInterest =async (req, res)=>{
-//     if(req.isAuthenticated()){
-//         // const interest= await interest.find()
-//         // console.log(interest)
-//         res.render('interest', {
-//             title:"Interests",
-//             // int:interest
-//         })
-//     }else{
-//         res.redirect("/adminLogin");
-//     }
-// }
-
+// create user
+const createUser = async (req, res)=>{
+  console.log(req.body)
+}
 
   module.exports = {
     adashboard: adashboard,
     adminOperation: adminOperation,
+    createUser:createUser
   };

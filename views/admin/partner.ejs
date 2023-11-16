@@ -10,73 +10,17 @@
     </div>
 
     <div class="row menu-row align-items-center">
-        <div class="col-sm-4 menu-item-bar text-center">
+        <!-- <div class="col-sm-6 menu-item-bar text-center">
             <div class="menu-item">
                 <div class="">
                     <h6>Add new partner</h6>
                     <p>Add new partner</p>
-                </div>
+                </div> -->
 
-                    <!-- Button trigger modal -->
-                    <button type="button" class="btn btn-secondary btn-md" data-bs-toggle="modal" data-bs-target="#staticBackdrop">Add Partner</button>
-                    
-                    <!-- Modal -->
-                    <div class="modal fade" id="staticBackdrop" data-bs-backdrop="static" data-bs-keyboard="false" tabindex="-1" aria-labelledby="staticBackdropLabel" aria-hidden="true">
-                        <div class="modal-dialog">
-                        <div class="modal-content">
-                            <div class="modal-header">
-                            <h1 class="modal-title fs-5" id="staticBackdropLabel">Add new patner</h1>
-                            <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
-                            </div>
-                            <div class="modal-body">
-                            <div class="text-start">
-                                <form action="">
-                                    <div class="mb-2">
-                                        <label for="exampleFormControlInput1" class="form-label">First Name</label>
-                                        <input type="text" class="form-control" id="exampleFormControlInput1">
-                                      </div>
-                                      <div class="mb-2">
-                                        <label for="exampleFormControlTextarea1" class="form-label">Last Name</label>
-                                        <input type="text" class="form-control" id="exampleFormControlInput1" >
-                                      </div>
-                                      <div class="mb-2">
-                                        <label for="exampleFormControlTextarea1" class="form-label">Email</label>
-                                        <input type="email" class="form-control" id="exampleFormControlInput1" >
-                                      </div>
-                                      <div class="mb-2">
-                                        <label for="exampleFormControlTextarea1" class="form-label">Phone number</label>
-                                        <input type="text" class="form-control" id="exampleFormControlInput1" >
-                                      </div>
-                                      <div class="mb-2">
-                                        <label for="exampleFormControlTextarea1" class="form-label">Password</label>
-                                        <input type="text" class="form-control" id="exampleFormControlInput1">
-                                      </div>
-                                      <div class="mb-2">
-                                        <label for="exampleFormControlTextarea1" class="form-label">Investment type</label>
-                                        <input type="text" class="form-control" id="exampleFormControlInput1" >
-                                      </div>
-                                      <div class="mb-2">
-                                        <label for="exampleFormControlTextarea1" class="form-label">Amount Paid</label>
-                                        <input type="text" class="form-control" id="exampleFormControlInput1" >
-                                      </div>
-                                      <div class="mb-2">
-                                        <label for="exampleFormControlTextarea1" class="form-label">Date invested</label>
-                                        <input type="date" class="form-control" id="exampleFormControlInput1" >
-                                      </div>
-                                      <button type="button" id="newPartner" data-bs-dismiss="modal" class="btn btn-success">Create Partner</button>
-                                </form>    
-                            </div>
-                            </div>
-                            <!-- <div class="modal-footer text-start">
-                            <button type="button"  class="btn btn-success" data-bs-dismiss="modal">Create partner</button>
-                            </div> -->
-                        </div>
-                        </div>
-                    </div>
-            </div>
-        </div>
+            <!-- </div>
+        </div> -->
 
-      <div class="col-sm-4 menu-item-bar text-center">
+      <!-- <div class="col-sm-4 menu-item-bar text-center">
         <div class="menu-item">
           <div>
               <h6>Delete partner</h6>
@@ -86,7 +30,7 @@
       </div>
 
       <div class="col-sm-4 menu-item-bar text-center">
-        <a class="menu-link" href="/adashboard/interest">
+        <a class="menu-link" href="">
         <div class="menu-item">
           <div>
               <h6>Un/block partner</h6>
@@ -94,15 +38,172 @@
           </div>
         </div>
         </a>
-      </div>
+      </div> -->
     </div>
 
-    <div class="logout-btn text-center">
-        <!-- <a href="/logout" class="btn btn-danger btn-sm">Logout</a> -->
+  <div class="row subscriber-row">
+      <!-- subscribers -->
+      <div class="col-md-6 subscriber-bar">
+        <div class="subscriber-bar-main">
+        <h6 class="text-center">Subscribers</h6>
+          <table class="table table-striped table-hover ">
+            <thead>
+              <tr>
+                <th scope="col">First Name</th>
+                <th scope="col">Email</th>
+                <th class="scope">Lot</th>
+              </tr>
+            </thead>
+            <tbody>
+              <% for (i=subscrber.length-1; i>=0; i--){%>
+                <tr class="subscrber-details" data-bs-toggle="modal" data-bs-target="#staticBackdrop">
+                  <td><%=subscrber[i].fname%></td>
+                  <td><%=subscrber[i].email%></td>
+                  <td ><%=subscrber[i].interest.slice(0,2)%></td>
+                   <!-- Button trigger modal -->
+                   <!-- <button type="button" class="btn btn-secondary btn-md" data-bs-toggle="modal" data-bs-target="#staticBackdrop">Add Partner</button> -->
+                    
+                   <!-- Modal -->
+                   <div class="modal fade" id="staticBackdrop" data-bs-backdrop="static" data-bs-keyboard="false" tabindex="-1" aria-labelledby="staticBackdropLabel" aria-hidden="true">
+                       <div class="modal-dialog">
+                       <div class="modal-content">
+                           <div class="modal-header">
+                           <h1 class="modal-title fs-5" id="staticBackdropLabel">Add new patner</h1>
+                           <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                           </div>
+                           <div class="modal-body">
+                           <div class="text-start">
+                               <form action="/createuser" method="post">
+                                   <div class="mb-2">
+                                       <label for="exampleFormControlInput1" class="form-label">First Name</label>
+                                       <input type="text" name="fname" class="form-control" id="exampleFormControlInput1">
+                                     </div>
+                                     <div class="mb-2">
+                                       <label for="exampleFormControlTextarea1" class="form-label">Last Name</label>
+                                       <input type="text" name="lname" class="form-control" id="exampleFormControlInput1" >
+                                     </div>
+                                     <div class="mb-2">
+                                       <label for="exampleFormControlTextarea1" class="form-label">Email</label>
+                                       <input type="email" name="username" class="form-control" id="exampleFormControlInput1" >
+                                     </div>
+                                     <div class="mb-2">
+                                       <label for="exampleFormControlTextarea1" class="form-label">Phone number</label>
+                                       <input type="text" name="phone" class="form-control" id="exampleFormControlInput1" >
+                                     </div>
+                                     <div class="mb-2">
+                                       <label for="exampleFormControlTextarea1" class="form-label">Password</label>
+                                       <input type="text" name="password" class="form-control" id="exampleFormControlInput1">
+                                     </div>
+                                     <div class="mb-2">
+                                       <label for="exampleFormControlTextarea1" class="form-label">Investment type</label>
+                                       <input type="text" name="lot" class="form-control" id="exampleFormControlInput1" >
+                                     </div>
+                                     <div class="mb-2">
+                                       <label for="exampleFormControlTextarea1" class="form-label">Amount Paid</label>
+                                       <input type="text" name="amount" class="form-control" id="exampleFormControlInput1" >
+                                     </div>
+                                     <div class="mb-2">
+                                       <label for="exampleFormControlTextarea1" class="form-label">Date invested</label>
+                                       <input type="date" name="startDate" class="form-control" id="exampleFormControlInput1" >
+                                     </div>
+                                     <button type="submit"  class="btn btn-success">Create Partner</button>
+                               </form>    
+                           </div>
+                           </div>
+                           <!-- <div class="modal-footer text-start">
+                           <button type="button"  class="btn btn-success" data-bs-dismiss="modal">Create partner</button>
+                           </div> -->
+                       </div>
+                       </div>
+                   </div>
+                </tr>
+              <%}%>
+            </tbody>
+          </table>
+          </div>
+      </div>
+
+      <!-- partners -->
+      <div class="col-md-6 subscriber-bar">
+        <div class="subscriber-bar-main">
+        <h6 class="text-center">Partners</h6>
+          <table class="table table-striped table-hover ">
+            <thead>
+              <tr>
+                <th scope="col">First Name</th>
+                <th scope="col">Email</th>
+                <th class="scope">Lot</th>
+              </tr>
+            </thead>
+            <tbody>
+
+            </tbody>
+          </table>
+        </div>
+      </div>
+
+
+         <!-- manually create user -->
+        <div class="text-center" style="margin-top: 20px;">
+          <button type="button" class="btn btn-success btn-md" data-bs-toggle="modal" data-bs-target="#staticBackdrop">Mannually Create Partner</button>             
+          <!-- Modal -->
+          <div class="modal fade" id="staticBackdrop" data-bs-backdrop="static" data-bs-keyboard="false" tabindex="-1" aria-labelledby="staticBackdropLabel" aria-hidden="true">
+              <div class="modal-dialog">
+              <div class="modal-content">
+                  <div class="modal-header">
+                  <h1 class="modal-title fs-5" id="staticBackdropLabel">Add new patner</h1>
+                  <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                  </div>
+                  <div class="modal-body">
+                  <div class="text-start">
+                      <form action="/createuser" method="post">
+                          <div class="mb-2">
+                              <label for="exampleFormControlInput1" class="form-label">First Name</label>
+                              <input type="text" name="fname" class="form-control" id="exampleFormControlInput1">
+                            </div>
+                            <div class="mb-2">
+                              <label for="exampleFormControlTextarea1" class="form-label">Last Name</label>
+                              <input type="text" name="lname" class="form-control" id="exampleFormControlInput1" >
+                            </div>
+                            <div class="mb-2">
+                              <label for="exampleFormControlTextarea1" class="form-label">Email</label>
+                              <input type="email" name="username" class="form-control" id="exampleFormControlInput1" >
+                            </div>
+                            <div class="mb-2">
+                              <label for="exampleFormControlTextarea1" class="form-label">Phone number</label>
+                              <input type="text" name="phone" class="form-control" id="exampleFormControlInput1" >
+                            </div>
+                            <div class="mb-2">
+                              <label for="exampleFormControlTextarea1" class="form-label">Password</label>
+                              <input type="text" name="password" class="form-control" id="exampleFormControlInput1">
+                            </div>
+                            <div class="mb-2">
+                              <label for="exampleFormControlTextarea1" class="form-label">Investment type</label>
+                              <input type="text" name="lot" class="form-control" id="exampleFormControlInput1" >
+                            </div>
+                            <div class="mb-2">
+                              <label for="exampleFormControlTextarea1" class="form-label">Amount Paid</label>
+                              <input type="text" name="amount" class="form-control" id="exampleFormControlInput1" >
+                            </div>
+                            <div class="mb-2">
+                              <label for="exampleFormControlTextarea1" class="form-label">Date invested</label>
+                              <input type="date" name="startDate" class="form-control" id="exampleFormControlInput1" >
+                            </div>
+                            <button type="submit"  class="btn btn-success">Create Partner</button>
+                      </form>    
+                  </div>
+                  </div>
+                  <!-- <div class="modal-footer text-start">
+                  <button type="button"  class="btn btn-success" data-bs-dismiss="modal">Create partner</button>
+                  </div> -->
+              </div>
+              </div>
+          </div>
     </div>
+  </div>
 
   </div>
 </div>
 
 <%-include('include/adminFooter') -%>
-<script src="/js/editPartner.js"></script>
+<!-- <script src="/js/editPartner.js"></script> -->
