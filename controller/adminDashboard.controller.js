@@ -11,6 +11,7 @@ const interestDB = require(appRoot + "/model/operation.model.js").InterestForm;
 const subscrberDB = require(appRoot + "/model/operation.model.js").SubscriptionForm;
 const Admin = require(appRoot + "/model/admin.model.js");
 
+// render admin dashboard
 const adashboard = (req, res) => {
     if (req.isAuthenticated()) {
       res.render("admin/adashboard", {
@@ -22,6 +23,7 @@ const adashboard = (req, res) => {
     }
   };
   
+// get each route after path
 const adminOperation = async (req, res) => {
 if (req.isAuthenticated()) {
     const operation = req.params.operation;
@@ -60,8 +62,14 @@ const createUser = async (req, res)=>{
   console.log(req.body)
 }
 
+const fetchSubscriberDetails = async (req, res)=>{
+  const sdetails = await subscrberDB.findOne({email:req.body.email})
+  res.json(sdetails)
+}
+
   module.exports = {
     adashboard: adashboard,
     adminOperation: adminOperation,
-    createUser:createUser
+    createUser:createUser,
+    fetchSubscriberDetails:fetchSubscriberDetails,
   };

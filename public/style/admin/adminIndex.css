@@ -33,6 +33,14 @@ h6{
     font-weight: 600;
 }
 
+.hidden{
+    display:none;
+}
+
+.visible{
+    display: block;
+}
+
 .navbar{
     padding: 20px 0px;
 }

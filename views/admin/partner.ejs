@@ -68,47 +68,51 @@
                        <div class="modal-dialog">
                        <div class="modal-content">
                            <div class="modal-header">
-                           <h1 class="modal-title fs-5" id="staticBackdropLabel">Add new patner</h1>
+                           <h1 class="modal-title fs-5" id="staticBackdropLabel">Subscriber</h1>
                            <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
                            </div>
                            <div class="modal-body">
-                           <div class="text-start">
+                            <!-- loading -->
+                              <div class="text-center" id="loading">
+                                <div class="spinner-border" style="width: 3rem; height: 3rem;" role="status">
+                                  <span class="visually-hidden">Loading...</span>
+                                </div>
+                              </div>
+                              <!--  -->
+                             <div class="text-start hidden" id="detailsBar">
                                <form action="/createuser" method="post">
                                    <div class="mb-2">
                                        <label for="exampleFormControlInput1" class="form-label">First Name</label>
-                                       <input type="text" name="fname" class="form-control" id="exampleFormControlInput1">
+                                       <h6 id="fname"></h6>
                                      </div>
                                      <div class="mb-2">
                                        <label for="exampleFormControlTextarea1" class="form-label">Last Name</label>
-                                       <input type="text" name="lname" class="form-control" id="exampleFormControlInput1" >
+                                       <h6 id="lname"></h6>
                                      </div>
                                      <div class="mb-2">
                                        <label for="exampleFormControlTextarea1" class="form-label">Email</label>
-                                       <input type="email" name="username" class="form-control" id="exampleFormControlInput1" >
+                                       <h6 id="email"></h6>
                                      </div>
                                      <div class="mb-2">
                                        <label for="exampleFormControlTextarea1" class="form-label">Phone number</label>
-                                       <input type="text" name="phone" class="form-control" id="exampleFormControlInput1" >
+                                       <h6 id="phone"></h6>
                                      </div>
                                      <div class="mb-2">
-                                       <label for="exampleFormControlTextarea1" class="form-label">Password</label>
-                                       <input type="text" name="password" class="form-control" id="exampleFormControlInput1">
+                                       <label for="exampleFormControlTextarea1" class="form-label">Address</label>
+                                       <h6 id="address"></h6>
                                      </div>
                                      <div class="mb-2">
-                                       <label for="exampleFormControlTextarea1" class="form-label">Investment type</label>
-                                       <input type="text" name="lot" class="form-control" id="exampleFormControlInput1" >
+                                       <label for="exampleFormControlTextarea1" class="form-label">Interest</label>
+                                       <h6 id="interest"></h6>
                                      </div>
                                      <div class="mb-2">
-                                       <label for="exampleFormControlTextarea1" class="form-label">Amount Paid</label>
-                                       <input type="text" name="amount" class="form-control" id="exampleFormControlInput1" >
+                                       <label for="exampleFormControlTextarea1" class="form-label">Start Date</label>
+                                       <h6 id="startDate"></h6>
                                      </div>
-                                     <div class="mb-2">
-                                       <label for="exampleFormControlTextarea1" class="form-label">Date invested</label>
-                                       <input type="date" name="startDate" class="form-control" id="exampleFormControlInput1" >
-                                     </div>
-                                     <button type="submit"  class="btn btn-success">Create Partner</button>
+                                       <input type="hidden" name="emailTag" class="form-control" id="emailTag"> 
+                                       <button type="submit"  class="btn btn-success btn-sm">Create Partner</button>
                                </form>    
-                           </div>
+                            </div>
                            </div>
                            <!-- <div class="modal-footer text-start">
                            <button type="button"  class="btn btn-success" data-bs-dismiss="modal">Create partner</button>
@@ -204,6 +208,6 @@
 
   </div>
 </div>
-
 <%-include('include/adminFooter') -%>
-<!-- <script src="/js/editPartner.js"></script> -->
+<script src="/js/editp.js"></script>
+<%-include('include/footer') -%>
