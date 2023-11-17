@@ -23,7 +23,7 @@ app.use(session({
     resave: false,
     saveUninitialized: true,
     cookie: { 
-        // maxAge:300000
+        maxAge:120000
     }
   }));
 app.use(passport.session()); //ask passport to use session
