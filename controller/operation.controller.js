@@ -28,7 +28,8 @@ const interestFormSubmitted = async (req, res)=>{
             interest:req.body.interest,
             address:req.body.address,
             postcode:req.body.postcode,
-            country:req.body.country
+            country:req.body.country,
+            startDate:req.body.startDate
         })
         response = await InterestForm.find({email:req.body.email});
         if(response.length>0){

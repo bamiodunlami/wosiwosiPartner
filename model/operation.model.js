@@ -10,7 +10,8 @@ const interestFormSchema = new mongoose.Schema({
     interest:"string",
     address:"string",
     postcode:"string",
-    country:"string"
+    country:"string",
+    startDate:"string"
 })
 
 const subscriptionFormSchema = new mongoose.Schema({
