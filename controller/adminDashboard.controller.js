@@ -67,6 +67,12 @@ const fetchSubscriberDetails = async (req, res)=>{
   res.json(sdetails)
 }
 
+// delete interest form submitted
+const deleteInterestForm = async (req, res)=>{
+  const sdetails = await interestDB.deletOne({email:req.body.email})
+  res.redirect(req.header.referer);
+}
+
   module.exports = {
     adashboard: adashboard,
     adminOperation: adminOperation,
