@@ -31,7 +31,7 @@ const interestFormResponse = (to, fname) => {
           <html>
           <head>
               <meta charset="UTF-8">
-              <title>Thank you for your interest in Wosiwosi Partnership</title>
+              <title>Thank you for your subscribing to Wosiwosi Strategic Business Partnership</title>
               <style>
                   body {
                       font-family: Poppins, sans-serif;
@@ -55,23 +55,9 @@ const interestFormResponse = (to, fname) => {
           <body>
               <div class="container">
                   <p>Dear ${fname},</p>     
-                  <p>Thank you for your interest in joining Wosiwosi Partnership. We appreciate your enthusiasm for our unique investment opportunity.</p>
-                  <p>Kindly click on the download brochure button to download Wosiwosi Partnership brochure that provides comprehensive information about the partnership. We encourage you to review it carefully to understand the benefits and opportunities that await you.</p>
-                  <p>If you're ready to take the next step and become a partner, please feel free to reach out to us. Our dedicated team is here to assist you. Simply click the "Contact Us Now" button below or reply to this email, and we will be in touch shortly.</p>
-                  
-                  <br>
-                  <a href="tel:01268533102">
-                    <button style="background-color: #007519; color: white; padding: 10px 20px; border: none; cursor: pointer;">Contact Us Now</button>
-                  </a>
-                  <br>
-                  
-                  <br>
-                  <a href="https://mywosiwosi.co.uk/wp-content/uploads/2023/11/Patnership.Brochure_ecopy.pdf">
-                    <button style="background-color: #007519; color: white; padding: 10px 20px; border: none; cursor: pointer;">Download brochure</button>
-                  </a>
-                  <br>
-
-                  <p>We look forward to welcoming you to the Wosiwosi Partnership family and embarking on a mutually rewarding journey.</p>
+                  <p>Thank you for subscribing to join Wosiwosi Strategic Business Partnership. We appreciate your enthusiasm for our unique investment opportunity.</p>
+                  <p> A member of our manangement team will contact you to provide more information on the next step to take.</p>
+                  <p>We look forward to welcoming you to the Wosiwosi family and embarking on a mutually rewarding journey.</p>
                   <p>Best regards,<br>Seyi Awobadejo<br>CEO, Wosiwosi Foods UK Limited</p>
               </div>
           </body>
