@@ -14,7 +14,7 @@ const mailer = require(appRoot + '/util/mailer.util.js')
 
 const interestForm = (req, res)=>{
     res.render('user/interest', {
-        title:"Interest Form"
+        title:"Partner Subscription Form"
     })
 }
 
