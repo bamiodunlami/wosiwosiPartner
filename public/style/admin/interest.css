@@ -1,23 +1,9 @@
-.interest-page-bar{
-    padding: 30px;
-}
 
-.interest-table{
-    padding: 3% 10%;
-}
 
 tr{
     cursor: pointer;
 }
 
 @media (max-width:520px){
-
-    .interest-page-bar{
-        padding: 10px;
-    }
-    
-    .interest-table{
-        padding: 0%;
-    }
 
 }
