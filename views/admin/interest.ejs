@@ -26,6 +26,8 @@
                     <th scope="col">Email</th>
                     <th class="scope">Phone</th>
                     <th class="scope">Address</th>
+                    <th class="scope">Action</th>
+                    <th class="scope">Action</th>
                   </tr>
                 </thead>
                 <tbody>
@@ -37,6 +39,18 @@
                      <td><%=int[i].email%></td>
                       <td><%=int[i].phone%></td>
                       <td><%=int[i].address%> <%=int[i].postcode%> <%=int[i].country%></td>
+                      <td>
+                        <form action="/deleteinterest" method="post">
+                          <input type="hidden" value="<%=int[i].email%>">
+                          <button type="submit" class="btn btn-danger">Delete</button>
+                        </form>
+                      </td>
+                      <td>
+                        <form action="/subscribed" method="post">
+                          <input type="hidden" value="<%=int[i].email%>">
+                          <button type="submit" class="btn btn-success">Interested</button>
+                        </form>
+                      </td>
                     </tr>
                   <%}%>
                 </tbody>
