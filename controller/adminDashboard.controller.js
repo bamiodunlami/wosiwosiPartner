@@ -13,6 +13,8 @@ const followupDB = require(appRoot + "/model/operation.model.js").Followup;
 const toSubscribeDB = require(appRoot + "/model/operation.model.js").Tosubscribe;
 const Admin = require(appRoot + "/model/admin.model.js");
 
+const mailer = require(appRoot + "/util/mailer.util.js");
+
 // render admin dashboard
 const adashboard = (req, res) => {
     if (req.isAuthenticated()) {
@@ -97,6 +99,7 @@ const interestOperation = async (req, res)=>{
           postcode:details.postcode,
           country:details.country,
           // startDate:req.body.startDate
+          comment:req.body.comment
         })
         const response = await saveFollowup.save();
           const remove = await interestDB.deleteOne({email:response.email});
@@ -118,6 +121,7 @@ const interestOperation = async (req, res)=>{
         })
         const toSubscribeResponse = await saveToSubscribe.save();
           const toSubscribeRemove = await interestDB.deleteOne({email:toSubscribeResponse.email});
+          mailer.sendSubscriptionForm(toSubscribeResponse.email, toSubscribeResponse.fname)
           res.redirect(req.headers.referer);
         break;
 

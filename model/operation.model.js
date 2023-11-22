@@ -23,7 +23,8 @@ const followupSchema = new mongoose.Schema({
     address:"string",
     postcode:"string",
     country:"string",
-    startDate:"string"
+    startDate:"string",
+    comment:"string"
 });
 
 const toSubscribeSchema = new mongoose.Schema({

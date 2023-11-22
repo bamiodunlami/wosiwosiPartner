@@ -6,9 +6,15 @@
         <div class="row">
           <div class="user-details">
               <div class="d-flex flex-row justify-content-center">
+                <% if(removeButton == true){%>
+                  <div class="">
+                    <a class="btn btn-dark btn-sm" href="/adashboard/interest"><i class="fa-solid fa-arrow-left fa-lg"></i> Back</a>
+                  </div>
+                <%}else{%>
                 <div class="">
                   <a class="btn btn-dark btn-sm" href="/adashboard"><i class="fa-solid fa-arrow-left fa-lg"></i> Back</a>
                 </div>
+                <%}%>
                 <div class="">
                   <a class="btn btn-warning btn-sm" href="/interest/followup">Follow up</a>
                 </div>
@@ -33,7 +39,8 @@
                     <th scope="col">Last Name</th>
                     <th scope="col">Email</th>
                     <th class="scope">Phone</th>
-                    <th class="scope">Address</th>
+                    <!-- <th class="scope">Address</th> -->
+                    <th class="scope">Comment</th>
                     <% if(removeButton == false){%>
                       <th class="scope">Action</th>
                       <th class="scope">Action</th>
@@ -49,7 +56,8 @@
                       <td><%=int[i].lname%></td>
                      <td><%=int[i].email%></td>
                       <td><%=int[i].phone%></td>
-                      <td><%=int[i].address%> <%=int[i].postcode%> <%=int[i].country%></td>
+                      <!-- <td><=int[i].address> <=int[i].postcode%> <=int[i].country></td> -->
+                      <td><%=int[i].comment%></td>
 
                       <% if(removeButton == false){%>
                       <td>
@@ -62,6 +70,7 @@
                         <td>
                           <form action="/interest/notsure" method="post">
                             <input type="hidden" name="email" value="<%=int[i].email%>">
+                            <input class="form-control" type=" text " name="comment" required placeholder="comment">
                             <button type="submit" class="btn btn-warning">Inconclusive</button>
                           </form>
                         </td>

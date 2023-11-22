@@ -134,7 +134,6 @@ const subscriptionFormResponse = (to, fname, interest, startDate) => {
   transporter.sendMail(mailOptions);
 };
 
-
 const adminInterestNotification = (to) => {
   const mailOptions = {
       from: '"Wosiwosi Partnership" <info@wosiwosi.co.uk>',
@@ -182,6 +181,64 @@ const adminInterestNotification = (to) => {
   transporter.sendMail(mailOptions);
 };
 
+const sendSubscriptionForm = (to, fname) => {
+    const mailOptions = {
+        from: '"Wosiwosi Partnership" <info@wosiwosi.co.uk>',
+        to: to,
+        subject: "SUBSCRIPTION FORM",
+        attachments: [
+          {  
+              filename: 'wosiwosi_partnership_contract.pdf',
+              path: appRoot + "/file/wosiwosi_partnership_contract.pdf" // stream this file
+          }],
+        html: 
+            `<!DOCTYPE html>
+            <html>
+            <head>
+                <meta charset="UTF-8">
+                <title>Thank you for your subscribing to Wosiwosi Strategic Business Partnership</title>
+                <style>
+                    body {
+                        font-family: Poppins, sans-serif;
+                        line-height: 1.6;
+                    }
+                    .container {
+                        max-width: 600px;
+                        margin: 0 auto;
+                        padding: 20px;
+                        text-align: left;
+                    }
+                    h1 {
+                        color: #007519;
+                    }
+                    p {
+                        margin: 15px 0;
+                        font-size:18px;
+                    }
+                </style>
+            </head>
+            <body>
+                <div class="container">
+                    <p>Dear ${fname},</p>     
+                    <p>Thank you for your interest in Wosiwosi Partnership.</p>
+                    <p>To move forward and unlock the full potential of this exciting venture, kindly complete the subscription form by clicking the button below.</p>
+                    <br>
+                    <a href="https://wosiwosipartner-f80fd9f8b1c9.herokuapp.com/subscribe">
+                      <button style="background-color: #007519; color: white; padding: 10px 20px; border: none; cursor: pointer;">Subscription Form</button>
+                    </a>
+                    <br>
+                    <p><strong>Final step after filling the subscription form is payment and signing of contract.<strong></p>
+                    <p>I have also attached a draft of the contract for your viewing</p>
+                    <p>We look forward to welcoming you as a valued partner in our journey of growth and cultural enrichment.</p>
+                    <br>
+                    <p>Best regards,<br>Atinuke Awobadejo<br>Co-Founder Wosiwosi Foods UK Limited</p>
+                </div>
+            </body>
+            </html>`
+    };
+  
+    transporter.sendMail(mailOptions);
+  };
 
 const adminSubscribeNotification = (to) => {
   const mailOptions = {
@@ -230,9 +287,11 @@ const adminSubscribeNotification = (to) => {
   transporter.sendMail(mailOptions);
 };
 
+
 module.exports={
   interestFormResponse:interestFormResponse,
   subscriptionFormResponse:subscriptionFormResponse,
   adminInterestNotification:adminInterestNotification,
-  adminSubscribeNotification:adminSubscribeNotification
+  adminSubscribeNotification:adminSubscribeNotification,
+  sendSubscriptionForm:sendSubscriptionForm
 }
