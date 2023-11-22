@@ -17,5 +17,9 @@ router
 
 .post('/sdetails', dash.fetchSubscriberDetails) //subscriber details fetch
 
+.post('/interest/:request', dash.interestOperation) //interest operation
+
+.get('/interest/:request', dash.interestSectionOperation) //interest operation
+
 module.exports=router
 

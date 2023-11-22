@@ -3,13 +3,21 @@
 <div class="interest-page-dashboard">
   <div class="container">
 
-    <div class="row">
-      <div class="user-details">
-          <div class="text-center">
-              <a class="btn btn-warning btn-sm" href="/adashboard"><i class="fa-solid fa-arrow-left fa-lg"></i> Back to dashvoard</a>
+        <div class="row">
+          <div class="user-details">
+              <div class="d-flex flex-row justify-content-center">
+                <div class="">
+                  <a class="btn btn-dark btn-sm" href="/adashboard"><i class="fa-solid fa-arrow-left fa-lg"></i> Back</a>
+                </div>
+                <div class="">
+                  <a class="btn btn-warning btn-sm" href="/interest/followup">Follow up</a>
+                </div>
+                <div class="">
+                  <a class="btn btn-success btn-sm" href="/interest/subscription">Interested</a>
+                </div>
+              </div>
           </div>
-      </div>
-    </div>
+        </div>
 
     <div class="row">
       <div class="col-sm-12">
@@ -26,9 +34,11 @@
                     <th scope="col">Email</th>
                     <th class="scope">Phone</th>
                     <th class="scope">Address</th>
-                    <th class="scope">Action</th>
-                    <th class="scope">Action</th>
-                    <th class="scope">Action</th>
+                    <% if(removeButton == false){%>
+                      <th class="scope">Action</th>
+                      <th class="scope">Action</th>
+                      <th class="scope">Action</th>
+                    <%}%>
                   </tr>
                 </thead>
                 <tbody>
@@ -40,24 +50,29 @@
                      <td><%=int[i].email%></td>
                       <td><%=int[i].phone%></td>
                       <td><%=int[i].address%> <%=int[i].postcode%> <%=int[i].country%></td>
+
+                      <% if(removeButton == false){%>
                       <td>
-                        <form action="/deleteinterest" method="post">
-                          <input type="hidden" value="<%=int[i].email%>">
+                        <form action="/interest/deleteinterest" method="post">
+                          <input type="hidden" name="email" value="<%=int[i].email%>">
                           <button type="submit" class="btn btn-danger">Delete</button>
                         </form>
                       </td>
-                      <td>
-                        <form action="/notsure" method="post">
-                          <input type="hidden" value="<%=int[i].email%>">
-                          <button type="submit" class="btn btn-warning">Indecision</button>
-                        </form>
-                      </td>
-                      <td>
-                        <form action="/subscribed" method="post">
-                          <input type="hidden" value="<%=int[i].email%>">
-                          <button type="submit" class="btn btn-success">Interested</button>
-                        </form>
-                      </td>
+
+                        <td>
+                          <form action="/interest/notsure" method="post">
+                            <input type="hidden" name="email" value="<%=int[i].email%>">
+                            <button type="submit" class="btn btn-warning">Inconclusive</button>
+                          </form>
+                        </td>
+
+                          <td>
+                            <form action="/interest/tosubscribed" method="post">
+                              <input type="hidden" name="email" value="<%=int[i].email%>">
+                              <button type="submit" class="btn btn-success">Interested</button>
+                            </form>
+                          </td>
+                       <%}%>
                     </tr>
                   <%}%>
                 </tbody>

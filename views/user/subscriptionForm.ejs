@@ -40,7 +40,22 @@
                             <label class="form-label">Country</label>
                             <input type="text" name="country" class="form-control" id="exampleFormControlTextarea1" required>
                           </div>
+
                           <div class="mb-2">
+                            <label class="form-label">How much would you be willing to invest in £?</label>
+                            <input type="text"  class="form-control" id="interest" required>
+                          </div>
+
+                          <input type="hidden" name="interest" class="form-control" id="roiValue"a>
+
+                          <div class="alert alert-success">
+                            <p>ROI percentage (%): <strong><span id="roipercent">0</span>%</strong></p>
+                            <p>Expected ROI is: <strong>£<span id="roiInfo">0</span></strong></p>
+                            <p>Capital and ROI is: <strong>£<span id="totalToGet">0</span></strong></p>
+                          </div>
+
+
+                          <!-- <div class="mb-2">
                             <label class="form-label">How much would you be willing to invest?</label>
                             <select class="form-select" name="interest" aria-label="Default select example" required>
                                 <option value="£5,000 @ 20% annually">£5,000 @ 20% annually</option>
@@ -64,7 +79,7 @@
                                  <option value="£95,000 @ 25% annually">£95,000 @ 25% annually</option>
                                  <option value="£100,000 @ 25% annually">£100,000 @ 25% annually</option>
                               </select>
-                          </div>
+                          </div> -->
                           <div class="mb-2">
                             <label class="form-label">When would you like to start</label>
                             <input type="date" name="startDate" class="form-control" id="exampleFormControlTextarea1" required>
@@ -81,7 +96,7 @@
                             <label class="form-label">Next of kin phone</label>
                             <input type="text" name="nextOfKinPhone" class="form-control" id="exampleFormControlTextarea1" required>
                           </div> -->
-                          <button class="btn btn-success btn-sm">Submit</button>
+                          <button class="btn btn-success btn-sm" id="submitBtn" disabled>Submit</button>
                     </form>
                 </div>
             </div>
@@ -90,3 +105,5 @@
 </div>
 
 <%- include('include/userFooter') -%>
+<script src="/js/userSubscription.js"></script>
+<%- include('include/footer') -%>

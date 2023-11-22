@@ -12,7 +12,31 @@ const interestFormSchema = new mongoose.Schema({
     postcode:"string",
     country:"string",
     startDate:"string"
-})
+});
+
+const followupSchema = new mongoose.Schema({
+    fname:"string",
+    lname:"string",
+    email:"string",
+    phone:"string",
+    interest:"string",
+    address:"string",
+    postcode:"string",
+    country:"string",
+    startDate:"string"
+});
+
+const toSubscribeSchema = new mongoose.Schema({
+    fname:"string",
+    lname:"string",
+    email:"string",
+    phone:"string",
+    interest:"string",
+    address:"string",
+    postcode:"string",
+    country:"string",
+    startDate:"string"
+});
 
 const subscriptionFormSchema = new mongoose.Schema({
     fname:"string",
@@ -29,13 +53,18 @@ const subscriptionFormSchema = new mongoose.Schema({
     nextOfKinPhone:"string",
 })
 
-
 const InterestForm = new mongoose.model('InterestForm', interestFormSchema);
+
+const Followup = new mongoose.model('Followup', followupSchema);
+
+const Tosubscribe = new mongoose.model('Tosubscribe', toSubscribeSchema);
 
 const SubscriptionForm = new mongoose.model('SubscriptionForm', subscriptionFormSchema);
 
 module.exports = {
     mongoose:mongoose,
     InterestForm:InterestForm,
-    SubscriptionForm:SubscriptionForm
+    SubscriptionForm:SubscriptionForm,
+    Followup:Followup,
+    Tosubscribe:Tosubscribe,
 } 
