@@ -41,11 +41,8 @@
                     <th class="scope">Phone</th>
                     <!-- <th class="scope">Address</th> -->
                     <th class="scope">Comment</th>
-                    <% if(removeButton == false){%>
                       <th class="scope">Action</th>
                       <th class="scope">Action</th>
-                      <th class="scope">Action</th>
-                    <%}%>
                   </tr>
                 </thead>
                 <tbody>
@@ -59,8 +56,6 @@
                         <td><%=int[i].phone%></td>
                         <!-- <td><=int[i].address> <=int[i].postcode%> <=int[i].country></td> -->
                         <td><%=int[i].comment%></td>
-  
-                        <% if(removeButton == false){%>
                         <td>
                           <form action="/interest/deleteinterest" method="post">
                             <input type="hidden" name="email" value="<%=int[i].email%>">
@@ -68,29 +63,22 @@
                           </form>
                         </td>
   
-                          <td>
-                            <form action="/interest/notsure" method="post">
-                              <input type="hidden" name="email" value="<%=int[i].email%>">
-                              <input class="form-control" type=" text " name="comment" required placeholder="comment">
-                              <button type="submit" class="btn btn-warning">Inconclusive</button>
-                            </form>
-                          </td>
-  
                             <td>
                               <form action="/interest/tosubscribed" method="post">
                                 <input type="hidden" name="email" value="<%=int[i].email%>">
                                 <button type="submit" class="btn btn-success">Interested</button>
                               </form>
                             </td>
-                         <%}%>
                       </tr>
-                    <%}%>
+                      <%}%>
                   <%}%>
                 </tbody>
               </table>
             </div>
         </div>
       </div>
+
+      <!-- send follow up mail -->
     </div>
 
   </div>

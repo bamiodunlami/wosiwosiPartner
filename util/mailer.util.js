@@ -181,11 +181,12 @@ const adminInterestNotification = (to) => {
   transporter.sendMail(mailOptions);
 };
 
-const sendSubscriptionForm = (to, fname) => {
+const sendSubscriptionForm = (to, bcc, fname) => {
     const mailOptions = {
         from: '"Wosiwosi Partnership" <info@wosiwosi.co.uk>',
         to: to,
-        subject: "SUBSCRIPTION FORM",
+        bcc:bcc,
+        subject: "CONTRACT & SUBSCRIPTION FORM",
         attachments: [
           {  
               filename: 'wosiwosi_partnership_contract.pdf',

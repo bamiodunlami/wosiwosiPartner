@@ -29,7 +29,9 @@ const interestFormSubmitted = async (req, res)=>{
             address:req.body.address,
             postcode:req.body.postcode,
             country:req.body.country,
-            startDate:req.body.startDate
+            startDate:req.body.startDate,
+            action:true,
+            comment:""
         })
         response = await InterestForm.find({email:req.body.email});
         if(response.length>0){
@@ -96,6 +98,7 @@ const subscriptionFormSumitted = async (req, res)=>{
         console.log(e)
     }
 }
+
 
 module.exports ={
     interestForm:interestForm, 
