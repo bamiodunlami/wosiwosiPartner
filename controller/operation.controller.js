@@ -10,6 +10,7 @@ appRoot.setPath(rootPath);
 const model = require(appRoot + '/model/operation.model.js')
 const InterestForm = model.InterestForm
 const SubscriptionForm = model.SubscriptionForm
+const accessDB = model.AccessCode
 const mailer = require(appRoot + '/util/mailer.util.js')
 
 const interestForm = (req, res)=>{
@@ -99,10 +100,37 @@ const subscriptionFormSumitted = async (req, res)=>{
     }
 }
 
+const access = async (req, res)=> {
+        res.render("user/access",{
+            title:"Acess"
+        })
+}
+
+const checkAccess = async (req, res) =>{
+        try{
+            let accessCode = req.body.code
+            console.log(req.body.code)
+            if(accessCode.length != 6){
+                res.send("false")
+            } else{
+                const result= await accessDB.findOne({code:accessCode})
+                if(result){
+                    res.redirect('https://www.mywosiwosi.co.uk')
+                }else{
+                    res.send("false")
+                }
+            }
+        }catch(e){
+            console.log(e)
+        }
+}
+
 
 module.exports ={
     interestForm:interestForm, 
     interestFormSubmitted:interestFormSubmitted,
     subscriptionForm:subscriptionForm,
     subscriptionFormSumitted,
+    access:access,
+    checkAccess:checkAccess
 }

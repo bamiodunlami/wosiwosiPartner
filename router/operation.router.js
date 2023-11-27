@@ -20,4 +20,10 @@ router
 
 .post ('/subscribe', dashboard.subscriptionFormSumitted)
 
+.get('/access', dashboard.access)
+
+.post('/checkaccess', dashboard.checkAccess)
+
+.post ('/')
+
 module.exports=router

@@ -59,6 +59,13 @@ const subscriptionFormSchema = new mongoose.Schema({
     nextOfKinPhone:"string",
 })
 
+const accessCodes = new mongoose.Schema({
+  userMail:"string",
+  status:Boolean,
+  code:"string"
+})
+
+
 const InterestForm = new mongoose.model('InterestForm', interestFormSchema);
 
 const Followup = new mongoose.model('Followup', followupSchema);
@@ -66,6 +73,8 @@ const Followup = new mongoose.model('Followup', followupSchema);
 const Tosubscribe = new mongoose.model('Tosubscribe', toSubscribeSchema);
 
 const SubscriptionForm = new mongoose.model('SubscriptionForm', subscriptionFormSchema);
+
+const AccessCode = new mongoose.model('AccessCode', accessCodes);
 
 
 //DB Update and migration
@@ -118,6 +127,14 @@ async function migrateUsers() {
 //   migrateUsers();
 
 
+      const saveCode = new AccessCode({
+        userMail:"bamidele",
+        status:true,
+        code:"788732"
+      })
+
+      // saveCode.save()
+
 
 module.exports = {
     mongoose:mongoose,
@@ -125,4 +142,5 @@ module.exports = {
     SubscriptionForm:SubscriptionForm,
     Followup:Followup,
     Tosubscribe:Tosubscribe,
+    AccessCode:AccessCode
 } 

@@ -8,11 +8,9 @@ appRoot.setPath(rootPath);
 
 const passport = require(appRoot + "/util/passport.util.js");
 const interestDB = require(appRoot + "/model/operation.model.js").InterestForm;
-const subscrberDB = require(appRoot +
-  "/model/operation.model.js").SubscriptionForm;
+const subscrberDB = require(appRoot +"/model/operation.model.js").SubscriptionForm;
 const followupDB = require(appRoot + "/model/operation.model.js").Followup;
-const toSubscribeDB = require(appRoot +
-  "/model/operation.model.js").Tosubscribe;
+const toSubscribeDB = require(appRoot +"/model/operation.model.js").Tosubscribe;
 const Admin = require(appRoot + "/model/admin.model.js");
 
 const mailer = require(appRoot + "/util/mailer.util.js");
@@ -75,7 +73,7 @@ const createUser = async (req, res) => {
 const fetchSubscriberDetails = async (req, res) => {
   if (req.isAuthenticated()) {
     const sdetails = await subscrberDB.findOne({ email: req.body.email });
-    res.json(sdetails);
+    res.send(sdetails);
   } else res.redirect("/adminlogin");
 };
 

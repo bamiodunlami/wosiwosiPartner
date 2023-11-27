@@ -1,0 +1,40 @@
+.access-bar{
+    height: 100%;
+    padding: 10%;
+}
+
+.heading-title{
+    letter-spacing: -2.5px;
+}
+
+.heading-description{
+    font-size: 16px;
+}
+.interest-form{
+    background-color: #00751918;
+    padding: 20px;
+}
+
+.heading-contact{
+    color: #000000;
+}
+
+.heading-image-bar{
+    /* padding: 20; */
+}
+.heading-image{
+   height: auto;
+   width: 80%;
+}
+
+ /* mobile */
+ @media (max-width:520px){
+    .access-bar{
+        padding: 10% 5%;
+    }
+    
+    .heading-image{
+        display: none;
+    }
+    
+  }
