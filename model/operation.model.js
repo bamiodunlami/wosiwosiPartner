@@ -13,7 +13,9 @@ const interestFormSchema = new mongoose.Schema({
     country:"string",
     startDate:"string",
     action:Boolean,
-    comment:"string"
+    comment:"string",
+    codeStatus:Boolean,
+    code:"string"
 });
 
 const followupSchema = new mongoose.Schema({

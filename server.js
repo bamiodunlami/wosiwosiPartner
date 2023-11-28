@@ -51,7 +51,7 @@ app.use(operation)
 
 // 404
 app.use((req, res)=>{
-    res.redirect('/login')
+    res.redirect('/access')
 })
 
 app.listen(port, ()=>{

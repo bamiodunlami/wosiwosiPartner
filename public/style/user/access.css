@@ -1,7 +1,15 @@
+.disclaimer{
+    font-size: 12px;
+}
+
 .access-bar{
     height: 100%;
     padding: 10%;
 }
+
+.heading-content{
+    padding: 0 30px 30px;
+ }
 
 .heading-title{
     letter-spacing: -2.5px;
@@ -24,17 +32,27 @@
 }
 .heading-image{
    height: auto;
-   width: 80%;
+   width: 100%;
 }
 
  /* mobile */
  @media (max-width:520px){
+    .disclaimer{
+        font-size: 11px;
+    }
+
     .access-bar{
         padding: 10% 5%;
     }
+
+    .heading-content{
+        padding: 10px;
+     }
     
     .heading-image{
-        display: none;
-    }
+        height: auto;
+        width: 100%;
+        padding: 20px 0 0;
+     }
     
   }
