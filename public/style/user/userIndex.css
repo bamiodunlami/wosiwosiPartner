@@ -38,7 +38,7 @@ h6{
 }
 
 .logo{
-    width: 15%;
+    width: 20%;
     height: auto;
 }
 
@@ -93,7 +93,7 @@ h6{
   @media (max-width:520px){
 
     .logo{
-        width: 50%;
+        width: 55%;
         height: auto;
     }
 

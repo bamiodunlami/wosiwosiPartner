@@ -13,47 +13,47 @@ const SubscriptionForm = model.SubscriptionForm;
 const accessDB = model.AccessCode;
 const mailer = require(appRoot + "/util/mailer.util.js");
 
-const interestForm = (req, res) => {
-  res.render("user/interest", {
-    title: "Partner Subscription Form",
-  });
-};
+// const interestForm = (req, res) => {
+//   res.render("user/interest", {
+//     title: "Partner Subscription Form",
+//   });
+// };
 
-const interestFormSubmitted = async (req, res) => {
-  try {
-    const saveInterest = new InterestForm({
-      fname: req.body.fname,
-      lname: req.body.lname,
-      email: req.body.email,
-      phone: req.body.phone,
-      interest: req.body.interest,
-      address: req.body.address,
-      postcode: req.body.postcode,
-      country: req.body.country,
-      startDate: req.body.startDate,
-      action: true,
-      comment: "",
-    });
-    response = await InterestForm.find({ email: req.body.email });
-    if (response.length > 0) {
-      mailer.interestFormResponse(req.body.email, req.body.fname);
-      res.render("user/interestFormSuccess", {
-        data: false,
-        title: "Response",
-      });
-    } else {
-      saveInterest.save();
-      mailer.interestFormResponse(req.body.email, req.body.fname);
-      mailer.adminInterestNotification("partners@mywosiwosi.co.uk");
-      res.render("user/interestFormSuccess", {
-        data: true,
-        title: "Success",
-      });
-    }
-  } catch (e) {
-    console.log(e);
-  }
-};
+// const interestFormSubmitted = async (req, res) => {
+//   try {
+//     const saveInterest = new InterestForm({
+//       fname: req.body.fname,
+//       lname: req.body.lname,
+//       email: req.body.email,
+//       phone: req.body.phone,
+//       interest: req.body.interest,
+//       address: req.body.address,
+//       postcode: req.body.postcode,
+//       country: req.body.country,
+//       startDate: req.body.startDate,
+//       action: true,
+//       comment: "",
+//     });
+//     response = await InterestForm.find({ email: req.body.email });
+//     if (response.length > 0) {
+//       mailer.interestFormResponse(req.body.email, req.body.fname);
+//       res.render("user/interestFormSuccess", {
+//         data: false,
+//         title: "Response",
+//       });
+//     } else {
+//       saveInterest.save();
+//       mailer.interestFormResponse(req.body.email, req.body.fname);
+//       mailer.adminInterestNotification("partners@mywosiwosi.co.uk");
+//       res.render("user/interestFormSuccess", {
+//         data: true,
+//         title: "Success",
+//       });
+//     }
+//   } catch (e) {
+//     console.log(e);
+//   }
+// };
 
 const subscriptionForm = (req, res) => {
   res.render("user/subscriptionForm", {
@@ -87,6 +87,7 @@ const subscriptionFormSumitted = async (req, res) => {
       saveSubscription.save();
       mailer.subscriptionFormResponse(
         req.body.email,
+        "tinukeawo@wosiwosi.co.uk",
         req.body.fname,
         req.body.interest,
         req.body.startDate
@@ -134,17 +135,22 @@ const checkAccess = async (req, res) => {
                 lname:"",
                 email:email,
                 phone:phone,
+                status:true,
                 interest:"",
                 address:"",
                 postcode:"",
                 country:"",
                 startDate:"",
-                action:true,
+                action:"awaitSub",
                 comment:"",
                 codeStatus:false,
                 code:accessCode
             })
             newInterest.save();
+            mailer.interestFormResponse(
+              email,
+              "tinukeawo@wosiwosi.co.uk",
+            );
         } else if (result.status == false){
                 // if code has been used, look if the email has already been registered
                 // console.log(email)
@@ -172,8 +178,8 @@ const checkAccess = async (req, res) => {
 };
 
 module.exports = {
-  interestForm: interestForm,
-  interestFormSubmitted: interestFormSubmitted,
+  // interestForm: interestForm,
+  // interestFormSubmitted: interestFormSubmitted,
   subscriptionForm: subscriptionForm,
   subscriptionFormSumitted,
   access: access,

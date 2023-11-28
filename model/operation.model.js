@@ -7,44 +7,62 @@ const interestFormSchema = new mongoose.Schema({
     lname:"string",
     email:"string",
     phone:"string",
+    status:Boolean,
     interest:"string",
     address:"string",
     postcode:"string",
     country:"string",
     startDate:"string",
-    action:Boolean,
+    action:"string",
     comment:"string",
     codeStatus:Boolean,
     code:"string"
+
 });
 
-const followupSchema = new mongoose.Schema({
-    fname:"string",
-    lname:"string",
-    email:"string",
-    phone:"string",
-    interest:"string",
-    address:"string",
-    postcode:"string",
-    country:"string",
-    startDate:"string",
-    action:Boolean,
-    comment:"string"
+const redundantSchema = new mongoose.Schema({
+  fname:"string",
+  lname:"string",
+  email:"string",
+  phone:"string",
+  interest:"string",
+  address:"string",
+  postcode:"string",
+  country:"string",
+  startDate:"string",
+  action:Boolean,
+  comment:"string",
+  codeStatus:Boolean,
+  code:"string"
 });
 
-const toSubscribeSchema = new mongoose.Schema({
-    fname:"string",
-    lname:"string",
-    email:"string",
-    phone:"string",
-    interest:"string",
-    address:"string",
-    postcode:"string",
-    country:"string",
-    startDate:"string",
-    action:Boolean,
-    comment:"string"
-});
+// const followupSchema = new mongoose.Schema({
+//     fname:"string",
+//     lname:"string",
+//     email:"string",
+//     phone:"string",
+//     interest:"string",
+//     address:"string",
+//     postcode:"string",
+//     country:"string",
+//     startDate:"string",
+//     action:Boolean,
+//     comment:"string"
+// });
+
+// const toSubscribeSchema = new mongoose.Schema({
+//     fname:"string",
+//     lname:"string",
+//     email:"string",
+//     phone:"string",
+//     interest:"string",
+//     address:"string",
+//     postcode:"string",
+//     country:"string",
+//     startDate:"string",
+//     action:Boolean,
+//     comment:"string"
+// });
 
 const subscriptionFormSchema = new mongoose.Schema({
     fname:"string",
@@ -70,9 +88,11 @@ const accessCodes = new mongoose.Schema({
 
 const InterestForm = new mongoose.model('InterestForm', interestFormSchema);
 
-const Followup = new mongoose.model('Followup', followupSchema);
+const RedundantDB = new mongoose.model('RedundantDB', redundantSchema);
 
-const Tosubscribe = new mongoose.model('Tosubscribe', toSubscribeSchema);
+// const Followup = new mongoose.model('Followup', followupSchema);
+
+// const Tosubscribe = new mongoose.model('Tosubscribe', toSubscribeSchema);
 
 const SubscriptionForm = new mongoose.model('SubscriptionForm', subscriptionFormSchema);
 
@@ -94,27 +114,29 @@ async function migrateUsers() {
       // })
 
       // savePromo.save()
-      const mig = await Tosubscribe.find();
+      const mig = await InterestForm.find();
 
   
       // Update each user record with the new field
       for (let i=0; i<mig.length; i++) {
-        // mig[i].action=false,
-        let mig2 = new InterestForm({
-            fname:mig[i].fname,
-            lname:mig[i].lname,
-            email:mig[i].email,
-            phone:mig[i].phone,
-            interest:mig[i].interest,
-            address:mig[i].address,
-            postcode:mig[i].postcode,
-            country:mig[i].country,
-            startDate:mig[i].startDate,
-            action:false,
-            comment:mig[i].comment
-        })
+        mig[i].status=true,
+        // let mig2 = new RedundantDB({
+        //     fname:mig[i].fname,
+        //     lname:mig[i].lname,
+        //     email:mig[i].email,
+        //     phone:mig[i].phone,
+        //     interest:mig[i].interest,
+        //     address:mig[i].address,
+        //     postcode:mig[i].postcode,
+        //     country:mig[i].country,
+        //     startDate:mig[i].startDate,
+        //     action:false,
+        //     comment:mig[i].comment,
+        //     codeStatus:false,
+        //     code:"noCode",
+        // })
         // await mig[i].save(); // Save the updated user record
-        await mig2.save()
+        await mig[i].save()
       }
   
       console.log('Data migration completed successfully.');
@@ -126,7 +148,7 @@ async function migrateUsers() {
       console.error('Data migration failed:', error);
     }
   }
-//   migrateUsers();
+  // migrateUsers();
 
 
       const saveCode = new AccessCode({
@@ -142,7 +164,8 @@ module.exports = {
     mongoose:mongoose,
     InterestForm:InterestForm,
     SubscriptionForm:SubscriptionForm,
-    Followup:Followup,
-    Tosubscribe:Tosubscribe,
-    AccessCode:AccessCode
+    // Followup:Followup,
+    // Tosubscribe:Tosubscribe,
+    AccessCode:AccessCode,
+    RedundantDB:RedundantDB
 } 

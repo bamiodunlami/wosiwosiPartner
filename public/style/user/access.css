@@ -4,7 +4,7 @@
 
 .access-bar{
     height: 100%;
-    padding: 10%;
+    padding: 8%;
 }
 
 .heading-content{
@@ -32,7 +32,7 @@
 }
 .heading-image{
    height: auto;
-   width: 100%;
+   width: 90%;
 }
 
  /* mobile */
@@ -42,7 +42,7 @@
     }
 
     .access-bar{
-        padding: 10% 5%;
+        padding: 8% 5%;
     }
 
     .heading-content{

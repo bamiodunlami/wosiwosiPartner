@@ -6,20 +6,11 @@
         <div class="row">
           <div class="user-details">
               <div class="d-flex flex-row justify-content-center">
-                <% if(removeButton == true){%>
-                  <div class="">
-                    <a class="btn btn-dark btn-sm" href="/adashboard/interest"><i class="fa-solid fa-arrow-left fa-lg"></i> Back</a>
-                  </div>
-                <%}else{%>
-                <div class="">
+                <div class="" style="padding: 5px;">
                   <a class="btn btn-dark btn-sm" href="/adashboard"><i class="fa-solid fa-arrow-left fa-lg"></i> Back</a>
                 </div>
-                <%}%>
-                <div class="">
-                  <a class="btn btn-warning btn-sm" href="/interest/followup">Follow up</a>
-                </div>
-                <div class="">
-                  <a class="btn btn-success btn-sm" href="/interest/subscription">Interested</a>
+                <div class="" style="padding: 5px;">
+                  <a class="btn btn-success btn-sm" href="/interest/subscribers">Subscribers</a>
                 </div>
               </div>
           </div>
@@ -28,8 +19,10 @@
     <div class="row">
       <div class="col-sm-12">
         <div class="interest-page-bar">
-          <h5 class="text-center">Partnership Interest </h5>
-          <p class="text-center">Data of form filled by people interested in partnership</p>
+          <br>
+          <h6 class="text-center">Prospective investor with access code</h6>
+          <br>
+          <!-- <p class="text-center">Data of form filled by people interested in partnership</p> -->
             <div class="interest-table">
               <table class="table table-striped table-hover ">
                 <thead>
@@ -50,7 +43,7 @@
                 </thead>
                 <tbody>
                   <% for (i=int.length-1; i>=0; i--){%>
-                    <%if(int[i].action == true){%>
+                    <%if(int[i].action == "awaitSub"){%>
                       <tr>
                         <td><%=i+1%></td>
                         <td><%=int[i].fname%></td>
@@ -64,22 +57,28 @@
                         <td>
                           <form action="/interest/deleteinterest" method="post">
                             <input type="hidden" name="email" value="<%=int[i].email%>">
-                            <button type="submit" class="btn btn-danger">Delete</button>
+                            <button type="submit" class="btn btn-danger btn-sm">Delete</button>
                           </form>
                         </td>
   
-                          <td>
+                          <td>         
                             <form action="/interest/notsure" method="post">
-                              <input type="hidden" name="email" value="<%=int[i].email%>">
-                              <input class="form-control" type=" text " name="comment" required placeholder="comment">
-                              <button type="submit" class="btn btn-warning">Inconclusive</button>
+                            <div class="row">
+                                <div class="col-6">
+                                  <input type="hidden" name="email" value="<%=int[i].email%>">
+                                  <input class="form-control" type=" text " name="comment" required placeholder="comment">
+                                </div>
+                                <div class="col-6">
+                                  <button type="submit" class="btn btn-warning btn-sm">Update</button> 
+                                </div>
+                              </div>
                             </form>
                           </td>
   
                             <td>
                               <form action="/interest/tosubscribed" method="post">
                                 <input type="hidden" name="email" value="<%=int[i].email%>">
-                                <button type="submit" class="btn btn-success">Interested</button>
+                                <button type="submit" class="btn btn-success btn-sm">Subscription</button>
                               </form>
                             </td>
                          <%}%>
