@@ -109,13 +109,14 @@ const access = async (req, res)=> {
 const checkAccess = async (req, res) =>{
         try{
             let accessCode = req.body.code
-            console.log(req.body.code)
+            // console.log(req.body)
             if(accessCode.length != 6){
                 res.send("false")
             } else{
                 const result= await accessDB.findOne({code:accessCode})
                 if(result){
-                    res.redirect('https://www.mywosiwosi.co.uk')
+                    res.redirect('https://main.mywosiwosi.co.uk/')
+                    // res.send("true")
                 }else{
                     res.send("false")
                 }
