@@ -9,6 +9,7 @@ appRoot.setPath(rootPath);
 const passport = require(appRoot + "/util/passport.util.js");
 const interestDB = require(appRoot + "/model/operation.model.js").InterestForm;
 const subscrberDB = require(appRoot +"/model/operation.model.js").SubscriptionForm;
+const accessCodesDB = require(appRoot +"/model/operation.model.js").AccessCode;
 const Admin = require(appRoot + "/model/admin.model.js");
 
 const mailer = require(appRoot + "/util/mailer.util.js");
@@ -49,6 +50,18 @@ const adminOperation = async (req, res) => {
           //  removeTwoButton:false,
           removeButton: false,
           title: "Interests",
+        });
+        break;
+
+      // access codes
+      case "access":
+        const codes = await accessCodesDB.find();
+        res.render("admin/access", {
+          codes: codes,
+          //  removeThreeButton:true,
+          //  removeTwoButton:false,
+          removeButton: false,
+          title: "Access Codes",
         });
         break;
 

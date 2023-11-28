@@ -149,15 +149,21 @@ async function migrateUsers() {
     }
   }
   // migrateUsers();
+function accessCodeGen(){
+  for(let i=0; i<150; i++){
+    let coded = Math.floor(Math.random()*912230)
+    const saveCode = new AccessCode({
+      userMail:"",
+      status:true,
+      code:coded
+    })
+    console.log(saveCode)
+    saveCode.save()
 
+  }
+}
+// accessCodeGen()
 
-      const saveCode = new AccessCode({
-        userMail:"bamidele",
-        status:true,
-        code:"788732"
-      })
-
-      // saveCode.save()
 
 
 module.exports = {
