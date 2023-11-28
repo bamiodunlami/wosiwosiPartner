@@ -104,7 +104,6 @@ const subscriptionFormSumitted = async (req, res) => {
 
 const access = async (req, res) => {
   res.render("user/access", {
-    title: "Acess",
     status:"true"
   });
 };
@@ -118,7 +117,6 @@ const checkAccess = async (req, res) => {
         // access code more than 6
         res.render('user/access',{
             status:false,
-            title:"Access",
             message:"Code expired or doesn't exist"
         })
     } else {
@@ -157,7 +155,6 @@ const checkAccess = async (req, res) => {
                 } else{
                     res.render('user/access',{
                         status:false,
-                        title:"Access",
                         message:"Access code or email not correct"
                     });
                 }
@@ -165,7 +162,6 @@ const checkAccess = async (req, res) => {
       }else{
         res.render('user/access',{
             status:false,
-            title:"Access",
             message:"Code expired or doesn't exist"
         })
       }
