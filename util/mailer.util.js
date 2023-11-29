@@ -142,8 +142,8 @@ const subscriptionFormResponse = (to, bcc, fname, interest, startDate) => {
                   <p>Thank you for subscribing to Wosiwosi investment! We have received your subscription form and are thrilled to welcome you on board.</p>
                   <p><strong>The next step is payment and signing of contract, we will email that to you shortly</strong>.</p>                  
                   <h3>Subscription form details:</h3>
-                  <p>Selected Lot: ${interest}</p>
-                  <p>Start Date: ${startDate}</p>
+                  <p>Amount to invest: £${interest}</p>
+                  <p>We will email Wosiwosi payment details and investment contract to you within 24 hours. You will only have 14 days to make payment and sign the contract else you will have to start the subscription process again.</p>
                   <p>Best regards,<br>Wosiwosi Investment <br>Wosiwosi Foods UK Limited</p>
                   <br>
                   <br>

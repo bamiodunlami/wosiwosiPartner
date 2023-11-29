@@ -72,11 +72,12 @@ const subscriptionFormSumitted = async (req, res) => {
       postcode: req.body.postcode,
       country: req.body.country,
       interest: req.body.interest,
-      startDate: req.body.startDate,
-      nextOfKin: req.body.nextOfKinName,
-      nextOfKinEmail: req.body.nextOfKinEmail,
-      nextOfKinPhone: req.body.nextOfKinPhone,
+      // startDate: req.body.startDate,
+      // nextOfKin: req.body.nextOfKinName,
+      // nextOfKinEmail: req.body.nextOfKinEmail,
+      // nextOfKinPhone: req.body.nextOfKinPhone,
     });
+    // check if already subscribed
     response = await SubscriptionForm.find({ email: req.body.email });
     if (response.length > 0) {
       res.render("user/interestFormSuccess", {
@@ -84,19 +85,30 @@ const subscriptionFormSumitted = async (req, res) => {
         title: "Response",
       });
     } else {
-      saveSubscription.save();
-      mailer.subscriptionFormResponse(
-        req.body.email,
-        "tinukeawo@wosiwosi.co.uk",
-        req.body.fname,
-        req.body.interest,
-        req.body.startDate
-      );
-      mailer.adminSubscribeNotification("partners@mywosiwosi.co.uk");
-      res.render("user/interestFormSuccess", {
-        data: true,
-        title: "Success",
-      });
+      // check if this person have access
+      const checkEmail = await InterestForm.findOne({email:req.body.email});
+      if(checkEmail){
+        // if access is valid
+        saveSubscription.save();
+        mailer.subscriptionFormResponse(
+          req.body.email,
+          "odunlamibamidelejohn@gmail.com",
+          req.body.fname,
+          req.body.interest,
+          req.body.startDate
+        );
+          mailer.adminSubscribeNotification("partners@mywosiwosi.co.uk");
+          res.render("user/interestFormSuccess", {
+            data: true,
+            title: "Success",
+          });
+      }else{
+        // no access
+        res.render("user/interestFormSuccess", {
+          data: "noAccess",
+          title: "Success",
+        });
+      }
     }
   } catch (e) {
     console.log(e);

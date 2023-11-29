@@ -16,9 +16,9 @@ router
 
 // .post('/interest', dashboard.interestFormSubmitted)
 
-.get('/subscribe', dashboard.subscriptionForm)
+.get('/esubscribe', dashboard.subscriptionForm)
 
-.post ('/subscribe', dashboard.subscriptionFormSumitted)
+.post ('/esubscribe', dashboard.subscriptionFormSumitted)
 
 .get('/access', dashboard.access)
 

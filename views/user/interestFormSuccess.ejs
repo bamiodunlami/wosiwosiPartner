@@ -4,15 +4,24 @@
     <div class="container">
         <div class="row interest-form-success">
         <div class="col-12 text-center">
-            <div>
-                <i class="fa-solid fa-circle-check fa-interest-success"></i>
-            </div>
             <% if (data == false){%>
+                <div>
+                    <i class="fa-solid fa-circle-check fa-interest-success"></i>
+                </div>
                 <h4>Form already submitted</h4>
                 <p>You have already filled this form, kindly check your email, we must have sent you and information.</p>
-            <%}else{%>
+            <%}else if(data == true){%>
+                <div>
+                    <i class="fa-solid fa-circle-check fa-interest-success"></i>
+                </div>
                 <h4>Successful, thank you</h4>
                 <p>Your form has been submitted Successfully, we will get in touch with you within 24 hours.</p>
+            <%}else if(data == "noAccess"){%>
+                <div>
+                    <i class="fa-solid fa-xmark fa-interest-success"></i>
+                </div>
+                <h4>Failed</h4>
+                <p>You form has failed to submit, kindly contact us for help</p>
             <%}%>
         </div>
     </div>
