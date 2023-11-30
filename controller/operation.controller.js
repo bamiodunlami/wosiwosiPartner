@@ -8,9 +8,13 @@ const rootPath = path.resolve(process.cwd());
 appRoot.setPath(rootPath);
 
 const model = require(appRoot + "/model/operation.model.js");
+const investorModel = require(appRoot + "/model/investor.model.js");
+
 const InterestForm = model.InterestForm;
 const SubscriptionForm = model.SubscriptionForm;
 const accessDB = model.AccessCode;
+const redundantDB = model.RedundantDB;
+const investorDB = investorModel.Investor
 const mailer = require(appRoot + "/util/mailer.util.js");
 
 // const interestForm = (req, res) => {
@@ -86,18 +90,18 @@ const subscriptionFormSumitted = async (req, res) => {
       });
     } else {
       // check if this person have access
-      const checkEmail = await InterestForm.findOne({email:req.body.email});
+      const checkEmail = await accessDB.findOne({userMail:req.body.email});
       if(checkEmail){
         // if access is valid
         saveSubscription.save();
         mailer.subscriptionFormResponse(
           req.body.email,
-          "odunlamibamidelejohn@gmail.com",
+          "bamidele@wosiwosi.co.uk",
           req.body.fname,
           req.body.interest,
-          req.body.startDate
         );
           mailer.adminSubscribeNotification("partners@mywosiwosi.co.uk");
+          const deleteInterest=await InterestForm.deleteOne({ email: req.body.email });
           res.render("user/interestFormSuccess", {
             data: true,
             title: "Success",
@@ -140,7 +144,6 @@ const checkAccess = async (req, res) => {
         if (result.status == true) {
             // if code exit, update the status to false and input the email
             const updateResult = await accessDB.updateOne({code:accessCode}, {$set:{status:false, userMail:email}});
-            res.redirect("https://www.main.mywosiwosi.co.uk")
             // save to email and code to interest db
             newInterest = new InterestForm ({
                 fname:"",
@@ -159,28 +162,26 @@ const checkAccess = async (req, res) => {
                 code:accessCode
             })
             newInterest.save();
-            mailer.interestFormResponse(
-              email,
-              "tinukeawo@wosiwosi.co.uk",
-            );
-        } else if (result.status == false){
+            mailer.interestFormResponse(email,"bamidele@wosiwosi.co.uk");
+            res.redirect("https://www.main.mywosiwosi.co.uk")
+        } else if (result.status == false && result.userMail == email){
                 // if code has been used, look if the email has already been registered
                 // console.log(email)
-                const checkInterestForm = await InterestForm.findOne({email:req.body.email})
+                // const checkInterestForm = await InterestForm.findOne({email:req.body.email})
                 // console.log(checkInterestForm)
-                if(checkInterestForm){
+                // if(checkInterestForm){
                     res.redirect("https://www.main.mywosiwosi.co.uk")
-                } else{
-                    res.render('user/access',{
-                        status:false,
-                        message:"Access code or email not correct"
-                    });
-                }
+                // } 
+        }else{
+          res.render('user/access',{
+              status:false,
+              message:"Access code or email not correct"
+          });
         }
       }else{
         res.render('user/access',{
             status:false,
-            message:"Code expired or doesn't exist"
+            message:"Error kindly contact us"
         })
       }
     }
@@ -189,6 +190,28 @@ const checkAccess = async (req, res) => {
   }
 };
 
+const redundant = async (req, res) =>{
+  let query = req.query;
+  // console.log(query)
+  let result = await redundantDB.find({comment:req.query.comment}).sort(req.query.sort)
+  console.log(result)
+      res.render('admin/red', {
+    title: "Redundant",
+    int:result
+    })
+  // if(req.query.comment){
+  //   let result = await redundantDB.find({comment:{$gt:req.query.comment}})
+  //   // .sort(req.query.comment)
+  //   // .sort([['fname', '-1']])
+  //   // ((a, b) => a.fname.localeCompare(b.fname));
+  //   res.render('admin/red', {
+  //   title: "Redundant",
+  //   int:result
+  //   })
+  // }
+
+}
+
 module.exports = {
   // interestForm: interestForm,
   // interestFormSubmitted: interestFormSubmitted,
@@ -196,4 +219,5 @@ module.exports = {
   subscriptionFormSumitted,
   access: access,
   checkAccess: checkAccess,
+  redundant:redundant
 };

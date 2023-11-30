@@ -10,6 +10,7 @@ const passport = require(appRoot + "/util/passport.util.js");
 const interestDB = require(appRoot + "/model/operation.model.js").InterestForm;
 const subscrberDB = require(appRoot +"/model/operation.model.js").SubscriptionForm;
 const accessCodesDB = require(appRoot +"/model/operation.model.js").AccessCode;
+const investorDB = require(appRoot +"/model/investor.model.js").Investor;
 const Admin = require(appRoot + "/model/admin.model.js");
 
 const mailer = require(appRoot + "/util/mailer.util.js");
@@ -33,11 +34,11 @@ const adminOperation = async (req, res) => {
     switch (operation) {
       // redner edit partner
       case "editpartner":
-        const subscriberData = await subscrberDB.find();
-        res.render("admin/partner", {
+        const investorData = await investorDB.find();
+        res.render("admin/investor", {
           user: req.user,
-          subscrber: subscriberData,
-          title: "Edit Patner",
+          investor: investorData,
+          title: "Edit Investor",
         });
         break;
 
@@ -76,15 +77,16 @@ const adminOperation = async (req, res) => {
 };
 
 // create user
-const createUser = async (req, res) => {
+const createInvestor = async (req, res) => {
   console.log(req.body);
 };
 
 // fetch subsbccriber details
-const fetchSubscriberDetails = async (req, res) => {
+const fetchInvestorDetails = async (req, res) => {
   if (req.isAuthenticated()) {
-    const sdetails = await subscrberDB.findOne({ email: req.body.email });
-    res.send(sdetails);
+    const idetails = await investorDB.findOne({ username: req.body.email });
+    // console.log(idetails)
+    res.send(idetails);
   } else res.redirect("/adminlogin");
 };
 
@@ -95,6 +97,7 @@ const interestOperation = async (req, res) => {
       // not interested
       case "deleteinterest":
         await interestDB.deleteOne({ email: req.body.email });
+        await subscrberDB.deleteOne({ email: req.body.email });
         res.redirect(req.headers.referer);
         break;
 
@@ -253,14 +256,14 @@ const interestOperation = async (req, res) => {
       break;
 
       // resend contract
-      case "resend":
-        const tosubscribe = await interestDB.findOne({email: req.body.email});
-        mailer.sendSubscriptionForm(
-          req.body.email ,
-          "tinukeawo@wosiwosi.co.uk"
-        );
-        res.redirect(req.headers.referer);
-      break;
+      // case "resend":
+      //   const tosubscribe = await interestDB.findOne({email: req.body.email});
+      //   mailer.sendSubscriptionForm(
+      //     req.body.email ,
+      //     "tinukeawo@wosiwosi.co.uk"
+      //   );
+      //   res.redirect(req.headers.referer);
+      // break;
 
       default:
         break;
@@ -294,8 +297,8 @@ const interestSectionOperation = async (req, res) => {
 module.exports = {
   adashboard: adashboard,
   adminOperation: adminOperation,
-  createUser: createUser,
-  fetchSubscriberDetails: fetchSubscriberDetails,
+  createInvestor: createInvestor,
+  fetchInvestorDetails: fetchInvestorDetails,
   interestOperation: interestOperation,
   interestSectionOperation: interestSectionOperation,
 };

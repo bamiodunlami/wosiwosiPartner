@@ -63,7 +63,7 @@ const interestFormResponse = (to, bcc) => {
                   <p>If you're ready to take the next step, kindly fill the subscription form by clicking the "subscribe now" button below</p>
                   
                   <br>
-                  <a href="https://wosiwosipartner-f80fd9f8b1c9.herokuapp.com/subscribe">
+                  <a href="https://wosiwosipartner-f80fd9f8b1c9.herokuapp.com/esubscribe">
                     <button style="background-color: #007519; color: white; padding: 10px 20px; border: none; cursor: pointer;">Subscribe now</button>
                   </a>
                   <br>
@@ -204,7 +204,7 @@ const sendSubscriptionForm = (to, bcc) => {
                     <p>Thank you for your interest in Wosiwosi investment.</p>
                     <p>To move forward and unlock the full potential of this exciting offer, kindly complete the subscription form by clicking the button below.</p>
                     <br>
-                    <a href="https://wosiwosipartner-f80fd9f8b1c9.herokuapp.com/subscribe">
+                    <a href="https://wosiwosipartner-f80fd9f8b1c9.herokuapp.com/esubscribe">
                       <button style="background-color: #007519; color: white; padding: 10px 20px; border: none; cursor: pointer;">Subscription Form</button>
                     </a>
                     <br>

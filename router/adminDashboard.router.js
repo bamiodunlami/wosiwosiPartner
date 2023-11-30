@@ -13,9 +13,9 @@ router
 
 .get ('/adashboard/:operation', dash.adminOperation) //each routh after the path
 
-.post('/createuser', dash.createUser) //create user
+.post('/createInvestor', dash.createInvestor) //create user
 
-.post('/sdetails', dash.fetchSubscriberDetails) //subscriber details fetch
+.post('/idetails', dash.fetchInvestorDetails) //subscriber details fetch
 
 .post('/interest/:request', dash.interestOperation) //interest operation
 

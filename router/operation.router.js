@@ -26,4 +26,8 @@ router
 
 .post ('/')
 
+// redundant and test
+
+.get ('/red', dashboard.redundant)
+
 module.exports=router
