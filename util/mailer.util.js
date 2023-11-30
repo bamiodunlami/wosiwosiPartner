@@ -59,7 +59,7 @@ const interestFormResponse = (to, bcc) => {
           <body>
               <div class="container">  
                   <p>Thank you for your interest in Wosiwosi investment. We appreciate your enthusiasm for our unique investment opportunity.</p>
-                  <p>Kindly click on the "download brochure" button to download Wosiwosi investment brochure that provides comprehensive information about the investment.</p>
+                 
                   <p>If you're ready to take the next step, kindly fill the subscription form by clicking the "subscribe now" button below</p>
                   
                   <br>
@@ -67,15 +67,9 @@ const interestFormResponse = (to, bcc) => {
                     <button style="background-color: #007519; color: white; padding: 10px 20px; border: none; cursor: pointer;">Subscribe now</button>
                   </a>
                   <br>
-                  
-                  <br>
-                  <a href="https://mywosiwosi.co.uk/wp-content/uploads/2023/11/Patnership.Brochure_ecopy.pdf">
-                    <button style="background-color: #007519; color: white; padding: 10px 20px; border: none; cursor: pointer;">Download brochure</button>
-                  </a>
-                  <br>
 
                   <p>We look forward to welcoming you to the Wosiwosi invstment family and embarking on a mutually rewarding journey.</p>
-                  <p>Best regards,<br>Seyi Awobadejo<br>CEO, Wosiwosi Foods UK Limited</p>
+                  <p>Best regards,<br>Atinuke Awobadejo<br>CEO, Wosiwosi Foods UK Limited</p>
 
                   <br>
                   <br>
