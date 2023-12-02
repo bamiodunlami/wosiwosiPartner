@@ -21,5 +21,7 @@ router
 
 .get('/interest/:request', dash.interestSectionOperation) //interest operation
 
+.post('/investorpage', dash.renderInvestorPage)
+
 module.exports=router
 

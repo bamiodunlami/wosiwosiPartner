@@ -137,7 +137,7 @@ const subscriptionFormResponse = (to, bcc, fname, interest, startDate) => {
                   <p><strong>The next step is payment and signing of contract, we will email that to you shortly</strong>.</p>                  
                   <h3>Subscription form details:</h3>
                   <p>Amount to invest: £${interest}</p>
-                  <p>We will email Wosiwosi payment details and investment contract to you within 24 hours. You will only have 14 days to make payment and sign the contract else you will have to start the subscription process again.</p>
+                  <p>We will email Wosiwosi payment details and investment contract to you within 24 hours. You will only have 3 days to make payment and sign the contract else you will have to start the subscription process again.</p>
                   <p>Best regards,<br>Wosiwosi Investment <br>Wosiwosi Foods UK Limited</p>
                   <br>
                   <br>
@@ -313,11 +313,140 @@ const adminSubscribeNotification = (to) => {
   transporter.sendMail(mailOptions);
 };
 
+const paymentConfirmation = (to, bcc, fname, amount) => {
+    const mailOptions = {
+        from: '"Wosiwosi Investment" <info@wosiwosi.co.uk>',
+        to: to,
+        bcc:bcc,
+        subject: "PAYMENT CONFIRMATION",
+        // attachments: [
+        //   {  
+        //       filename: 'brochure.pdf',
+        //       path: appRoot + "/file/brochure.pdf" // stream this file
+        //   }],
+        html: 
+            `<!DOCTYPE html>
+            <html>
+            <head>
+                <meta charset="UTF-8">
+                <title>Your investment payment confirmation</title>
+                <style>
+                    body {
+                        font-family: Poppins, sans-serif;
+                        line-height: 1.6;
+                    }
+                    .container {
+                        max-width: 600px;
+                        margin: 0 auto;
+                        padding: 20px;
+                        text-align: left;
+                    }
+                    .disclaimer{
+                      font-size:11px;
+                    }
+                    h1 {
+                        color: #007519;
+                    }
+                    p {
+                        margin: 15px 0;
+                        font-size:18px;
+                    }
+                </style>
+            </head>
+            <body>
+                <div class="container">  
+                    <p> Dear ${fname},</p>
+                    <p>We're pleased to confirm the successful receipt of your investment payment of £${amount}</p>
+                    <p>Thank you for your prompt and secure transaction, and here is what you should expect in the next few days</p>
+                    <p>-Loan note certificate: an e-copy of the loan note certificate will be sent to your email and the physical copy of the certificate will also be forwarded to the address submitted to us.</p>
+                    <p>-Investor Online Portal: you can monitor your investment (ROI, maturity date e.t.c) through our online portal. We will send your access details in 5 working days.</p>
+                    <p>Welcome to Wosiwosi Investment! we're thrilled to have you on board and look forward to a successful and rewarding investment.</p>
+                    <p>If you have any questions, feel free to reach out.</p>
+                    <p>Best regards,<br>Wosiwosi Investment Team<br>Wosiwosi Foods UK Limited</p>
+  
+                    <br>
+                    <br>
+                    <br>
+                    <p class="disclaimer">Investment involves risk and can lead to either a gain or loss in capital. You are encouraged to take independent financial advice about this opportunity.</p>
+                    <p class="disclaimer">Wosiwosi is not a public listed company so it cannot make a public offering. It may however make an ‘arm’s length’ offering. So, it’s imperative that this opportunity is never confused with a “public offering”</p>
+                </div>
+            </body>
+            </html>`
+    };
+  
+    transporter.sendMail(mailOptions);
+  };
+  
+const ceoWelcoming = (to, bcc, fname) => {
+const mailOptions = {
+    from: '"Wosiwosi Investment" <info@wosiwosi.co.uk>',
+    to: to,
+    bcc:bcc,
+    subject: "WELCOME ONBOARD",
+    // attachments: [
+    //   {  
+    //       filename: 'brochure.pdf',
+    //       path: appRoot + "/file/brochure.pdf" // stream this file
+    //   }],
+    html: 
+        `<!DOCTYPE html>
+        <html>
+        <head>
+            <meta charset="UTF-8">
+            <title>Thank you for your interest in wosiwosi investment</title>
+            <style>
+                body {
+                    font-family: Poppins, sans-serif;
+                    line-height: 1.6;
+                }
+                .container {
+                    max-width: 600px;
+                    margin: 0 auto;
+                    padding: 20px;
+                    text-align: left;
+                }
+                .disclaimer{
+                    font-size:11px;
+                }
+                h1 {
+                    color: #007519;
+                }
+                p {
+                    margin: 15px 0;
+                    font-size:18px;
+                }
+            </style>
+        </head>
+        <body>
+            <div class="container">  
+                <p> Dear ${fname},</p>
+                <p>Warm greetings!</p>
+                <p>On behalf of the entire Wosiwosi Investment team, I am thrilled to extend a heartfelt welcome as you officially join our community of forward-thinking individuals. Your recent investment payment is a testament to your belief in the exciting journey we're embarking on together.</p>
+                <p>At Wosiwosi Investment, we are committed to fostering a thriving environment for our investors, and your support is instrumental in propelling us towards new heights. Rest assured, your investment is in capable hands, and we are dedicated to maximizing it's potential for both cultural enrichment and financial growth.</p>
+                <p>Feel free to reach out if you have any questions or if there's anything specific you'd like to discuss. We look forward to a fruitful and rewarding investment.</p>
+                <p>Thank you for choosing Wosiwosi Investment. Let's create a future filled with opportunities together!</p>
+                <p>Best regards,<br>Seyi Awobadejo<br>CEO, Wosiwosi Foods UK Limited</p>
+
+                <br>
+                <br>
+                <br>
+                <p class="disclaimer">Investment involves risk and can lead to either a gain or loss in capital. You are encouraged to take independent financial advice about this opportunity.</p>
+                <p class="disclaimer">Wosiwosi is not a public listed company so it cannot make a public offering. It may however make an ‘arm’s length’ offering. So, it’s imperative that this opportunity is never confused with a “public offering”</p>
+            </div>
+        </body>
+        </html>`
+};
+
+transporter.sendMail(mailOptions);
+};
+
 
 module.exports={
   interestFormResponse:interestFormResponse,
   subscriptionFormResponse:subscriptionFormResponse,
   adminInterestNotification:adminInterestNotification,
   adminSubscribeNotification:adminSubscribeNotification,
-  sendSubscriptionForm:sendSubscriptionForm
+  sendSubscriptionForm:sendSubscriptionForm,
+  paymentConfirmation:paymentConfirmation,
+  ceoWelcoming:ceoWelcoming
 }

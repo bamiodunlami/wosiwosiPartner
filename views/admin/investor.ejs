@@ -50,76 +50,30 @@
               <thead>
                 <tr>
                   <th scope="col">First Name</th>
-                  <th scope="col">Email</th>
-                  <!-- <th class="scope">Lot</th> -->
+                  <th scope="col">Phone</th>
+                  <th scope="col">Investment (£)</th>
+                  <th scope="col">Expected ROI (£)</th>
+                  <th scope="col">End Date</th>
+                  <th class="scope">Action</th>
                 </tr>
               </thead>
               <tbody>
                 <% for (i=investor.length-1; i>=0; i--){%>
-                  <tr class="subscrber-details" data-bs-toggle="modal" data-bs-target="#staticBackdrop">
+                  <tr>
                     <td><%=investor[i].profile.fname%></td>
-                    <td><%=investor[i].username%></td>
+                    <td><%=investor[i].profile.phone%></td>
+                    <td><%=investor[i].investment[0].amount%></td>
+                    <td><%=investor[i].investment[0].interest%></td>
+                    <td><%=investor[i].investment[0].endDate%></td>
+                    <td>
+                      <form method="post" action="/investorpage">
+                        <input type="hidden" name="email" value="<%=investor[i].username%>">
+                        <button class="btn btn-success btn-sm">View</button>
+                      </form>
+                    </td>
                     <!-- <td ><=subscrber[i].interest.slice(0,2)></td> -->
                     <!-- Button trigger modal -->
                     <!-- <button type="button" class="btn btn-secondary btn-md" data-bs-toggle="modal" data-bs-target="#staticBackdrop">Add Partner</button> -->
-                      
-                    <!-- Modal -->
-                    <div class="modal fade" id="staticBackdrop" data-bs-backdrop="static" data-bs-keyboard="false" tabindex="-1" aria-labelledby="staticBackdropLabel" aria-hidden="true">
-                        <div class="modal-dialog">
-                        <div class="modal-content">
-                            <div class="modal-header">
-                            <h1 class="modal-title fs-5" id="staticBackdropLabel">Investor</h1>
-                            <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
-                            </div>
-                            <div class="modal-body">
-                              <!-- loading -->
-                                <div class="text-center" id="loading">
-                                  <div class="spinner-border" style="width: 3rem; height: 3rem;" role="status">
-                                    <span class="visually-hidden">Loading...</span>
-                                  </div>
-                                </div>
-                                <!--  -->
-                              <div class="text-start hidden" id="detailsBar">
-                                <form action="/createuser" method="post">
-                                    <div class="mb-2">
-                                        <label for="exampleFormControlInput1" class="form-label">First Name</label>
-                                        <h6 id="fname"></h6>
-                                      </div>
-                                      <div class="mb-2">
-                                        <label for="exampleFormControlTextarea1" class="form-label">Last Name</label>
-                                        <h6 id="lname"></h6>
-                                      </div>
-                                      <div class="mb-2">
-                                        <label for="exampleFormControlTextarea1" class="form-label">Email</label>
-                                        <h6 id="email"></h6>
-                                      </div>
-                                      <div class="mb-2">
-                                        <label for="exampleFormControlTextarea1" class="form-label">Phone number</label>
-                                        <h6 id="phone"></h6>
-                                      </div>
-                                      <div class="mb-2">
-                                        <label for="exampleFormControlTextarea1" class="form-label">Address</label>
-                                        <h6 id="address"></h6>
-                                      </div>
-                                      <div class="mb-2">
-                                        <label for="exampleFormControlTextarea1" class="form-label">Interest</label>
-                                        <h6 id="interest"></h6>
-                                      </div>
-                                      <div class="mb-2">
-                                        <label for="exampleFormControlTextarea1" class="form-label">Start Date</label>
-                                        <h6 id="startDate"></h6>
-                                      </div>
-                                        <input type="hidden" name="emailTag" class="form-control" id="emailTag"> 
-                                        <button type="submit"  class="btn btn-success btn-sm">Create Partner</button>
-                                </form>    
-                              </div>
-                            </div>
-                            <!-- <div class="modal-footer text-start">
-                            <button type="button"  class="btn btn-success" data-bs-dismiss="modal">Create partner</button>
-                            </div> -->
-                        </div>
-                        </div>
-                    </div>
                   </tr>
                 <%}%>
               </tbody>
@@ -127,12 +81,11 @@
           </div>
       </div>
 
-
          <!-- manually create user -->
         <div class="text-center" style="margin-top: 20px;">
-          <button type="button" class="btn btn-success btn-md" data-bs-toggle="modal" data-bs-target="#staticBackdrop">Mannually Create Partner</button>             
+          <button type="button" class="btn btn-success btn-md" data-bs-toggle="modal" data-bs-target="#staticBackdrop2">Mannually add investor</button>             
           <!-- Modal -->
-          <div class="modal fade" id="staticBackdrop" data-bs-backdrop="static" data-bs-keyboard="false" tabindex="-1" aria-labelledby="staticBackdropLabel" aria-hidden="true">
+          <div class="modal fade" id="staticBackdrop2" data-bs-backdrop="static" data-bs-keyboard="false" tabindex="-1" aria-labelledby="staticBackdropLabel" aria-hidden="true">
               <div class="modal-dialog">
               <div class="modal-content">
                   <div class="modal-header">
@@ -190,5 +143,4 @@
   </div>
 </div>
 <%-include('include/adminFooter') -%>
-<script src="/min/editi.js"></script>
 <%-include('include/footer') -%>

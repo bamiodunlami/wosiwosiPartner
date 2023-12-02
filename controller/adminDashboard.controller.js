@@ -78,14 +78,55 @@ const adminOperation = async (req, res) => {
 
 // create user
 const createInvestor = async (req, res) => {
-  console.log(req.body);
+  const investor = await subscrberDB.findOne({email:req.body.email})
+  let investmentInterest = 0
+  const investmentAmount = investor.interest.split(" ")[0];
+  if(investmentAmount >= 50000){
+    investmentInterest = investmentAmount * 0.25;
+  }else if(investmentAmount <= 49000 && investmentAmount > 1999.9){
+    investmentInterest = investmentAmount * 0.20;
+  }
+  const investorDetails = new investorDB({
+    username:investor.email,
+    profile:{
+        fname:investor.fname,
+        lname:investor.lname,
+        dob:"",
+        phone:investor.phone,
+        address:investor.address,
+        city:"",
+        state:"",
+        postcode:investor.postcode,
+        country:investor.country
+    },
+    investment:[{
+      amount:investmentAmount,
+      startDate:req.body.startDate,
+      endDate:req.body.endDate,
+      interest:investmentInterest
+    }],
+    bank:{
+      sortCode:"",
+      account:""
+  },
+    upline:[],
+    downline:[],
+    active:true,
+  })
+  const savedInvestor = await investorDetails.save();
+  if(savedInvestor){
+     await subscrberDB.deleteOne({email:req.body.email})
+     mailer.paymentConfirmation(req.body.email, "bamidele@wosiwosi.co.uk", investor.fname,investmentAmount)
+     mailer.ceoWelcoming(req.body.email, "bamidele@wosiwosi.co.uk", investor.fname)
+     res.redirect(req.headers.referer)
+  }
+
 };
 
 // fetch subsbccriber details
 const fetchInvestorDetails = async (req, res) => {
   if (req.isAuthenticated()) {
-    const idetails = await investorDB.findOne({ username: req.body.email });
-    // console.log(idetails)
+    const idetails = await subscrberDB.findOne({email:req.body.email});
     res.send(idetails);
   } else res.redirect("/adminlogin");
 };
@@ -294,6 +335,12 @@ const interestSectionOperation = async (req, res) => {
   }
 };
 
+// render investor page
+const renderInvestorPage= async (req, res)=>{
+  console.log(req.body)
+}
+
+
 module.exports = {
   adashboard: adashboard,
   adminOperation: adminOperation,
@@ -301,4 +348,5 @@ module.exports = {
   fetchInvestorDetails: fetchInvestorDetails,
   interestOperation: interestOperation,
   interestSectionOperation: interestSectionOperation,
+  renderInvestorPage:renderInvestorPage,
 };
