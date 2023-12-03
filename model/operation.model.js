@@ -1,4 +1,5 @@
 const mongoose = require ('mongoose')
+const validator = require ('validator')
 module.exports=mongoose.connect('mongodb+srv://bamiodunlami:' + process.env.MONGODB_CODE + '@cluster0.cqoyphm.mongodb.net/?retryWrites=true&w=majority', {useNewUrlParser:true})
 
 
@@ -65,7 +66,10 @@ const redundantSchema = new mongoose.Schema({
 // });
 
 const subscriptionFormSchema = new mongoose.Schema({
-    fname:"string",
+    fname:{
+      type:String,
+      validate:validator.isAlpha
+    },
     lname:"string",
     email:"string",
     phone:"string",
@@ -149,17 +153,20 @@ async function migrateUsers() {
     }
   }
   // migrateUsers();
-function accessCodeGen(){
-  for(let i=0; i<150; i++){
-    let coded = Math.floor(Math.random()*912230)
-    const saveCode = new AccessCode({
-      userMail:"",
-      status:true,
-      code:coded
-    })
-    console.log(saveCode)
-    saveCode.save()
-
+async function accessCodeGen(){
+  const  accessMig = await AccessCode.find();
+  for(let i=0; i<accessMig.length; i++){
+    // let coded = Math.floor(Math.random()*912230)
+    // const saveCode = new AccessCode({
+    //   userMail:"",
+    //   status:true,
+    //   code:coded
+    // })
+    // console.log(saveCode);
+    // saveCode.save()
+    if(accessMig[i].code.length < 6){
+      await AccessCode.deleteOne({code:accessMig[i].code})
+    }
   }
 }
 // accessCodeGen()
