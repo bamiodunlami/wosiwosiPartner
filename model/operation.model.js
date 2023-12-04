@@ -70,13 +70,20 @@ const subscriptionFormSchema = new mongoose.Schema({
       type:String,
       validate:validator.isAlpha
     },
-    lname:"string",
-    email:"string",
-    phone:"string",
-    address:"string",
-    postcode:"string",
-    country:"string",
-    interest:"string",
+    lname:{
+      type:String,
+      validate:validator.isAlpha
+    },
+    email:{
+      type:String,
+      validate:validator.isEmail
+    },
+    phone:String,
+    address:String,
+    postcode:String,
+    city:String,
+    country:String,
+    interest:String,
     startDate:"string",
     nextOfKin:"string",
     nextOfKinEmail:"string",
@@ -84,19 +91,20 @@ const subscriptionFormSchema = new mongoose.Schema({
 })
 
 const accessCodes = new mongoose.Schema({
-  userMail:"string",
+  userMail:{
+    type:String,
+    validate:validator.isEmail
+  },
   status:Boolean,
-  code:"string"
+  code:{
+    type:String,
+  }
 })
 
 
 const InterestForm = new mongoose.model('InterestForm', interestFormSchema);
 
 const RedundantDB = new mongoose.model('RedundantDB', redundantSchema);
-
-// const Followup = new mongoose.model('Followup', followupSchema);
-
-// const Tosubscribe = new mongoose.model('Tosubscribe', toSubscribeSchema);
 
 const SubscriptionForm = new mongoose.model('SubscriptionForm', subscriptionFormSchema);
 

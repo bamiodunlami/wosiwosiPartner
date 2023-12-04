@@ -76,6 +76,7 @@ const subscriptionFormSumitted = async (req, res) => {
       phone: req.body.phone,
       address: req.body.address,
       postcode: req.body.postcode,
+      country: req.body.city,
       country: req.body.country,
       interest: req.body.interest,
       // startDate: req.body.startDate,
