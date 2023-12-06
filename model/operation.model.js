@@ -86,10 +86,6 @@ const subscriptionFormSchema = new mongoose.Schema({
     },
     postcode:String,
     city:String,
-    county:{
-      type:String,
-      validate:validator.isAlpha
-    },
     country:String,
     interest:String,
     startDate:"string",
