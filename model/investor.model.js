@@ -4,6 +4,7 @@ module.exports=mongoose.connect('mongodb+srv://bamiodunlami:' + process.env.MONG
 
 const investorSchema = new mongoose.Schema({
     username:"string",
+    category:String,
     profile:{
         fname:"string",
         lname:"string",
@@ -49,12 +50,7 @@ async function migrateUsers() {
   
       // Update each user record with the new field
       for (let i=0; i<mig.length; i++) {
-        mig[i].investment=[{
-            amount:"25,000",
-            startDate:"2023-12-02",
-            endDate:"2024-12-02",
-            interest:""
-          }]
+        mig[i].category="customer"
         // let mig2 = new RedundantDB({
         //     fname:mig[i].fname,
         //     lname:mig[i].lname,
@@ -83,7 +79,7 @@ async function migrateUsers() {
       console.error('Data migration failed:', error);
     }
   }
-//   migrateUsers();
+  // migrateUsers();
 
 //    async function saveInvestor(){
 //         const investorDB = new Investor({

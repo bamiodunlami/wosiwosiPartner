@@ -80,8 +80,16 @@ const subscriptionFormSchema = new mongoose.Schema({
     },
     phone:String,
     address:String,
+    category:{
+      type:String,
+      validate:validator.isAlpha
+    },
     postcode:String,
     city:String,
+    county:{
+      type:String,
+      validate:validator.isAlpha
+    },
     country:String,
     interest:String,
     startDate:"string",
@@ -126,12 +134,12 @@ async function migrateUsers() {
       // })
 
       // savePromo.save()
-      const mig = await InterestForm.find();
+      const mig = await SubscriptionForm.find();
 
   
       // Update each user record with the new field
       for (let i=0; i<mig.length; i++) {
-        mig[i].status=true,
+        mig[i].category="customer",
         // let mig2 = new RedundantDB({
         //     fname:mig[i].fname,
         //     lname:mig[i].lname,
