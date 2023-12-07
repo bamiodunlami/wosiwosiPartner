@@ -440,11 +440,10 @@ const mailOptions = {
 transporter.sendMail(mailOptions);
 };
 
-const accessRevoke = (to, bcc) => {
+const accessRevoke = (to) => {
     const mailOptions = {
         from: '"Wosiwosi Investment" <info@wosiwosi.co.uk>',
         to: to,
-        bcc:bcc,
         subject: "ACCESS REVOKED",
         // attachments: [
         //   {  
@@ -483,8 +482,8 @@ const accessRevoke = (to, bcc) => {
             <body>
                 <div class="container">  
                     <p> Hi there,</p>
-                    <p>We are sorry to inform you that we have now revoked your access to the Wosiwosi Investment Platform</p>
-                    <p>This happened because we have not received any response from you concerning your interest in the investment</p>
+                    <p>We are sorry to inform you that we have now revoked your access to the Wosiwosi Investment Platform.</p>
+                    <p>This happened because we have not received any response from you concerning your interest in the investment.</p>
                     <p>If you would like to learn more or proceed with your investment, you will need to call us:</p>
                     <h3><a href="tel:+447946099030">Call us now</h3>
                     <p>Best regards,<br>Wosiwosi Investment Team<br>Wosiwosi Foods UK Limited</p>
