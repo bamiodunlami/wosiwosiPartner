@@ -1,11 +1,12 @@
 const appRoot = require("app-root-path");
-const path = require("path");
 
+const path = require("path");
 const rootPath = path.resolve(process.cwd());
 appRoot.setPath(rootPath);
 
 const passport = require(appRoot + "/util/passport.util.js");
-const Admin = require(appRoot + "/model/admin.model.js");
+
+const User = require(appRoot + "/model/user.model.js").User;
 
 const renderMasterAdminReg = (req, res) => {
   res.render("admin/mreg", {
@@ -15,14 +16,13 @@ const renderMasterAdminReg = (req, res) => {
 
 const masterAdminReg = async (req, res) => {
   try {
-    const providerDetails = new Admin({
+    const providerDetails = new User({
       username: req.body.username,
-      active: false,
+      active: true,
       level: "1",
-      fname: "",
-      lname: "",
+      role:"admin"
     });
-    Admin.register(providerDetails, req.body.password, (err, user) => {
+    User.register(providerDetails, req.body.password, (err, user) => {
       if (err) {
         console.log(err);
         res.redirect(req.headers.refer);

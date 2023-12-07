@@ -10,18 +10,22 @@ const passport = require(appRoot + "/util/passport.util.js");
 const interestDB = require(appRoot + "/model/operation.model.js").InterestForm;
 const subscrberDB = require(appRoot +"/model/operation.model.js").SubscriptionForm;
 const accessCodesDB = require(appRoot +"/model/operation.model.js").AccessCode;
-const investorDB = require(appRoot +"/model/investor.model.js").Investor;
-const Admin = require(appRoot + "/model/admin.model.js");
+const UserDB = require(appRoot +"/model/user.model.js").User;
 
 const mailer = require(appRoot + "/util/mailer.util.js");
 
 // render admin dashboard
 const adashboard = (req, res) => {
   if (req.isAuthenticated()) {
-    res.render("admin/adashboard", {
-      title: "Admin Dashboard",
-      user: req.user,
-    });
+      if(req.user.role == "admin"){
+        res.render("admin/adashboard", {
+          title: "Admin Dashboard",
+          user: req.user,
+        });
+      }else{
+        req.session.destroy()
+        res.redirect("/login")
+      }
   } else {
     res.redirect("/adminlogin");
   }
@@ -32,9 +36,9 @@ const adminOperation = async (req, res) => {
   if (req.isAuthenticated()) {
     const operation = req.params.operation;
     switch (operation) {
-      // redner edit partner
+      // redner edit investor
       case "editpartner":
-        const investorData = await investorDB.find();
+        const investorData = await UserDB.find({role:"investor"});
         res.render("admin/investor", {
           user: req.user,
           investor: investorData,
@@ -79,14 +83,11 @@ const adminOperation = async (req, res) => {
 // create user
 const createInvestor = async (req, res) => {
   const investor = await subscrberDB.findOne({email:req.body.email})
-  let investmentInterest = 0
-  const investmentAmount = investor.interest.split(" ")[0];
-  if(investmentAmount >= 50000){
-    investmentInterest = investmentAmount * 0.25;
-  }else if(investmentAmount <= 49000 && investmentAmount > 1999.9){
-    investmentInterest = investmentAmount * 0.20;
-  }
-  const investorDetails = new investorDB({
+  const investmentAmount = investor.interest.split(" ")[0]; // amount invested
+  const investmentInterest = investmentAmount * 0.20; //interest
+  const rand =  Math.floor(Math.random()*2129) //password mixing
+  const investorPass= `${investor.fname.slice(0,3)}${investor.lname.slice(0,3)}${rand}` //pasword form
+  const investorDetails = new UserDB({
     username:investor.email,
     profile:{
         fname:investor.fname,
@@ -112,9 +113,15 @@ const createInvestor = async (req, res) => {
     upline:[],
     downline:[],
     active:true,
+    role:"investor"
   })
+  // save investor
   const savedInvestor = await investorDetails.save();
-  if(savedInvestor){
+  // create investor password
+  const newInvestor = await UserDB.findOne({username:req.body.email});
+  await newInvestor.setPassword(investorPass);// create password
+  await newInvestor.save() //save password
+  if(newInvestor){
      await subscrberDB.deleteOne({email:req.body.email})
      mailer.paymentConfirmation(req.body.email, "bamidele@wosiwosi.co.uk", investor.fname,investmentAmount)
      mailer.ceoWelcoming(req.body.email, "bamidele@wosiwosi.co.uk", investor.fname)

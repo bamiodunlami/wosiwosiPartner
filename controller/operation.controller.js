@@ -8,13 +8,12 @@ const rootPath = path.resolve(process.cwd());
 appRoot.setPath(rootPath);
 
 const model = require(appRoot + "/model/operation.model.js");
-const investorModel = require(appRoot + "/model/investor.model.js");
+const UserDB = require(appRoot + "/model/user.model.js").User;
 
 const InterestForm = model.InterestForm;
 const SubscriptionForm = model.SubscriptionForm;
 const accessDB = model.AccessCode;
 const redundantDB = model.RedundantDB;
-const investorDB = investorModel.Investor
 const mailer = require(appRoot + "/util/mailer.util.js");
 
 const date = new Date()
