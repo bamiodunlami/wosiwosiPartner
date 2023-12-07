@@ -137,6 +137,8 @@ const interestOperation = async (req, res) => {
     switch (req.params.request) {
       // not interested
       case "deleteinterest":
+       await mailer.accessRevoke(req.body.email, "bamidele@wosiwosi.co.uk")
+       await accessCodesDB.deleteOne({email:req.body.email});
         await interestDB.deleteOne({ email: req.body.email });
         await subscrberDB.deleteOne({ email: req.body.email });
         res.redirect(req.headers.referer);

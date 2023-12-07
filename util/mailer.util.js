@@ -440,6 +440,68 @@ const mailOptions = {
 transporter.sendMail(mailOptions);
 };
 
+const accessRevoke = (to, bcc) => {
+    const mailOptions = {
+        from: '"Wosiwosi Investment" <info@wosiwosi.co.uk>',
+        to: to,
+        bcc:bcc,
+        subject: "ACCESS REVOKED",
+        // attachments: [
+        //   {  
+        //       filename: 'brochure.pdf',
+        //       path: appRoot + "/file/brochure.pdf" // stream this file
+        //   }],
+        html: 
+            `<!DOCTYPE html>
+            <html>
+            <head>
+                <meta charset="UTF-8">
+                <title>Your access to Wosiwosi Investment has been revoked</title>
+                <style>
+                    body {
+                        font-family: Poppins, sans-serif;
+                        line-height: 1.6;
+                    }
+                    .container {
+                        max-width: 600px;
+                        margin: 0 auto;
+                        padding: 20px;
+                        text-align: left;
+                    }
+                    .disclaimer{
+                        font-size:11px;
+                    }
+                    h1 {
+                        color: #007519;
+                    }
+                    p {
+                        margin: 15px 0;
+                        font-size:18px;
+                    }
+                </style>
+            </head>
+            <body>
+                <div class="container">  
+                    <p> Hi there,</p>
+                    <p>We are sorry to inform you that we have now revoked your access to the Wosiwosi Investment Platform</p>
+                    <p>This happened because we have not received any response from you concerning your interest in the investment</p>
+                    <p>If you would like to learn more or proceed with your investment, you will need to call us:</p>
+                    <h3><a href="tel:+447946099030">Call us now</h3>
+                    <p>Best regards,<br>Wosiwosi Investment Team<br>Wosiwosi Foods UK Limited</p>
+    
+                    <br>
+                    <br>
+                    <br>
+                    <p class="disclaimer">Investment involves risk and can lead to either a gain or loss in capital. You are encouraged to take independent financial advice about this opportunity.</p>
+                    <p class="disclaimer">Wosiwosi is not a public listed company so it cannot make a public offering. It may however make an ‘arm’s length’ offering. So, it’s imperative that this opportunity is never confused with a “public offering”</p>
+                </div>
+            </body>
+            </html>`
+    };
+    
+    transporter.sendMail(mailOptions);
+};
+
 
 module.exports={
   interestFormResponse:interestFormResponse,
@@ -448,5 +510,6 @@ module.exports={
   adminSubscribeNotification:adminSubscribeNotification,
   sendSubscriptionForm:sendSubscriptionForm,
   paymentConfirmation:paymentConfirmation,
-  ceoWelcoming:ceoWelcoming
+  ceoWelcoming:ceoWelcoming,
+  accessRevoke:accessRevoke
 }
