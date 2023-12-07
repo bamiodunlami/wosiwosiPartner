@@ -8,6 +8,12 @@ const passport = require('passport')
 const session = require('express-session');
 const flash = require ('express-flash');
 
+// const cron = require('node-cron');
+
+// cron.schedule('*/2 * * * *', () => {
+//     console.log('running a task every two minutes');
+//   });
+
 const rootPath = path.resolve(process.cwd())
 appRoot.setPath(rootPath)
 

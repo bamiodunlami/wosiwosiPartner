@@ -53,6 +53,7 @@
                   <th scope="col">Phone</th>
                   <th scope="col">Investment (£)</th>
                   <th scope="col">Expected ROI (£)</th>
+                  <th scope="col">Start Date</th>
                   <th scope="col">End Date</th>
                   <th class="scope">Action</th>
                 </tr>
@@ -64,6 +65,7 @@
                     <td><%=investor[i].profile.phone%></td>
                     <td><%=investor[i].investment[0].amount%></td>
                     <td><%=investor[i].investment[0].interest%></td>
+                    <td><%=investor[i].investment[0].startDate%></td>
                     <td><%=investor[i].investment[0].endDate%></td>
                     <td>
                       <form method="post" action="/investorpage">
