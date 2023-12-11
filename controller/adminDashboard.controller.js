@@ -51,6 +51,7 @@ const adminOperation = async (req, res) => {
       // render interest
       case "interest":
         const interest = await interestDB.find();
+        // console.log(interest)
         res.render("admin/interest", {
           int: interest,
           //  removeThreeButton:true,
