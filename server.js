@@ -7,12 +7,20 @@ const bodyParser = require('body-parser');
 const passport = require('passport')
 const session = require('express-session');
 const flash = require ('express-flash');
+const filter = require ('content-filter')
 
 // const cron = require('node-cron');
 
 // cron.schedule('*/2 * * * *', () => {
 //     console.log('running a task every two minutes');
 //   });
+
+// blacklist keys
+let blackList = ['$','{','&&','||', '}']
+let options = {
+    urlBlackList: blackList,
+    bodyBlackList: blackList,
+}
 
 const rootPath = path.resolve(process.cwd())
 appRoot.setPath(rootPath)
@@ -24,6 +32,7 @@ app.set('view engine', "ejs");
 app.use(express.static('public'))
 app.use(bodyParser.urlencoded({extended:true}));
 app.use(bodyParser.json())
+app.use(filter(options));
 app.use(session({
     secret: process.env.SESSION_SECRET,
     resave: false,
