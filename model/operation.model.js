@@ -66,24 +66,12 @@ const redundantSchema = new mongoose.Schema({
 // });
 
 const subscriptionFormSchema = new mongoose.Schema({
-    fname:{
-      type:String,
-      validate:validator.isAlpha
-    },
-    lname:{
-      type:String,
-      validate:validator.isAlpha
-    },
-    email:{
-      type:String,
-      validate:validator.isEmail
-    },
+    fname:String,
+    lname:String,
+    email:String,
     phone:String,
     address:String,
-    category:{
-      type:String,
-      validate:validator.isAlpha
-    },
+    category:String,
     postcode:String,
     city:String,
     country:String,
