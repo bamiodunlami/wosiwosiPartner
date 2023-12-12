@@ -76,6 +76,7 @@ const subscriptionFormSchema = new mongoose.Schema({
     city:String,
     country:String,
     interest:String,
+    comment:String,
     startDate:"string",
     nextOfKin:"string",
     nextOfKinEmail:"string",

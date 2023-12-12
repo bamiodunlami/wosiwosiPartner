@@ -154,10 +154,10 @@ const interestOperation = async (req, res) => {
         res.redirect(req.headers.referer);
         break;
 
-        // followup, update comment
-      case "notsure":
+        // update interest comment
+      case "interest_comment":
         // safe comment 
-        const saveComment = await interestDB.updateOne({ email: req.body.email },{
+        const saveComment = await subscrberDB.updateOne({ email: req.body.email },{
           $set:{
             comment:req.body.comment
           }
@@ -228,7 +228,82 @@ const interestOperation = async (req, res) => {
           // }}
       break;
 
-        // send subscription form
+        // update subscriber comment
+        case "subscriber_comment":
+          // console.log(req.body)
+          // safe comment 
+          const saveSubscriverComment = await subscrberDB.updateOne({ email: req.body.email },{
+            $set:{
+              comment:req.body.comment
+            }
+          });
+          res.redirect(req.headers.referer);
+  
+  
+            // first confirm if the email is already in followup
+            // const checkFollowup = await followupDB.findOne({ email: req.body.email })
+            // if(checkFollowup){
+            //   console.log("already available");
+            //     // update tosubbscribe db to false
+            //     await toSubscribeDB.updateOne({ email: req.body.email },
+            //       {
+            //         $set: {
+            //           action: false,
+            //         },
+            //       });
+            //       // update followup db to true
+            //     await followupDB.updateOne({ email: req.body.email },
+            //       {
+            //         $set: {
+            //           action: true,
+            //         },
+            //       });
+            //       res.redirect(req.headers.referer);
+            // }else{
+            //   console.log("not exist")
+            //   // update interestDB to false
+            //   const updateInterest = await interestDB.updateOne({ email: req.body.email },
+            //     {
+            //       $set: {
+            //         action: false,
+            //       },
+            //     });
+            //     // update tosubbscribe db to false
+            //     await toSubscribeDB.updateOne({ email: req.body.email },
+            //       {
+            //         $set: {
+            //           action: false,
+            //         },
+            //       });
+            //   if (updateInterest) {
+            //     const details = await interestDB.findOne({ email: req.body.email });
+            //     // console.log(updateInterest);
+            //     const saveFollowup = new followupDB({
+            //       fname: details.fname,
+            //       lname: details.lname,
+            //       email: details.email,
+            //       phone: details.phone,
+            //       // interest:req.body.interest,
+            //       address: details.address,
+            //       postcode: details.postcode,
+            //       country: details.country,
+            //       // startDate:req.body.startDate
+            //       action: details.action,
+            //       comment: req.body.comment,
+            //     });
+            //     await saveFollowup.save();
+            //     // update followup db to true
+            //     await followupDB.updateOne({ email: req.body.email },
+            //       {
+            //         $set: {
+            //           action: true,
+            //         },
+            //       });
+            //     res.redirect(req.headers.referer);
+            // }}
+        break;
+
+        // resend subscription form
       case "tosubscribed":
         mailer.sendSubscriptionForm(
           req.body.email ,
