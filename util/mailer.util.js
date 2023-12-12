@@ -70,12 +70,6 @@ const interestFormResponse = (to, bcc) => {
 
                   <p>We look forward to welcoming you to the Wosiwosi invstment family and embarking on a mutually rewarding journey.</p>
                   <p>Best regards,<br>Atinuke Awobadejo<br>CEO, Wosiwosi Foods UK Limited</p>
-
-                  <br>
-                  <br>
-                  <br>
-                  <p class="disclaimer">Investment involves risk and can lead to either a gain or loss in capital. You are encouraged to take independent financial advice about this opportunity.</p>
-                  <p class="disclaimer">Wosiwosi is not a public listed company so it cannot make a public offering. It may however make an ‘arm’s length’ offering. So, it’s imperative that this opportunity is never confused with a “public offering”</p>
               </div>
           </body>
           </html>`
@@ -139,11 +133,6 @@ const subscriptionFormResponse = (to, bcc, fname, interest, startDate) => {
                   <p>Amount to invest: £${interest}</p>
                   <p>We will email Wosiwosi payment details and investment contract to you within 24 hours. You will only have 3 days to make payment and sign the contract else you will have to start the subscription process again.</p>
                   <p>Best regards,<br>Wosiwosi Investment <br>Wosiwosi Foods UK Limited</p>
-                  <br>
-                  <br>
-                  <br>
-                  <p class="disclaimer">Investment involves risk and can lead to either a gain or loss in capital. You are encouraged to take independent financial advice about this opportunity.</p>
-                  <p class="disclaimer">Wosiwosi is not a public listed company so it cannot make a public offering. It may however make an ‘arm’s length’ offering. So, it’s imperative that this opportunity is never confused with a “public offering”:</p>
               </div>
           </body>
           </html>`
@@ -206,11 +195,6 @@ const sendSubscriptionForm = (to, bcc) => {
                     <p>We look forward to welcoming you as a valued investor in our journey of growth and cultural enrichment.</p>
                     <br>
                     <p>Best regards,<br>Atinuke Awobadejo<br>Co-Founder Wosiwosi Foods UK Limited</p>
-                    <br>
-                    <br>
-                    <br>
-                    <p class="disclaimer">Investment involves risk and can lead to either a gain or loss in capital. You are encouraged to take independent financial advice about this opportunity.</p>
-                    <p class="disclaimer">Wosiwosi is not a public listed company so it cannot make a public offering. It may however make an ‘arm’s length’ offering. So, it’s imperative that this opportunity is never confused with a “public offering”:</p>
                 </div>
             </body>
             </html>`
@@ -363,12 +347,6 @@ const paymentConfirmation = (to, bcc, fname, amount) => {
                     <p>Welcome to Wosiwosi Investment! we're thrilled to have you on board and look forward to a successful and rewarding investment.</p>
                     <p>If you have any questions, feel free to reach out.</p>
                     <p>Best regards,<br>Wosiwosi Investment Team<br>Wosiwosi Foods UK Limited</p>
-  
-                    <br>
-                    <br>
-                    <br>
-                    <p class="disclaimer">Investment involves risk and can lead to either a gain or loss in capital. You are encouraged to take independent financial advice about this opportunity.</p>
-                    <p class="disclaimer">Wosiwosi is not a public listed company so it cannot make a public offering. It may however make an ‘arm’s length’ offering. So, it’s imperative that this opportunity is never confused with a “public offering”</p>
                 </div>
             </body>
             </html>`
@@ -426,12 +404,6 @@ const mailOptions = {
                 <p>Feel free to reach out if you have any questions or if there's anything specific you'd like to discuss. We look forward to a fruitful and rewarding investment.</p>
                 <p>Thank you for choosing Wosiwosi Investment. Let's create a future filled with opportunities together!</p>
                 <p>Best regards,<br>Seyi Awobadejo<br>CEO, Wosiwosi Foods UK Limited</p>
-
-                <br>
-                <br>
-                <br>
-                <p class="disclaimer">Investment involves risk and can lead to either a gain or loss in capital. You are encouraged to take independent financial advice about this opportunity.</p>
-                <p class="disclaimer">Wosiwosi is not a public listed company so it cannot make a public offering. It may however make an ‘arm’s length’ offering. So, it’s imperative that this opportunity is never confused with a “public offering”</p>
             </div>
         </body>
         </html>`
@@ -487,12 +459,6 @@ const accessRevoke = (to) => {
                     <p>If you would like to learn more or proceed with your investment, you will need to call us:</p>
                     <h3><a href="tel:+447946099030">Call us now</h3>
                     <p>Best regards,<br>Wosiwosi Investment Team<br>Wosiwosi Foods UK Limited</p>
-    
-                    <br>
-                    <br>
-                    <br>
-                    <p class="disclaimer">Investment involves risk and can lead to either a gain or loss in capital. You are encouraged to take independent financial advice about this opportunity.</p>
-                    <p class="disclaimer">Wosiwosi is not a public listed company so it cannot make a public offering. It may however make an ‘arm’s length’ offering. So, it’s imperative that this opportunity is never confused with a “public offering”</p>
                 </div>
             </body>
             </html>`
