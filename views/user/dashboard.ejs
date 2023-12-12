@@ -6,7 +6,7 @@
     <div class="user-details">
         <div class="text-center">
             <p>Welcome back</p>
-            <h5>Bamidele Odunlami</h5>
+            <h5><%=user.profile.fname%> <%=user.profile.lname%></h5>
         </div>
     </div>
 
@@ -15,8 +15,8 @@
             <div class="menu-item">
                 <!-- <div><i class="fa-solid fa-envelope fa-xl"></i></div> -->
                 <div>
-                    <h6>Communications</h6>
-                    <p>View recent statements, memorandom and update on investments</p>
+                  <h6>My Profile</h6>
+                  <p>View and update your profile. Authentication required for changes.</p>
                 </div>
             </div>
         </div>
@@ -45,18 +45,18 @@
         <div class="menu-item">
           <!-- <div><i class="fa-solid fa-headset fa-xl"></i></div> -->
           <div>
-              <h6>Contact us</h6>
-              <p>Need clarification, or have an information for us? contact us today.</p>
+              <h6>Communications</h6>
+              <p>View recent statements, memorandom and update on investments</p>
           </div>
         </div>
       </div>
     </div>
 
     <div class="logout-btn text-center">
-        <button class="btn btn-danger btn-sm">Logout</button>
+        <a class="btn btn-danger btn-sm" href="/logout">Logout</a>
     </div>
 
   </div>
 </div>
 
-<%-include('include/userFooter') -%>
+<%-include('include/footer') -%>

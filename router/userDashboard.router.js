@@ -11,7 +11,11 @@ appRoot.setPath(rootPath);
 const dashboard = require(appRoot + '/controller/userDashboard.controller.js')
 
 router
-.get('/dashboard', dashboard.dashboardGetmethod)
+
+.get('/udashboard', dashboard.userDashboard)
+
+// dashboard operation
+.get('/udashboard/:operation', dashboard.dashboardRequests)
 
 
 module.exports=router

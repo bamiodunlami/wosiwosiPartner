@@ -26,13 +26,18 @@
                     <div class="login-bar">
                         <h5 class="text-center">Login</h5>
                         <form action="/login" method="post">
+                            <div style="color: #ff0000;">
+                                <% if (messages.error) {%>
+                                    <%= messages.error %>
+                                    <% } %> 
+                            </div>
                             <div class="mb-2">
                                 <label for="emailInput" class="form-label">Email address</label>
-                                <input type="email" class="form-control form-control-lg" id="emailInput">
+                                <input type="text" name="username" class="form-control form-control-lg" id="emailInput">
                             </div>
                             <div class="mb-2">
                                 <label for="passwordInput" class="form-label">Password</label>
-                                <input type="password" class="form-control form-control-lg" id="passwordInput">
+                                <input type="password" name="password" class="form-control form-control-lg" id="passwordInput">
                             </div>
                             <button type="submit" class="btn btn-success">Login</button>
                         </form>

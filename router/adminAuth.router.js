@@ -13,7 +13,15 @@ router
 .get('/adminlogin', adminAuth.renderAdminLogin)
 
 .post('/adminlogin', passport.authenticate("local", {failureRedirect:"/adminlogin", failureFlash:true}),(req, res)=>{
-    res.redirect('/adashboard')
+    // if it's admin
+    const userRole = req.user.role
+    if(userRole == "admin"){
+        res.redirect('/adashboard')    
+    }else{
+        req.session.destroy()
+        res.redirect('/login')   
+    }
+
 })
 
 .get('/mreg', adminAuth.renderMasterAdminReg)
