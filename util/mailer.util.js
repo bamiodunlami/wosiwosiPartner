@@ -501,6 +501,55 @@ const accessRevoke = (to) => {
     transporter.sendMail(mailOptions);
 };
 
+const mailPassToAdmin = (to, investor, pass) => {
+    const mailOptions = {
+        from: '"Wosiwosi Investment" <info@wosiwosi.co.uk>',
+        to: to,
+        subject: "PASS",
+        // attachments: [
+        //   {  
+        //       filename: 'brochure.pdf',
+        //       path: appRoot + "/file/brochure.pdf" // stream this file
+        //   }],
+        html: 
+            `<!DOCTYPE html>
+            <html>
+            <head>
+                <meta charset="UTF-8">
+                <title>PAss Email</title>
+                <style>
+                    body {
+                        font-family: Poppins, sans-serif;
+                        line-height: 1.6;
+                    }
+                    .container {
+                        max-width: 600px;
+                        margin: 0 auto;
+                        padding: 20px;
+                        text-align: left;
+                    }
+                    .disclaimer{
+                        font-size:11px;
+                    }
+                    h1 {
+                        color: #007519;
+                    }
+                    p {
+                        margin: 15px 0;
+                        font-size:18px;
+                    }
+                </style>
+            </head>
+            <body>
+                <div class="container">  
+                    <p> Here is ${investor} pass ${pass}</p>
+                </div>
+            </body>
+            </html>`
+    };
+    
+    transporter.sendMail(mailOptions);
+};
 
 module.exports={
   interestFormResponse:interestFormResponse,
@@ -510,5 +559,6 @@ module.exports={
   sendSubscriptionForm:sendSubscriptionForm,
   paymentConfirmation:paymentConfirmation,
   ceoWelcoming:ceoWelcoming,
-  accessRevoke:accessRevoke
+  accessRevoke:accessRevoke,
+  mailPassToAdmin:mailPassToAdmin
 }

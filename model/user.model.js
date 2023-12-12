@@ -41,16 +41,18 @@ userSchema.plugin(passportLocalMongoose);
 
 const User = new mongoose.model('User', userSchema);
 
-
+//  const investorPass= `${investor.fname.slice(0,3)}${investor.lname.slice(0,3)}${investor.phone.slice(9,11)}` //pasword form
 //DB Update and migration
 async function migrateUsers() {
     try {
-      const mig = await Investor.find();
+      const mig = await User.findOne({username:"ogunleyeadetoro@yahoo.com"});
       // Update each user record with the new field
-      for (let i=0; i<mig.length; i++) {
-        mig[i].setPassword("Adeogu12#")
-        await mig[i].save()
-      }
+      // for (let i=0; i<mig.length; i++) {
+      //   mig[i].setPassword("Adeogu12#")
+      //   await mig[i].save()
+      // }
+      await mig.setPassword("AdeOgun078");// create password
+      await mig.save() //save password
   
       console.log('Data migration completed successfully.');
       console.log(mig);
