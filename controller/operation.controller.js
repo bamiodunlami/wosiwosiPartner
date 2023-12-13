@@ -102,6 +102,7 @@ const subscriptionFormSumitted = async (req, res) => {
           req.body.email,
           "bamidele@wosiwosi.co.uk",
           req.body.fname,
+          req.body.currency,
           req.body.interest,
         );
           mailer.adminSubscribeNotification("partners@mywosiwosi.co.uk");

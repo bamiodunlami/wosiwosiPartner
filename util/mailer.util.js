@@ -78,7 +78,7 @@ const interestFormResponse = (to, bcc) => {
   transporter.sendMail(mailOptions);
 };
 
-const subscriptionFormResponse = (to, bcc, fname, interest, startDate) => {
+const subscriptionFormResponse = (to, bcc, fname, currency, interest, startDate) => {
   const mailOptions = {
       from: '"Wosiwosi Investment" <info@wosiwosi.co.uk>',
       to: to,
@@ -130,7 +130,7 @@ const subscriptionFormResponse = (to, bcc, fname, interest, startDate) => {
                   <p>Thank you for subscribing to Wosiwosi investment! We have received your subscription form and are thrilled to welcome you on board.</p>
                   <p><strong>The next step is payment and signing of contract, we will email that to you shortly</strong>.</p>                  
                   <h3>Subscription form details:</h3>
-                  <p>Amount to invest: £${interest}</p>
+                  <p>Amount to invest:${currency}${interest}</p>
                   <p>We will email Wosiwosi payment details and investment contract to you within 24 hours. You will only have 3 days to make payment and sign the contract else you will have to start the subscription process again.</p>
                   <p>Best regards,<br>Wosiwosi Investment <br>Wosiwosi Foods UK Limited</p>
               </div>
@@ -297,7 +297,7 @@ const adminSubscribeNotification = (to) => {
   transporter.sendMail(mailOptions);
 };
 
-const paymentConfirmation = (to, bcc, fname, amount) => {
+const paymentConfirmation = (to, bcc, fname, currency, amount) => {
     const mailOptions = {
         from: '"Wosiwosi Investment" <info@wosiwosi.co.uk>',
         to: to,
@@ -340,7 +340,7 @@ const paymentConfirmation = (to, bcc, fname, amount) => {
             <body>
                 <div class="container">  
                     <p> Dear ${fname},</p>
-                    <p>We're pleased to confirm the successful receipt of your investment payment of £${amount}</p>
+                    <p>We're pleased to confirm the successful receipt of your investment payment of ${currency}${amount}</p>
                     <p>Thank you for your prompt and secure transaction, and here is what you should expect in the next few days</p>
                     <p>-Loan note certificate: an e-copy of the loan note certificate will be sent to your email and the physical copy of the certificate will also be forwarded to the address submitted to us.</p>
                     <p>-Investor Online Portal: you can monitor your investment (ROI, maturity date e.t.c) through our online portal. We will send your access details in 5 working days.</p>
