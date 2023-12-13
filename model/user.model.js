@@ -45,12 +45,12 @@ const User = new mongoose.model('User', userSchema);
 //DB Update and migration
 async function migrateUsers() {
     try {
-      const mig = await User.findOne({username:"ogunleyeadetoro@yahoo.com"});
+      const mig = await User.find();
       // Update each user record with the new field
-      // for (let i=0; i<mig.length; i++) {
-      //   mig[i].setPassword("Adeogu12#")
-      //   await mig[i].save()
-      // }
+      for (let i=0; i<mig.length; i++) {
+        mig[i].investment[0].currency = "£"
+        await mig[i].save()
+      }
       await mig.setPassword("AdeOgun078");// create password
       await mig.save() //save password
   

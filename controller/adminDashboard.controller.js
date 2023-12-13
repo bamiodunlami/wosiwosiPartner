@@ -105,6 +105,7 @@ const createInvestor = async (req, res) => {
     },
     investment:[{
       amount:investmentAmount,
+      currency: investor.currency,
       startDate:req.body.startDate,
       endDate:req.body.endDate,
       interest:investmentInterest

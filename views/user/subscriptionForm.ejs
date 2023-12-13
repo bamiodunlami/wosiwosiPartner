@@ -59,16 +59,24 @@
                           </div>
 
                           <div class="mb-2">
+                            <label>Select Currency</label>
+                            <select class="form-select" name="currency" id="currency">
+                              <option value="£">Pounds (£)</option>
+                              <option value="N">Naira (N)</option>
+                            </select>
+                          </div>
+
+                          <div class="mb-2">
                             <label class="form-label">How much would you be willing to invest?</label>
-                            <input type="number"  class="form-control" id="interest" min="2000" max="1000000"  required>
+                            <input type="number"  class="form-control" id="interest" min="2000" max="10000000"  required>
                           </div>
 
                           <input type="hidden" name="interest" class="form-control" id="roiValue"a>
 
                           <div class="alert alert-light">
                             <p>ROI percentage (%): <strong><span id="roipercent">0</span>%</strong></p>
-                            <p>Expected ROI is: <strong>£<span id="roiInfo">0</span></strong></p>
-                            <p>Capital and ROI is: <strong>£<span id="totalToGet">0</span></strong></p>
+                            <p>Expected ROI is: <strong><span class="currencySign"></span> <span id="roiInfo">0</span></strong></p>
+                            <p>Capital and ROI is: <strong><span class="currencySign"></span> <span id="totalToGet">0</span></strong></p>
                           </div>
 
                           <p class="alert alert-warning">Once the form has been submitted we will get in touch with you within 24 hours</p>

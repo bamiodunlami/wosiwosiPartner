@@ -75,6 +75,7 @@ const subscriptionFormSchema = new mongoose.Schema({
     postcode:String,
     city:String,
     country:String,
+    currency:String,
     interest:String,
     comment:String,
     startDate:"string",
@@ -124,7 +125,7 @@ async function migrateUsers() {
   
       // Update each user record with the new field
       for (let i=0; i<mig.length; i++) {
-        mig[i].category="customer",
+        mig[i].currency="£",
         // let mig2 = new RedundantDB({
         //     fname:mig[i].fname,
         //     lname:mig[i].lname,
@@ -154,6 +155,7 @@ async function migrateUsers() {
     }
   }
   // migrateUsers();
+
 async function accessCodeGen(){
   const  accessMig = await AccessCode.find();
   for(let i=0; i<accessMig.length; i++){
