@@ -15,7 +15,7 @@ router
 .get('/udashboard', dashboard.userDashboard)
 
 // dashboard operation
-.get('/udashboard/:operation', dashboard.dashboardRequests)
+.post('/udashboard/:operation', dashboard.dashboardRequests)
 
 
 module.exports=router

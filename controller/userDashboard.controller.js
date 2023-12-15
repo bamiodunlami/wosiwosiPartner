@@ -21,8 +21,27 @@ const userDashboard = (req, res) => {
 };
 
 // dashboard operation
-const dashboardRequests = (req, res) => {
-  console.log(req.params.operation);
+const dashboardRequests = async (req, res) => {
+  // console.log(req.params.operation);
+  if (req.isAuthenticated()) {
+    const operation = req.params.operation;
+    switch (operation) {
+      // redner edit investor
+      case "myinvestment":
+        res.render("user/investment", {
+          user: req.user,
+          title: "Edit Investor",
+        });
+        break;
+
+      // default
+      default:
+        console.log("nooo");
+        break;
+    }
+  } else {
+    res.redirect("/adminlogin");
+  }
 };
 
 // logout

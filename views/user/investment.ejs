@@ -1,0 +1,46 @@
+<%- include('include/userHeader') -%>
+
+<div class="main-dashboard">
+  <div class="container">
+    <div class="user-details">
+        <div class=" text-center">
+            <a class="btn btn-outline-secondary btn-sm" href="/udashboard"><i class="fa-solid fa-arrow-left fa-md"></i> Back to dashboard</a>
+        </div>
+    </div>
+
+  <div class="row subscriber-row d-flex justify-content-center">
+    <p class="text-center"><%=user.profile.fname%>'s investment(s)</p>
+      <!-- subscribers -->
+      <% for (i=user.investment.length-1; i>=0; i--){%>
+        <div class="col-md-4 subscriber-bar">
+              <div class="card">
+                    <%if(user.investment[i].status == true) {%> 
+                        <div class="card-header alert alert-success">
+                            <h6 class="minor-info">ID: <%=user.investment[i].id%></h6>
+                            <h6 class="">Status: Active</h6> 
+                        </div>
+                    <%}else{%>
+                        <div class="card-header alert alert-secondary">
+                            <h6 class="minor-info">ID: <%=user.investment[i].id%></h6>
+                            <h6 class="">Status: Inactive</h6> 
+                        </div>
+                    <%}%> 
+                <ul class="list-group list-group-flush">
+                    <li class="list-group-item">Principal: <span class="main-info">£<%=user.investment[i].amount%></span></li>
+                  <li class="list-group-item">Expected ROI: <span class="main-info">£<%=user.investment[i].interest%></span></li>
+                  <li class="list-group-item">Investment start date: <span class="main-info"><%=user.investment[i].startDate%></li>
+                  <li class="list-group-item">Investment end date: <span class="main-info"><%=user.investment[i].endDate%></li>
+                </ul>
+                <div class="card-body">
+                  <button class="btn btn-sm btn-outline-secondary" disabled>Redeem Investment</button>
+                  <button class="btn btn-sm btn-outline-secondary" disabled>Re-investment</button>
+                </div>
+              </div>
+          </div>
+    <%}%>
+  </div>
+
+  </div>
+</div>
+<%-include('include/userFooter') -%>
+<%-include('include/footer') -%>

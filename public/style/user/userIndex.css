@@ -24,7 +24,7 @@ h4{
 }
 
 h5{
-    font-size: 22px;
+    font-size: 21px;
     font-weight: 600;
 }
 
@@ -33,26 +33,29 @@ h6{
     font-weight: 600;
 }
 
-.disclaimer{
-    font-size: 12px;
+.hidden{
+    display:none;
 }
 
+.visible{
+    display: block;
+}
 
 .navbar{
-    padding: 30px 0px;
+    padding: 20px 0px;
 }
 
 .logo{
-    width: 20%;
+    width: 17%;
     height: auto;
 }
 
 .main-dashboard{
-    height: 100%;
+    height: 90%;
 }
 
 .user-details{
-    padding: 70px 0 0;
+    padding: 50px 0 0;
 }
 
 .user-details p{
@@ -61,11 +64,16 @@ h6{
 }
 
 .menu-row{
-    padding: 0 25%;
+    padding: 0 15%;
 }
 
 .menu-item-bar{
     padding: 10px 20px 0;
+}
+
+.menu-link{
+    text-decoration: none;
+    color:#000;
 }
 
 .menu-item{
@@ -87,6 +95,26 @@ h6{
     padding: 30px;
 }
 
+/* subscriber table (Edit partner page) */
+.subscriber-row{
+    padding: 30px 0%;
+}
+.subscriber-bar-main{
+    overflow-y: scroll;
+    background-color: #fafafa;
+    border-radius: 10px;
+}
+
+.minor-info{
+    font-size: 15px;
+    font-weight: 400;
+}
+
+.main-info{
+    font-size: 20px;
+    font-weight: 500;
+}
+
 
 /* Footer */
 /* .footer{
@@ -97,12 +125,8 @@ h6{
   /* mobile */
   @media (max-width:520px){
 
-    .disclaimer{
-        font-size: 11px;
-    }
-    
     .logo{
-        width: 55%;
+        width: 50%;
         height: auto;
     }
 
@@ -116,6 +140,11 @@ h6{
     .menu-item{
         padding: 15px;
         background-color: #f3f3f3;
+    }
+
+    /* subscriber table (Edit partner page) */
+    .subscriber-row{
+        padding: 30px 5%;
     }
     
     
