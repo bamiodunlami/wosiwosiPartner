@@ -17,5 +17,9 @@ router
 // dashboard operation
 .post('/udashboard/:operation', dashboard.dashboardRequests)
 
+.get('/changepass', dashboard.renderChangePassword)
+
+.post ("/changepassword", dashboard.changePassword)
+
 
 module.exports=router

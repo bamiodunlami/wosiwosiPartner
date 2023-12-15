@@ -6,15 +6,21 @@ appRoot.setPath(rootPath);
 
 const passport = require(appRoot + "/util/passport.util.js");
 
+const mailer = require(appRoot + "/util/mailer.util.js");
+
 const User = require(appRoot + "/model/user.model.js").User;
 
 // render user dashboard
 const userDashboard = (req, res) => {
   if (req.isAuthenticated()) {
-    res.render("user/dashboard", {
-      title: "Investor Dashboard",
-      user: req.user,
-    });
+      if(req.user.passChange == false){ //if user hasnt changed password
+        res.redirect('/changepass')
+      }else{ //user has change password
+        res.render("user/dashboard", {
+          title: "Investor Dashboard",
+          user: req.user,
+        });
+      }
   } else {
     res.redirect("/login");
   }
@@ -44,6 +50,44 @@ const dashboardRequests = async (req, res) => {
   }
 };
 
+// change password
+const renderChangePassword = async (req, res) =>{
+  if(req.isAuthenticated()){
+    res.render("user/changepass", {
+      user:req.user,
+      title:"Change Password"
+    })
+  }else{
+    res.redirect('/login')
+  }
+}
+
+const changePassword = async (req, res)=>{
+  if(req.isAuthenticated()){
+    const user= await User.findOne({username:req.body.username});
+    await user.setPassword(req.body.password);
+    const passSaved = await user.save(); //password reset
+      if(passSaved){ //if password changed
+        mailer.passwordChange(passSaved.username, "bamidele@wosiwosi.co.uk", passSaved.profile.fname) //send mail
+        // update pass save from false to true
+        const passStatus = await User.updateOne({username:req.body.username},
+          {
+            $set:{
+              passChange:true
+            }
+          })
+        res.render("user/changeconfirmation", {
+          title:"Password Changed"
+        })
+        req.session.destroy();
+      }else{ //if password didnt change
+        res.redirect('/login')
+      }
+  }else{
+    res.redirect('/login')
+  }
+}
+
 // logout
 const logout = (req, res) => {
   req.logout((err) => {
@@ -56,5 +100,7 @@ const logout = (req, res) => {
 module.exports = {
   userDashboard: userDashboard,
   dashboardRequests: dashboardRequests,
+  renderChangePassword:renderChangePassword,
+  changePassword:changePassword,
   logout: logout,
 };

@@ -1,0 +1,1 @@
+try{const s=$("#password"),a=$("#message"),o=$("#changeBtn"),t=$("#confirmPassword");t.on("keyup",(()=>{s.val()==t.val()?(a.text(""),o.prop("disabled",!1)):(a.text("Password does not match"),o.prop("disabled",!0))}))}catch(s){}

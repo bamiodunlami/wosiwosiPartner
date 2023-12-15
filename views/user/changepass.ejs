@@ -1,0 +1,50 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title><%=title%></title>
+    <!-- boostrap -->
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-T3c6CoIi6uLrA9TneNEoa7RxnatzjcDSCmG1MXxSR1GAsXEV/Dwwykc2MPK8M2HN" crossorigin="anonymous">
+    <!-- Font -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@100;300;400;500;600;700&display=swap" rel="stylesheet">
+     <!-- Font awsome -->
+     <script src="https://kit.fontawesome.com/cbf7b60e46.js" crossorigin="anonymous"></script>
+     <!-- default style  -->
+     <link href="style/user/userLogin.css" rel="stylesheet">
+  </head>
+  <body>
+    <section class="login-section">
+        <div class="container">
+            <div class="row login-row align-items-center">
+                <div class="col-12">
+                    <div class="logo-img text-center">
+                        <a href="https://www.mywosiwosi.co.uk"><img class="logo" src="images/logo.png"></a>
+                    </div>
+                    <div class="login-bar">
+                        <h6 class="text-center">Change Password</h6>
+                        <form action="/changepassword" method="post">
+                            <div class="mb-2">
+                                <label for="emailInput" class="form-label">Choose Password</label>
+                                <input type="password" name="password" class="form-control form-control-lg" id="password">
+                            </div>
+                            <div class="mb-2">
+                                <label for="passwordInput" class="form-label">Confirm Password</label>
+                                <input type="password" class="form-control form-control-lg" id="confirmPassword">
+                            </div>
+                            <input type="hidden" name="username" value="<%=user.username%>">
+                            <p class="" id="message"></p>
+                            <button id="changeBtn" type="submit" class="btn btn-success" disabled>Change password</button>
+                        </form>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.bundle.min.js" integrity="sha384-C6RzsynM9kWDrMNeT87bh95OGNyZPhcTNXj1NW7RuBCsyN/o0jlpcV8Qyq46cDfL" crossorigin="anonymous"></script>
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.7.1/jquery.min.js"></script>
+    <script src="/min/changepass.js"></script>
+  </body>
+</html>
