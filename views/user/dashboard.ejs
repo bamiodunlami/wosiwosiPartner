@@ -17,7 +17,7 @@
                 <div>
                   <h6>My Profile</h6>
                   <p>View and update your profile. Authentication required for changes.</p>
-                    <p class="minor-info alert alert-secondary"><i>Profile update in progress</i></p> 
+                  <a href="/udashboard/myprofile" class="btn btn-sm btn-outline-secondary"><i>View Profile</i></a>
                 </div>
             </div>
         </div>
@@ -28,11 +28,7 @@
           <div>
               <h6>My Investments</h6>
               <p>View your investments, maturity dates, adjust and request payout</p>
-              <form action="/udashboard/myinvestment" method="post">
-                <input type="hidden" name="username" value="<%=user.username%>">
-                 <button class="btn btn-sm btn-outline-secondary"><i>View investment</i></button>
-              </form>
-
+                 <a href="/udashboard/myinvestment" class="btn btn-sm btn-outline-secondary"><i>View investment</i></a>
           </div>
         </div>
       </div>
@@ -50,16 +46,15 @@
         </div>
       </div>
 
-      <div class="col-sm-6 menu-item-bar text-center">
+      <!-- <div class="col-sm-6 menu-item-bar text-center">
         <div class="menu-item">
-          <!-- <div><i class="fa-solid fa-handshake-simple fa-xl"></i></div> -->
           <div>
               <h6>Latest Offers</h6>
               <p>Be the first to take advantage of incredible investment opportunities</p>
               <button class="btn btn-sm btn-outline-secondary" disabled><i>0 offer available</i></button>
           </div>
         </div>
-      </div>
+      </div> -->
     </div>
 
     <div class="logout-btn text-center">

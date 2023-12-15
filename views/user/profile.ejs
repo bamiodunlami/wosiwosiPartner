@@ -1,0 +1,87 @@
+<%- include('include/userHeader') -%>
+
+<div class="main-dashboard">
+  <div class="container">
+    <div class="user-details">
+        <div class=" text-center">
+            <a class="btn btn-outline-secondary btn-sm" href="/udashboard"><i class="fa-solid fa-arrow-left fa-md"></i> Back to dashboard</a>
+        </div>
+    </div>
+
+  <div class="row subscriber-row profile d-flex justify-content-center">
+    <h5 class="">Your Profile</h5>
+
+    <% if(user.profile.dob == ""){%>
+      <p class="alert alert-warning">Kindly update your date of birth</p>
+    <%}%>
+
+      <!-- subscribers -->
+
+      <div class="interest-form">
+        <form action="/updateprofile" method="post">
+            <div class="mb-2">
+                <label class="form-label">First Name</label>
+                <input type="text" class="form-control" id="exampleFormControlInput1"  value="<%=user.profile.fname%>" disabled>
+              </div>
+              <div class="mb-2">
+                <label class="form-label">Last Name</label>
+                <input type="text" class="form-control" id="exampleFormControlTextarea1" value="<%=user.profile.lname%>" disabled>
+              </div>
+
+              <% if(user.profile.dob == ""){%>
+                <div class="mb-2">
+                    <label class="form-label">Date Of Birth</label>
+                    <input type="date" name="dob" class="form-control" id="exampleFormControlTextarea1" maxlength="25" required>
+                  </div>
+              <%}else{%>
+                <div class="mb-2">
+                    <label class="form-label">Date Of Birth</label>
+                    <input type="text" class="form-control" id="exampleFormControlTextarea1" value="<%=user.profile.dob%>" maxlength="25" disabled>
+                  </div>
+              <%}%>
+
+              <div class="mb-2">
+                <label class="form-label">Email</label>
+                <input type="email" class="form-control" id="exampleFormControlTextarea1" value="<%=user.username%>" disabled>
+              </div>
+              <div class="mb-2">
+                <label class="form-label">Phone</label>
+                <input type="text"  class="form-control" id="exampleFormControlTextarea1" value="<%=user.profile.phone%>" maxlength="13" disabled>
+              </div>
+
+              <div class="mb-2">
+                <label class="form-label">How do you identify yourself with Wosiwosi</label>
+                <input type="text" class="form-control" id="exampleFormControlTextarea1" value="<%=user.wosiwosiAs%>"  required disabled>
+              </div>
+
+
+              <div class="mb-2">
+                <label class="form-label">Address</label>
+                <input type="text" name="address" class="form-control" id="exampleFormControlTextarea1" value="<%=user.profile.address%>"  maxlength="40" disabled>
+              </div>
+
+              <div class="mb-2">
+                <label class="form-label">Postcode/Zipcode</label>
+                <input type="text" name="postcode" class="form-control" id="exampleFormControlTextarea1" value="<%=user.profile.postcode%>"  maxlength="9" disabled>
+              </div>
+
+              <div class="mb-2">
+                <label class="form-label">City</label>
+                <input type="text" name="city" class="form-control" id="exampleFormControlTextarea1" value="<%=user.profile.city%>"  maxlength="9" disabled>
+              </div>
+
+              <div class="mb-2">
+                <label class="form-label">Country</label>
+                <input type="text" class="form-control" id="exampleFormControlTextarea1" value="<%=user.profile.country%>"  maxlength="20" disabled>
+              </div>
+              <% if(user.profile.dob == ""){%>
+                <button class="btn btn-success btn-sm" id="submitBtn">Submit</button>
+              <%}%>
+        </form>
+    
+  </div>
+
+  </div>
+</div>
+<%-include('include/userFooter') -%>
+<%-include('include/footer') -%>

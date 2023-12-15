@@ -18,7 +18,7 @@ const userSchema = new mongoose.Schema({
     profile:{
         fname:"string",
         lname:"string",
-        dob:"date",
+        dob:"string",
         phone:"string",
         address:"string",
         city:"string",
@@ -36,6 +36,7 @@ const userSchema = new mongoose.Schema({
     active:Boolean,
     role:"string",
     level:Number,
+    wosiwosiAs:"string"
 })
 
 userSchema.plugin(passportLocalMongoose);
@@ -49,7 +50,7 @@ async function migrateUsers() {
       const mig = await User.find();
       // Update each user record with the new field
       for (let i=0; i<mig.length; i++) {
-        mig[i].passChange = false
+        mig[i].wosiwosiAs = "customer"
         await mig[i].save()
       }
       // await mig.setPassword("AdeOgun078");// create password

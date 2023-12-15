@@ -15,11 +15,13 @@ router
 .get('/udashboard', dashboard.userDashboard)
 
 // dashboard operation
-.post('/udashboard/:operation', dashboard.dashboardRequests)
+.get('/udashboard/:operation', dashboard.dashboardRequests)
 
 .get('/changepass', dashboard.renderChangePassword)
 
 .post ("/changepassword", dashboard.changePassword)
+
+.post ('/updateprofile', dashboard.updateProfile)
 
 
 module.exports=router

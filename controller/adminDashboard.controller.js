@@ -98,7 +98,7 @@ const createInvestor = async (req, res) => {
         dob:"",
         phone:investor.phone,
         address:investor.address,
-        city:"",
+        city:investor.city,
         state:"",
         postcode:investor.postcode,
         country:investor.country

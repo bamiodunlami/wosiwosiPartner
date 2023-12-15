@@ -39,6 +39,14 @@ const dashboardRequests = async (req, res) => {
           title: "Edit Investor",
         });
         break;
+        
+        // render profile
+        case "myprofile":
+          res.render("user/profile", {
+            user: req.user,
+            title: "Investor Profile",
+          });
+          break;
 
       // default
       default:
@@ -88,6 +96,22 @@ const changePassword = async (req, res)=>{
   }
 }
 
+// update profile
+const updateProfile = async (req, res) =>{
+  if (req.isAuthenticated()){
+    const updatUser = await User.updateOne({username:req.user.username},{
+        $set: {
+          "profile.dob":req.body.dob
+        },
+    })
+    if(updatUser.acknowledged == true){
+      res.redirect(req.headers.referer)
+    }
+  }else{
+    res.redirect("/login")
+  }
+}
+
 // logout
 const logout = (req, res) => {
   req.logout((err) => {
@@ -102,5 +126,6 @@ module.exports = {
   dashboardRequests: dashboardRequests,
   renderChangePassword:renderChangePassword,
   changePassword:changePassword,
+  updateProfile:updateProfile,
   logout: logout,
 };
