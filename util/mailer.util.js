@@ -569,7 +569,62 @@ const passwordChange = (to, bcc, fname) => {
     };
     
     transporter.sendMail(mailOptions);
+};
+
+const investorDocumentUpdate = (to, bcc) => {
+    const mailOptions = {
+        from: '"Wosiwosi Investment" <info@wosiwosi.co.uk>',
+        to: to,
+        bcc:bcc,
+        subject: "DOCUMENT UPDATE",
+        // attachments: [
+        //   {  
+        //       filename: 'brochure.pdf',
+        //       path: appRoot + "/file/brochure.pdf" // stream this file
+        //   }],
+        html: 
+            `<!DOCTYPE html>
+            <html>
+            <head>
+                <meta charset="UTF-8">
+                <title>Thank you for your interest in wosiwosi investment</title>
+                <style>
+                    body {
+                        font-family: Poppins, sans-serif;
+                        line-height: 1.6;
+                    }
+                    .container {
+                        max-width: 600px;
+                        margin: 0 auto;
+                        padding: 20px;
+                        text-align: left;
+                    }
+                    .disclaimer{
+                        font-size:11px;
+                    }
+                    h1 {
+                        color: #007519;
+                    }
+                    p {
+                        margin: 15px 0;
+                        font-size:18px;
+                    }
+                </style>
+            </head>
+            <body>
+                <div class="container">  
+                    <p> Dear Investor</p>
+                    <p>A document has been added to your Investment Portal.</p>
+                    <p>Kindly login to your Investment Portal <a href="https://wosiwosipartner-f80fd9f8b1c9.herokuapp.com/login" target="_blank">here</a> to view the document(s).</p>
+                    <p>Regards,<br>Wosiwosi Investment Team<br>Wosiwosi Foods UK Limited</p>
+                </div>
+            </body>
+            </html>`
     };
+    
+    transporter.sendMail(mailOptions);
+};
+        
     
 
 module.exports={
@@ -582,5 +637,6 @@ module.exports={
   ceoWelcoming:ceoWelcoming,
   accessRevoke:accessRevoke,
   mailPassToAdmin:mailPassToAdmin,
-  passwordChange:passwordChange
+  passwordChange:passwordChange,
+  investorDocumentUpdate:investorDocumentUpdate,
 }

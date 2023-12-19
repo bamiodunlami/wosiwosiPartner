@@ -1,0 +1,194 @@
+<%- include('include/adminHeader') -%>
+
+<div class="main-dashboard">
+  <div class="container">
+
+    <div class="user-details">
+        <div class="text-center">
+            <a class="btn btn-warning btn-sm" href="/adashboard/editpartner"><i class="fa-solid fa-arrow-left fa-lg"></i> Back to dashboard</a>
+        </div>
+    </div>
+
+    <div class="row menu-row align-items-center">
+        <!-- <div class="col-sm-6 menu-item-bar text-center">
+            <div class="menu-item">
+                <div class="">
+                    <h6>Add new partner</h6>
+                    <p>Add new partner</p>
+                </div> -->
+
+            <!-- </div>
+        </div> -->
+
+      <!-- <div class="col-sm-4 menu-item-bar text-center">
+        <div class="menu-item">
+          <div>
+              <h6>Delete partner</h6>
+              <p>Delete partner</p>
+          </div>
+        </div>
+      </div>
+
+      <div class="col-sm-4 menu-item-bar text-center">
+        <a class="menu-link" href="">
+        <div class="menu-item">
+          <div>
+              <h6>Un/block partner</h6>
+              <p>Temporary block and unblock user </p>
+          </div>
+        </div>
+        </a>
+      </div> -->
+    </div>
+
+  <div class="row subscriber-row">
+    <h6 class="text-center">Investors</h6>
+      <!-- investment -->
+      <div class="col-md-12 subscriber-bar">
+        <div class="subscriber-bar-main">
+          <table class="table table-striped table-hover ">
+              <thead>
+                <tr>
+                  <th scope="col">First Name</th>
+                  <th scope="col">Phone</th>
+                  <th scope="col">Investment</th>
+                  <th scope="col">Expected ROI</th>
+                  <th scope="col">Start Date</th>
+                  <th scope="col">End Date</th>
+                </tr>
+              </thead>
+              <tbody>
+                  <tr>
+                    <td><%=investor.profile.fname%></td>
+                    <td><%=investor.profile.phone%></td>
+                    <td><%=investor.investment[0].currency%> <%=investor.investment[0].amount%></td>
+                    <td><%=investor.investment[0].currency%> <%=investor.investment[0].interest%></td>
+                    <td><%=investor.investment[0].startDate%></td>
+                    <td><%=investor.investment[0].endDate%></td>
+                    <!-- <td ><=subscrber[i].interest.slice(0,2)></td> -->
+                    <!-- Button trigger modal -->
+                    <!-- <button type="button" class="btn btn-secondary btn-md" data-bs-toggle="modal" data-bs-target="#staticBackdrop">Add Partner</button> -->
+                  </tr>
+              </tbody>
+          </table>
+          </div>
+      </div>
+
+      <!-- accorfion -->
+        <div class="col-md-12">
+            <div class="accordion accordion-flush" id="accordionFlushExample">
+                <!-- profile -->
+                <div class="accordion-item">
+                  <h2 class="accordion-header">
+                    <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#flush-collapseOne" aria-expanded="false" aria-controls="flush-collapseOne">
+                      Profile
+                    </button>
+                  </h2>
+                  <div id="flush-collapseOne" class="accordion-collapse collapse" data-bs-parent="#accordionFlushExample">
+                    <form action="/updateprofile" method="post">
+                        <div class="mb-2">
+                            <label class="form-label">First Name</label>
+                            <input type="text" class="form-control" id="exampleFormControlInput1"  value="<%=investor.profile.fname%>">
+                          </div>
+                          <div class="mb-2">
+                            <label class="form-label">Last Name</label>
+                            <input type="text" class="form-control" id="exampleFormControlTextarea1" value="<%=investor.profile.lname%>">
+                          </div>
+            
+                            <div class="mb-2">
+                                <label class="form-label">Date Of Birth</label>
+                                <input type="text" class="form-control" id="exampleFormControlTextarea1" value="<%=investor.profile.dob%>" maxlength="25">
+                              </div>
+            
+                          <div class="mb-2">
+                            <label class="form-label">Email</label>
+                            <input type="email" class="form-control" id="exampleFormControlTextarea1" value="<%=investor.username%>">
+                          </div>
+                          <div class="mb-2">
+                            <label class="form-label">Phone</label>
+                            <input type="text"  class="form-control" id="exampleFormControlTextarea1" value="<%=investor.profile.phone%>" maxlength="13">
+                          </div>
+            
+                          <div class="mb-2">
+                            <label class="form-label">How do you identify yourself with Wosiwosi</label>
+                            <input type="text" class="form-control" id="exampleFormControlTextarea1" value="<%=investor.wosiwosiAs%>" >
+                          </div>
+            
+            
+                          <div class="mb-2">
+                            <label class="form-label">Address</label>
+                            <input type="text" name="address" class="form-control" id="exampleFormControlTextarea1" value="<%=investor.profile.address%>"  maxlength="40">
+                          </div>
+            
+                          <div class="mb-2">
+                            <label class="form-label">Postcode/Zipcode</label>
+                            <input type="text" name="postcode" class="form-control" id="exampleFormControlTextarea1" value="<%=investor.profile.postcode%>"  maxlength="9">
+                          </div>
+            
+                          <div class="mb-2">
+                            <label class="form-label">City</label>
+                            <input type="text" name="city" class="form-control" id="exampleFormControlTextarea1" value="<%=investor.profile.city%>"  maxlength="9">
+                          </div>
+            
+                          <div class="mb-2">
+                            <label class="form-label">Country</label>
+                            <input type="text" class="form-control" id="exampleFormControlTextarea1" value="<%=investor.profile.country%>"  maxlength="20">
+                          </div>
+                            <!-- <button class="btn btn-success btn-sm" id="submitBtn">Submit</button> -->
+                    </form>
+                  </div>
+                </div>
+    
+                <!-- Document -->
+                <div class="accordion-item">
+                  <h2 class="accordion-header">
+                    <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#flush-collapseTwo" aria-expanded="false" aria-controls="flush-collapseTwo">
+                      Documents
+                    </button>
+                  </h2>
+                  <div id="flush-collapseTwo" class="accordion-collapse collapse" data-bs-parent="#accordionFlushExample">
+                    <!-- available document -->
+                    <table class="table table-striped table-hover ">
+                        <thead>
+                          <tr>
+                            <th scope="col">SN</th>
+                            <th scope="col">Name</th>
+                            <th scope="col">Action</th>
+                          </tr>
+                        </thead>
+                        <tbody>
+                            <% for (i=investor.doc.length-1; i>=0; i--){%>
+                                <tr>
+                                <td><%=i+1%></td>
+                                <td><%=investor.doc[i].name%></td>
+                                <td><a class="btn btn-sm btn-success" href="<%=investor.doc[i].link%>">Download</a></td>
+                            </tr>
+                            <%}%>
+                            
+                        </tbody>
+                    </table>
+                    <!-- add document -->
+                    <form action="/investorpage/document" method="post">
+                        <div class="mb-2">
+                            <label class="form-label">Document name</label>
+                            <input type="text" name="name" class="form-control" id="exampleFormControlInput1" required>
+                          </div>
+                          <div class="mb-2">
+                            <label class="form-label">Document Link</label>
+                            <input type="text" name="link" class="form-control" id="exampleFormControlTextarea1" required>
+                          </div>
+                          <input type="hidden" value="<%=investor.username%>" name="username">
+                          <button type="submit" class="btn btn-sm btn-success">Upload</button>
+                    </form>
+                  </div>
+                </div>
+
+              </div>
+        </div>
+
+  </div>
+
+  </div>
+</div>
+<%-include('include/adminFooter') -%>
+<%-include('include/footer') -%>

@@ -429,6 +429,47 @@ const renderInvestorPage= async (req, res)=>{
   console.log(req.body)
 }
 
+const renderInvestorDash = async (req, res)=>{
+if(req.isAuthenticated()){
+  const investor = await UserDB.findOne({username:req.body.email})
+  // console.log(investor)
+  res.render('admin/investordash', {
+    investor:investor,
+    title:"Investor",
+  })
+}else{
+  res.redirect('/adminlogin')
+}
+}
+
+const investorPageOperation = async (req, res) =>{
+  if(req.isAuthenticated()){
+    const parameter = req.params.operation;
+    switch(parameter){
+      // add document
+      case "document":
+        const investor = await UserDB.updateOne({username:req.body.username},{
+          $push:{
+            doc:{
+              name:req.body.name,
+              link:req.body.link
+            }
+          } 
+        });
+        if(investor.acknowledged == true){
+          mailer.investorDocumentUpdate(req.body.username, "bamidele@wosiwosi.co.uk");
+          res.redirect('/adashboard/editpartner')
+        }
+      break;
+
+      default:
+        break;
+    }
+  }else{
+    res.redirect("/adminlogin")
+  }
+}
+
 
 module.exports = {
   adashboard: adashboard,
@@ -438,4 +479,6 @@ module.exports = {
   interestOperation: interestOperation,
   interestSectionOperation: interestSectionOperation,
   renderInvestorPage:renderInvestorPage,
+  renderInvestorDash:renderInvestorDash,
+  investorPageOperation:investorPageOperation,
 };
