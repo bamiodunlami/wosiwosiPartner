@@ -48,6 +48,14 @@ const dashboardRequests = async (req, res) => {
           });
           break;
 
+          // render document
+          case "document":
+            res.render("user/document", {
+              user: req.user,
+              title: "Investor Document",
+            })
+            break;
+
       // default
       default:
         console.log("nooo");

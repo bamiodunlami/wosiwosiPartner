@@ -1,0 +1,41 @@
+<%- include('include/userHeader') -%>
+
+<div class="main-dashboard">
+  <div class="container">
+    <div class="user-details">
+        <div class=" text-center">
+            <a class="btn btn-outline-secondary btn-sm" href="/udashboard"><i class="fa-solid fa-arrow-left fa-md"></i> Back to dashboard</a>
+        </div>
+    </div>
+
+  <div class="row subscriber-row d-flex justify-content-center">
+    <p class="text-center">Your Document(s)</p>
+      <!-- table -->            
+      <% if(user.doc.length == 0){%>
+        <h6 class="alert alert-warning text-center"> No document to view</h6>
+    <%}else{%>
+      <table class="table table-striped table-hover ">
+        <thead>
+          <tr>
+            <th scope="col">SN</th>
+            <th scope="col">Name</th>
+            <th scope="col">Action</th>
+          </tr>
+        </thead>
+        <tbody>
+                <% for (i=user.doc.length-1; i>=0; i--){%>
+                    <tr>
+                    <td><%=i+1%></td>
+                    <td><%=user.doc[i].name%></td>
+                    <td><a class="btn btn-sm btn-success" href="<%=investor.doc[i].link%>">Download</a></td>
+                </tr>
+                <%}%>
+            </tbody>
+        </table>            
+    <%}%>
+  </div>
+
+  </div>
+</div>
+<%-include('include/userFooter') -%>
+<%-include('include/footer') -%>
