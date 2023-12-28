@@ -78,7 +78,7 @@ const interestFormResponse = (to, bcc) => {
   transporter.sendMail(mailOptions);
 };
 
-const subscriptionFormResponse = (to, bcc, fname, currency, interest, startDate) => {
+const subscriptionFormResponse = (to, bcc, fname, currency, interest, roi, time, startDate) => {
   const mailOptions = {
       from: '"Wosiwosi Investment" <info@wosiwosi.co.uk>',
       to: to,
@@ -130,7 +130,7 @@ const subscriptionFormResponse = (to, bcc, fname, currency, interest, startDate)
                   <p>Thank you for subscribing to Wosiwosi investment! We have received your subscription form and are thrilled to welcome you on board.</p>
                   <p><strong>The next step is payment and signing of contract, we will email that to you shortly</strong>.</p>                  
                   <h3>Subscription form details:</h3>
-                  <p>Amount to invest:${currency}${interest}</p>
+                  <p>Amount to invest:${currency}${interest} at ${roi}% ${time}</p>
                   <p>We will email Wosiwosi payment details and investment contract to you within 24 hours. You will only have 3 days to make payment and sign the contract else you will have to start the subscription process again.</p>
                   <p>Best regards,<br>Wosiwosi Investment <br>Wosiwosi Foods UK Limited</p>
               </div>

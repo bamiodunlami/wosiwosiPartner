@@ -76,6 +76,8 @@ const subscriptionFormSchema = new mongoose.Schema({
     city:String,
     country:String,
     currency:String,
+    roiOption:String,
+    roiTime:String,
     interest:String,
     comment:String,
     startDate:"string",

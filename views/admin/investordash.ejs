@@ -42,16 +42,16 @@
     </div>
 
   <div class="row subscriber-row">
-    <h6 class="text-center">Investors</h6>
+    <h6 class="text-center"><%=investor.profile.fname%> <%=investor.profile.lname%></h6>
       <!-- investment -->
       <div class="col-md-12 subscriber-bar">
         <div class="subscriber-bar-main">
           <table class="table table-striped table-hover ">
               <thead>
                 <tr>
-                  <th scope="col">First Name</th>
-                  <th scope="col">Phone</th>
                   <th scope="col">Investment</th>
+                  <th scope="col">ROI Option</th>
+                  <th scope="col">ROI Time</th>
                   <th scope="col">Expected ROI</th>
                   <th scope="col">Start Date</th>
                   <th scope="col">End Date</th>
@@ -59,9 +59,9 @@
               </thead>
               <tbody>
                   <tr>
-                    <td><%=investor.profile.fname%></td>
-                    <td><%=investor.profile.phone%></td>
                     <td><%=investor.investment[0].currency%> <%=investor.investment[0].amount%></td>
+                    <td><%=investor.investment[0].roiOption%> %</td>
+                    <td><%=investor.investment[0].roiTime%></td>
                     <td><%=investor.investment[0].currency%> <%=investor.investment[0].interest%></td>
                     <td><%=investor.investment[0].startDate%></td>
                     <td><%=investor.investment[0].endDate%></td>

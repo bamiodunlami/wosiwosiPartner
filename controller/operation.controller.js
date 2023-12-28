@@ -79,6 +79,8 @@ const subscriptionFormSumitted = async (req, res) => {
       country: req.body.country,
       currency:req.body.currency,
       interest: req.body.interest,
+      roiOption:req.body.roiOption,
+      roiTime:req.body.roiTime,
       category:req.body.category
       // startDate: req.body.startDate,
       // nextOfKin: req.body.nextOfKinName,
@@ -104,6 +106,8 @@ const subscriptionFormSumitted = async (req, res) => {
           req.body.fname,
           req.body.currency,
           req.body.interest,
+          req.body.roiOption,
+          req.body.roiTime,
         );
           mailer.adminSubscribeNotification("partners@mywosiwosi.co.uk");
           // const deleteInterest=await InterestForm.deleteOne({ email: req.body.email });

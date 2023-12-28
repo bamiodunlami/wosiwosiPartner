@@ -86,9 +86,9 @@ const adminOperation = async (req, res) => {
 // create user
 const createInvestor = async (req, res) => {
   const investor = await subscrberDB.findOne({email:req.body.email})
-  const investmentAmount = investor.interest.split(" ")[0]; // amount invested
-  const investmentInterest = investmentAmount * 0.20; //interest
-  console.log(investor);
+  const investmentAmount = investor.interest; // amount invested
+  const roiOption = investor.roiOption/100
+  const investmentInterest = investmentAmount * roiOption; //interest
   const investorPass= `${investor.fname.slice(0,3)}${investor.lname.slice(0,3)}${investor.phone.slice(9,11)}` //pasword form
   const investorDetails = new UserDB({
     username:investor.email,
@@ -108,7 +108,11 @@ const createInvestor = async (req, res) => {
       currency: investor.currency,
       startDate:req.body.startDate,
       endDate:req.body.endDate,
-      interest:investmentInterest
+      interest:investmentInterest,
+      roiOption:investor.roiOption,
+      roiTime:investor.roiTime,
+      status:true,
+      id:Math.floor(Math.random()*901215)
     }],
     bank:{
       sortCode:"",
@@ -117,7 +121,9 @@ const createInvestor = async (req, res) => {
     upline:[],
     downline:[],
     active:true,
-    role:"investor"
+    passChange:false,
+    role:"investor",
+    wosiwosiAs:investor.category
   })
   // save investor
   const savedInvestor = await investorDetails.save();

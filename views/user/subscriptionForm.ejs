@@ -10,24 +10,24 @@
                 </div>
                 <div class="interest-form">
                     <form action="/esubscribe" method="post">
-                        <div class="mb-2">
+                        <div class="mb-3">
                             <label class="form-label">First Name</label>
                             <input type="text" name="fname" class="form-control" id="exampleFormControlInput1" maxlength="25" required>
                           </div>
-                          <div class="mb-2">
+                          <div class="mb-3">
                             <label class="form-label">Last Name</label>
                             <input type="text" name="lname" class="form-control" id="exampleFormControlTextarea1" maxlength="25" required>
                           </div>
-                          <div class="mb-2">
+                          <div class="mb-3">
                             <label class="form-label">Email</label>
                             <input type="email" name="email" class="form-control" id="exampleFormControlTextarea1" required>
                           </div>
-                          <div class="mb-2">
+                          <div class="mb-3">
                             <label class="form-label">Phone</label>
                             <input type="text" name="phone" class="form-control" id="exampleFormControlTextarea1" maxlength="13" required>
                           </div>
 
-                          <div class="mb-2">
+                          <div class="mb-3">
                             <label class="form-label">How do you identify yourself with Wosiwosi</label>
                             <select class="form-select" required name="category">
                               <option value="customer">Customer</option>
@@ -38,27 +38,27 @@
                           </div>
 
 
-                          <div class="mb-2">
+                          <div class="mb-3">
                             <label class="form-label">Address</label>
                             <input type="text" name="address" class="form-control" id="exampleFormControlTextarea1" maxlength="40" required>
                           </div>
 
-                          <div class="mb-2">
+                          <div class="mb-3">
                             <label class="form-label">Postcode/Zipcode</label>
                             <input type="text" name="postcode" class="form-control" id="exampleFormControlTextarea1"maxlength="9" required>
                           </div>
 
-                          <div class="mb-2">
+                          <div class="mb-3">
                             <label class="form-label">City</label>
                             <input type="text" name="city" class="form-control" id="exampleFormControlTextarea1"maxlength="9" required>
                           </div>
 
-                          <div class="mb-2">
+                          <div class="mb-3">
                             <label class="form-label">Country</label>
                             <input type="text" name="country" class="form-control" id="exampleFormControlTextarea1" maxlength="20" required>
                           </div>
 
-                          <div class="mb-2">
+                          <div class="mb-3">
                             <label>Select Currency</label>
                             <select class="form-select" name="currency" id="currency">
                               <option value="£">Pounds (£)</option>
@@ -66,17 +66,29 @@
                             </select>
                           </div>
 
-                          <div class="mb-2">
-                            <label class="form-label">How much would you be willing to invest?</label>
-                            <input type="number"  class="form-control" id="interest" min="2000" max="10000000"  required>
+                          <div class="mb-3">
+                            <label>How would you like to get your ROI</label>
+                            <select class="form-select" name="roiOption" id="returns">
+                              <option value="20">20% Yearly Returns</option>
+                              <option value="1.6">1.6% Monthly Returns</option>
+                              <!-- <option value="N">Naira (N)</option> -->
+                            </select>
                           </div>
 
-                          <input type="hidden" name="interest" class="form-control" id="roiValue"a>
+
+
+                          <div class="mb-3">
+                            <label class="form-label">How much would you be willing to invest?</label>
+                            <input type="number"  class="form-control" id="interest" min="2000" max="100000"  required>
+                          </div>
+
+                          <input type="hidden" name="interest"  id="roiValue">
+                          <input type="hidden" name="roiTime"  id="roiCollectionTime">
 
                           <div class="alert alert-light">
-                            <h6>ROI percentage (%): <strong><span id="roipercent">0</span>%</strong></h6>
-                            <p>Expected ROI is: <strong><span class="currencySign"></span> <span id="roiInfo">0</span></strong></p>
-                            <p>Capital and ROI is: <strong><span class="currencySign"></span> <span id="totalToGet">0</span></strong></p>
+                            <p>ROI (%): <strong><span id="roipercent">0</span>%</strong> <span class="roiTime"></span></p>
+                            <p>Expected ROI is: <strong><span class="currencySign"></span><span id="roiInfo">0</span></strong> <span class="roiTime"></span></p>
+                            <!-- <p>Capital and ROI is: <strong><span class="currencySign"></span> <span id="totalToGet">0</span></strong></p> -->
                           </div>
 
                           <p class="alert alert-warning">Once the form has been submitted we will get in touch with you within 24 hours</p>
