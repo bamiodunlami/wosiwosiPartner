@@ -86,7 +86,7 @@ const adminOperation = async (req, res) => {
 // create user
 const createInvestor = async (req, res) => {
   const investor = await subscrberDB.findOne({email:req.body.email})
-  const investmentAmount = investor.interest; // amount invested
+  const investmentAmount = investor.capital; // amount invested
   const roiOption = investor.roiOption/100
   const investmentInterest = investmentAmount * roiOption; //interest
   const investorPass= `${investor.fname.slice(0,3)}${investor.lname.slice(0,3)}${investor.phone.slice(9,11)}` //pasword form

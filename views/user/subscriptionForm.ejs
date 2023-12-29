@@ -70,7 +70,7 @@
                             <label>How would you like to get your ROI</label>
                             <select class="form-select" name="roiOption" id="returns">
                               <option value="20">20% Yearly Returns</option>
-                              <option value="1.6">1.6% Monthly Returns</option>
+                              <option value="1.6666">1.666% Monthly Returns</option>
                               <!-- <option value="N">Naira (N)</option> -->
                             </select>
                           </div>
@@ -79,10 +79,10 @@
 
                           <div class="mb-3">
                             <label class="form-label">How much would you be willing to invest?</label>
-                            <input type="number"  class="form-control" id="interest" min="2000" max="100000"  required>
+                            <input type="number" name="capital" class="form-control" id="capital" min="2000" max="100000"  required>
                           </div>
-
-                          <input type="hidden" name="interest"  id="roiValue">
+<!-- 
+                          <input type="hidden" name="capital"  id="capital"> -->
                           <input type="hidden" name="roiTime"  id="roiCollectionTime">
 
                           <div class="alert alert-light">
@@ -117,5 +117,5 @@
 </div>
 
 <%- include('include/userFooter') -%>
-<script src="/min/userSubscription.js"></script>
+<script src="/js/userSubscription.js"></script>
 <%- include('include/footer') -%>

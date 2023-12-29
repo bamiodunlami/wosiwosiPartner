@@ -78,14 +78,10 @@ const subscriptionFormSumitted = async (req, res) => {
       city: req.body.city,
       country: req.body.country,
       currency:req.body.currency,
-      interest: req.body.interest,
+      capital: req.body.capital,
       roiOption:req.body.roiOption,
       roiTime:req.body.roiTime,
       category:req.body.category
-      // startDate: req.body.startDate,
-      // nextOfKin: req.body.nextOfKinName,
-      // nextOfKinEmail: req.body.nextOfKinEmail,
-      // nextOfKinPhone: req.body.nextOfKinPhone,
     });
     // check if already subscribed
     response = await SubscriptionForm.find({ email: req.body.email });
