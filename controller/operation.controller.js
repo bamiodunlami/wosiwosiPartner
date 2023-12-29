@@ -101,7 +101,7 @@ const subscriptionFormSumitted = async (req, res) => {
           "bamidele@wosiwosi.co.uk",
           req.body.fname,
           req.body.currency,
-          req.body.interest,
+          req.body.capital,
           req.body.roiOption,
           req.body.roiTime,
         );
