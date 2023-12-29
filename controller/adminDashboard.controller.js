@@ -89,6 +89,7 @@ const createInvestor = async (req, res) => {
   const investmentAmount = investor.capital; // amount invested
   const roiOption = investor.roiOption/100
   const investmentInterest = investmentAmount * roiOption; //interest
+  // console.log(investmentInterest.toFixed(2))
   const investorPass= `${investor.fname.slice(0,3)}${investor.lname.slice(0,3)}${investor.phone.slice(9,11)}` //pasword form
   const investorDetails = new UserDB({
     username:investor.email,
@@ -108,7 +109,7 @@ const createInvestor = async (req, res) => {
       currency: investor.currency,
       startDate:req.body.startDate,
       endDate:req.body.endDate,
-      interest:investmentInterest,
+      interest:investmentInterest.toFixed(2),
       roiOption:investor.roiOption,
       roiTime:investor.roiTime,
       status:true,
