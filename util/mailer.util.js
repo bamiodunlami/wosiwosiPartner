@@ -513,6 +513,13 @@ const mailPortalDetails= (to, bcc, investor, email, pass) => {
                     <p>You online protal is ready to be viewed and below is the login details:</p>
                     <p>Email: ${email}</p>
                     <p>Password: ${pass}</p>
+
+                    <br>
+                    <a href="https://wosiwosipartner-f80fd9f8b1c9.herokuapp.com/login">
+                      <button style="background-color: #007519; color: white; padding: 10px 20px; border: none; cursor: pointer;">Login here</button>
+                    </a>
+                    <br>
+
                     <p>Best regards,<br>Wosiwosi Investment Team<br>Wosiwosi Foods UK Limited</p>
                 </div>
             </body>
