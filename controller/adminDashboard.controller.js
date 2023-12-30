@@ -134,9 +134,9 @@ const createInvestor = async (req, res) => {
   await newInvestor.save() //save password
   if(newInvestor){
      await subscrberDB.deleteOne({email:req.body.email})
-     mailer.mailPassToAdmin("bamidele@wosiwosi.co.uk", investor.fname, investorPass);
      mailer.paymentConfirmation(req.body.email, "bamidele@wosiwosi.co.uk", investor.fname,investor.currency,investmentAmount)
      mailer.ceoWelcoming(req.body.email, "bamidele@wosiwosi.co.uk", investor.fname)
+     mailer.mailPortalDetails(investor.mail, "bamidele@wosiwosi.co.uk", investor.fname, investor.mail, investorPass)
      res.redirect(req.headers.referer)
   }
 

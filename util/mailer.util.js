@@ -467,11 +467,12 @@ const accessRevoke = (to) => {
     transporter.sendMail(mailOptions);
 };
 
-const mailPassToAdmin = (to, investor, pass) => {
+const mailPortalDetails= (to, bcc, investor, email, pass) => {
     const mailOptions = {
         from: '"Wosiwosi Investment" <info@wosiwosi.co.uk>',
         to: to,
-        subject: "PASS",
+        bcc:bcc,
+        subject: "YOUR LOGIN DETAILS",
         // attachments: [
         //   {  
         //       filename: 'brochure.pdf',
@@ -508,7 +509,12 @@ const mailPassToAdmin = (to, investor, pass) => {
             </head>
             <body>
                 <div class="container">  
-                    <p> Here is ${investor} pass ${pass}</p>
+                    <p> Dear ${investor},</p>
+                    <p>Welcome onboard once again.</p>
+                    <p>You online protal is ready to be viewed and below is the login details:</p>
+                    <p>Email: ${email}</p>
+                    <p>Password: ${pass}</p>
+                    <p>Best regards,<br>Seyi Awobadejo<br>CEO, Wosiwosi Foods UK Limited</p>
                 </div>
             </body>
             </html>`
@@ -636,7 +642,7 @@ module.exports={
   paymentConfirmation:paymentConfirmation,
   ceoWelcoming:ceoWelcoming,
   accessRevoke:accessRevoke,
-  mailPassToAdmin:mailPassToAdmin,
+  mailPortalDetails:mailPortalDetails,
   passwordChange:passwordChange,
   investorDocumentUpdate:investorDocumentUpdate,
 }
