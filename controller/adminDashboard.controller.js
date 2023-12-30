@@ -135,8 +135,8 @@ const createInvestor = async (req, res) => {
   if(newInvestor){
      await subscrberDB.deleteOne({email:req.body.email})
     //  console.log(newInvestor)
-     mailer.paymentConfirmation(newInvestor.username, "bamidele@wosiwosi.co.uk", newInvestor.profile.fname, investor.currency, investmentAmount)
      mailer.mailPortalDetails(newInvestor.username, "bamidele@wosiwosi.co.uk", newInvestor.profile.fname, newInvestor.username, investorPass)
+     mailer.paymentConfirmation(newInvestor.username, "bamidele@wosiwosi.co.uk", newInvestor.profile.fname, investor.currency, investmentAmount)
      res.redirect(req.headers.referer)
   }
 
