@@ -85,6 +85,7 @@ const changePassword = async (req, res)=>{
     const passSaved = await user.save(); //password reset
       if(passSaved){ //if password changed
         mailer.passwordChange(passSaved.username, "bamidele@wosiwosi.co.uk", passSaved.profile.fname) //send mail
+        mailer.ceoWelcoming(passSaved.username, "bamidele@wosiwosi.co.uk", passSaved.profile.fname)
         // update pass save from false to true
         const passStatus = await User.updateOne({username:req.body.username},
           {

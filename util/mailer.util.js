@@ -472,7 +472,7 @@ const mailPortalDetails= (to, bcc, investor, email, pass) => {
         from: '"Wosiwosi Investment" <info@wosiwosi.co.uk>',
         to: to,
         bcc:bcc,
-        subject: "YOUR LOGIN DETAILS",
+        subject: "YOUR PORTAL LOGIN DETAILS",
         // attachments: [
         //   {  
         //       filename: 'brochure.pdf',
@@ -510,11 +510,10 @@ const mailPortalDetails= (to, bcc, investor, email, pass) => {
             <body>
                 <div class="container">  
                     <p> Dear ${investor},</p>
-                    <p>Welcome onboard once again.</p>
                     <p>You online protal is ready to be viewed and below is the login details:</p>
                     <p>Email: ${email}</p>
                     <p>Password: ${pass}</p>
-                    <p>Best regards,<br>Seyi Awobadejo<br>CEO, Wosiwosi Foods UK Limited</p>
+                    <p>Best regards,<br>Wosiwosi Investment Team<br>Wosiwosi Foods UK Limited</p>
                 </div>
             </body>
             </html>`
