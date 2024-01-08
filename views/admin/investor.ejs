@@ -50,10 +50,11 @@
               <thead>
                 <tr>
                   <th scope="col">First Name</th>
+                  <th scope="col">Pass</th>
                   <th scope="col">Investment</th>
-                  <th scope="col">ROI Option</th>
-                  <th scope="col">ROI Time</th>
-                  <th scope="col">Expected ROI</th>
+                  <th scope="col">% ROI</th>
+                  <th scope="col">Frequency</th>
+                  <th scope="col">ROI</th>
                   <th scope="col">Start Date</th>
                   <th scope="col">End Date</th>
                   <th class="scope">Action</th>
@@ -63,6 +64,7 @@
                 <% for (i=investor.length-1; i>=0; i--){%>
                   <tr>
                     <td><%=investor[i].profile.fname%></td>
+                    <td><%=investor[i].passChange%></td>
                     <td><%=investor[i].investment[0].currency%> <%=investor[i].investment[0].amount%></td>
                     <td><%=investor[i].investment[0].roiOption%>%</td>
                     <td><%=investor[i].investment[0].roiTime%></td>
@@ -83,7 +85,20 @@
               </tbody>
           </table>
           </div>
+          
+          <!-- mailing -->
+          <div class="mailing-bar">
+            <h5 class="text-center">Send Mail</h5>
+            <form action="/generalmail" method="post">
+                <div class="mb-2">
+                  <textarea type="text" name="mailContent" class="form-control" id="exampleFormControlInput1"></textarea>
+                  <button type="submit" class="btn btn-success btn-sm" style="margin-top: 10px;">Send</button>
+                </div>
+              </form>
+          </div>
       </div>
+      
+      
 
          <!-- manually create user -->
         <div class="text-center" style="margin-top: 20px;">

@@ -112,6 +112,7 @@ const createInvestor = async (req, res) => {
       interest:investmentInterest.toFixed(2),
       roiOption:investor.roiOption,
       roiTime:investor.roiTime,
+      payout:0,
       status:true,
       id:Math.floor(Math.random()*901215)
     }],
@@ -477,6 +478,21 @@ const investorPageOperation = async (req, res) =>{
   }
 }
 
+// send general Email
+const generalMail = async (req, res)=>{
+  if(req.isAuthenticated()){
+    const investor = await UserDB.find({role:"investor"})
+    // console.log(req.body.mailContent)
+    for(let i=0; i<investor.length; i++){
+      console.log(investor[i].username)
+      await mailer.investorGeneralMail(investor[i].username, req.body.mailContent)
+    }
+  }else{
+    res.redirect("/adminlogin")
+  }
+}
+
+
 
 module.exports = {
   adashboard: adashboard,
@@ -488,4 +504,5 @@ module.exports = {
   renderInvestorPage:renderInvestorPage,
   renderInvestorDash:renderInvestorDash,
   investorPageOperation:investorPageOperation,
+  generalMail:generalMail
 };

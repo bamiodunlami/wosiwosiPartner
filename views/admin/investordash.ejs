@@ -50,9 +50,9 @@
               <thead>
                 <tr>
                   <th scope="col">Investment</th>
-                  <th scope="col">ROI Option</th>
-                  <th scope="col">ROI Time</th>
-                  <th scope="col">Expected ROI</th>
+                  <th scope="col">% ROI</th>
+                  <th scope="col">Frequency</th>
+                  <th scope="col">ROI</th>
                   <th scope="col">Start Date</th>
                   <th scope="col">End Date</th>
                 </tr>
@@ -60,9 +60,9 @@
               <tbody>
                   <tr>
                     <td><%=investor.investment[0].currency%> <%=investor.investment[0].amount%></td>
-                    <td><%=investor.investment[0].roiOption%> %</td>
+                    <td><%=investor.investment[0].roiOption%>% <%=investor.investment[0].roiTime%></td>
                     <td><%=investor.investment[0].roiTime%></td>
-                    <td><%=investor.investment[0].currency%> <%=investor.investment[0].interest%></td>
+                    <td><%=investor.investment[0].currency%><%=investor.investment[0].interest%></td>
                     <td><%=investor.investment[0].startDate%></td>
                     <td><%=investor.investment[0].endDate%></td>
                     <!-- <td ><=subscrber[i].interest.slice(0,2)></td> -->

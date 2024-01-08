@@ -636,6 +636,59 @@ const investorDocumentUpdate = (to, bcc) => {
     
     transporter.sendMail(mailOptions);
 };
+
+const investorGeneralMail = (to, mailContent) => {
+    const mailOptions = {
+        from: '"Wosiwosi Investment" <info@wosiwosi.co.uk>',
+        to: to,
+        subject: "IMPORTANT UPDATE",
+        // attachments: [
+        //   {  
+        //       filename: 'brochure.pdf',
+        //       path: appRoot + "/file/brochure.pdf" // stream this file
+        //   }],
+        html: 
+            `<!DOCTYPE html>
+            <html>
+            <head>
+                <meta charset="UTF-8">
+                <title>Action Required</title>
+                <style>
+                    body {
+                        font-family: Poppins, sans-serif;
+                        line-height: 1.6;
+                    }
+                    .container {
+                        max-width: 600px;
+                        margin: 0 auto;
+                        padding: 20px;
+                        text-align: left;
+                    }
+                    .disclaimer{
+                        font-size:11px;
+                    }
+                    h1 {
+                        color: #007519;
+                    }
+                    p {
+                        margin: 15px 0;
+                        font-size:18px;
+                    }
+                </style>
+            </head>
+            <body>
+                <div class="container">  
+                    <p> Dear Investor</p>
+                    <p>${mailContent}</p>
+                    <br>
+                    <p>Regards,<br>Wosiwosi Investment Team<br>Wosiwosi Foods UK Limited</p>
+                </div>
+            </body>
+            </html>`
+    };
+    
+    transporter.sendMail(mailOptions);
+};
         
     
 
@@ -651,4 +704,5 @@ module.exports={
   mailPortalDetails:mailPortalDetails,
   passwordChange:passwordChange,
   investorDocumentUpdate:investorDocumentUpdate,
+  investorGeneralMail:investorGeneralMail
 }
