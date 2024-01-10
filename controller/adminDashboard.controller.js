@@ -485,8 +485,9 @@ const generalMail = async (req, res)=>{
     // console.log(req.body.mailContent)
     for(let i=0; i<investor.length; i++){
       console.log(investor[i].username)
-      await mailer.investorGeneralMail(investor[i].username, req.body.mailContent)
+      await mailer.investorGeneralMail(investor[i].username, "bamidele@wosiwosi.co.uk", req.body.mailContent)
     }
+    res.redirect('/adashboard');
   }else{
     res.redirect("/adminlogin")
   }

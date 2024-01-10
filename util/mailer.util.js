@@ -637,10 +637,11 @@ const investorDocumentUpdate = (to, bcc) => {
     transporter.sendMail(mailOptions);
 };
 
-const investorGeneralMail = (to, mailContent) => {
+const investorGeneralMail = (to, bcc, mailContent) => {
     const mailOptions = {
         from: '"Wosiwosi Investment" <info@wosiwosi.co.uk>',
         to: to,
+        bcc,
         subject: "IMPORTANT UPDATE",
         // attachments: [
         //   {  
