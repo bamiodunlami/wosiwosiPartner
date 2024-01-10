@@ -15,6 +15,10 @@
       <p class="alert alert-warning">Kindly update your date of birth</p>
     <%}%>
 
+    <% if(user.kyc == false){%>
+      <p class="alert alert-warning">KYC pending, kindly send your <strong>proof of ID (Driving lisence, Passport or BRP) and proof of address (Utility or Bank statement dated 3 months)</strong> to <a href="mailTo:partners@wosiwosi.co.uk">partners@wosiwosi.co.uk</a></p>
+    <%}%>
+
       <!-- subscribers -->
 
       <div class="interest-form">

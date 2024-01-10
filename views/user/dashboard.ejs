@@ -17,6 +17,9 @@
                 <div>
                   <h6>My Profile</h6>
                   <p>View and update your profile. Authentication required for changes.</p>
+                  <% if(user.kyc == false){%>
+                    <p class="alert alert-warning">Action required, click view profile</p>
+                  <%}%>
                   <a href="/udashboard/myprofile" class="btn btn-sm btn-outline-secondary"><i>View Profile</i></a>
                 </div>
             </div>
