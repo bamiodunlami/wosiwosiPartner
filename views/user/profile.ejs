@@ -24,9 +24,9 @@
       <div class="interest-form">
 
         <% if(user.kyc == false){%>
-          <h6>KYC: Pending</h6>
+          <h6 class="alert alert-warning">KYC: Pending</h6>
         <%}else{%>
-          <h6>KYC: Done</h6>
+          <h6 class="alert alert-success">KYC: Done</h6>
           <%}%>
 
         <form action="/updateprofile" method="post">
