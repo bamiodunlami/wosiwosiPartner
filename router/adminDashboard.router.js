@@ -27,5 +27,9 @@ router
 
 .post('/generalmail', dash.generalMail) //
 
+.get('/kyc', dash.kycMail)
+
+.post('/updatekyc', dash.kycdone)
+
 module.exports=router
 

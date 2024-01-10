@@ -690,7 +690,117 @@ const investorGeneralMail = (to, bcc, mailContent) => {
     
     transporter.sendMail(mailOptions);
 };
-        
+
+const kycReminder = (to, bcc, fname) => {
+    const mailOptions = {
+        from: '"Wosiwosi Investment" <info@wosiwosi.co.uk>',
+        to: to,
+        bcc,
+        subject: "ACTION REQUIRED",
+        // attachments: [
+        //   {  
+        //       filename: 'brochure.pdf',
+        //       path: appRoot + "/file/brochure.pdf" // stream this file
+        //   }],
+        html: 
+            `<!DOCTYPE html>
+            <html>
+            <head>
+                <meta charset="UTF-8">
+                <title>Action Required</title>
+                <style>
+                    body {
+                        font-family: Poppins, sans-serif;
+                        line-height: 1.6;
+                    }
+                    .container {
+                        max-width: 600px;
+                        margin: 0 auto;
+                        padding: 20px;
+                        text-align: left;
+                    }
+                    .disclaimer{
+                        font-size:11px;
+                    }
+                    h1 {
+                        color: #007519;
+                    }
+                    p {
+                        margin: 15px 0;
+                        font-size:18px;
+                    }
+                </style>
+            </head>
+            <body>
+                <div class="container">  
+                    <p> Dear ${fname}</p>
+                    <p>This is to remind you that your KYC is pending</p>
+                    <p>In compliance with our Know Your Customer (KYC) procedures and regulatory requirements, we need you to provide these document promptly:</p>
+                    <p>1. Proof of ID (Driving lisence, Passport or BRP)</p>
+                    <p>2. Proof of address (Utility or Bank statement dated 3 months)</p>
+                    <p>Please send clear copies to partners@wosiwosi.co.uk </p>
+                    <p>Your prompt response is appreciated.</p>
+                    <p>Regards,<br>Wosiwosi Investment Team<br>Wosiwosi Foods UK Limited</p>
+                </div>
+            </body>
+            </html>`
+    };
+    
+    transporter.sendMail(mailOptions);
+};
+
+const kycdone = (to, bcc) => {
+    const mailOptions = {
+        from: '"Wosiwosi Investment" <info@wosiwosi.co.uk>',
+        to: to,
+        bcc,
+        subject: "KYC Completed",
+        // attachments: [
+        //   {  
+        //       filename: 'brochure.pdf',
+        //       path: appRoot + "/file/brochure.pdf" // stream this file
+        //   }],
+        html: 
+            `<!DOCTYPE html>
+            <html>
+            <head>
+                <meta charset="UTF-8">
+                <title>KYC Completed</title>
+                <style>
+                    body {
+                        font-family: Poppins, sans-serif;
+                        line-height: 1.6;
+                    }
+                    .container {
+                        max-width: 600px;
+                        margin: 0 auto;
+                        padding: 20px;
+                        text-align: left;
+                    }
+                    .disclaimer{
+                        font-size:11px;
+                    }
+                    h1 {
+                        color: #007519;
+                    }
+                    p {
+                        margin: 15px 0;
+                        font-size:18px;
+                    }
+                </style>
+            </head>
+            <body>
+                <div class="container">  
+                    <p> Dear Investor</p>
+                    <p>Your KYC is now completed.</p>
+                    <p>Regards,<br>Wosiwosi Investment Team<br>Wosiwosi Foods UK Limited</p>
+                </div>
+            </body>
+            </html>`
+    };
+    
+    transporter.sendMail(mailOptions);
+};
     
 
 module.exports={
@@ -705,5 +815,7 @@ module.exports={
   mailPortalDetails:mailPortalDetails,
   passwordChange:passwordChange,
   investorDocumentUpdate:investorDocumentUpdate,
-  investorGeneralMail:investorGeneralMail
+  investorGeneralMail:investorGeneralMail,
+  kycReminder:kycReminder,
+  kycdone:kycdone
 }

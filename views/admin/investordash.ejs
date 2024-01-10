@@ -85,6 +85,19 @@
                     </button>
                   </h2>
                   <div id="flush-collapseOne" class="accordion-collapse collapse" data-bs-parent="#accordionFlushExample">
+                    <!-- kyc -->
+                    <div class="alert alert-warning">
+                      <% if(investor.kyc == false){%>
+                        <h6>KYC: Pending</h6>
+                        <form action="/updatekyc" method="post">
+                          <input type="hidden" name="investor" value="<%=investor.username%>">
+                          <button class="btn btn-sm btn-success">Complete KYC</button>
+                        </form>
+                      <%}else{%>
+                        <h6>KYC: Done</h6>
+                        <%}%>
+                    </div>
+                    <!-- profile -->
                     <form action="/updateprofile" method="post">
                         <div class="mb-2">
                             <label class="form-label">First Name</label>

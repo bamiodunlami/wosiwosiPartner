@@ -493,6 +493,17 @@ const generalMail = async (req, res)=>{
   }
 }
 
+const kycMail = async (req, res) => {
+  const investor = await UserDB.findOne({username:req.query.investor});
+  mailer.kycReminder(investor.username, "bamidele@wosiwosi.co.uk", investor.profile.fname)
+  res.redirect('/adashboard/editpartner')
+}
+
+const kycdone = async (req, res) => {
+  const investor = await UserDB.updateOne({username:req.body.investor},{kyc:true});
+  mailer.kycdone(req.body.investor, "bamidele@wosiwosi.co.uk")
+  res.redirect('/adashboard/editpartner')
+}
 
 
 module.exports = {
@@ -505,5 +516,7 @@ module.exports = {
   renderInvestorPage:renderInvestorPage,
   renderInvestorDash:renderInvestorDash,
   investorPageOperation:investorPageOperation,
-  generalMail:generalMail
+  generalMail:generalMail,
+  kycMail:kycMail,
+  kycdone:kycdone
 };
