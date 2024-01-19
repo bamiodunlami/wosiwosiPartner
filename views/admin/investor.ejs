@@ -50,7 +50,6 @@
               <thead>
                 <tr>
                   <th scope="col">First Name</th>
-                  <th scope="col">Pass</th>
                   <th scope="col">KYC</th>
                   <th scope="col">Investment</th>
                   <th scope="col">% ROI</th>
@@ -65,7 +64,6 @@
                 <% for (i=investor.length-1; i>=0; i--){%>
                   <tr>
                     <td><%=investor[i].profile.fname%></td>
-                    <td><%=investor[i].passChange%></td>
                     <%if(investor[i].kyc == false){%>
                       <td><a href="/kyc?investor=<%=investor[i].username%>"><%=investor[i].kyc%></a></td>
                     <%}else{%>

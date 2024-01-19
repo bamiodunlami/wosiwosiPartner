@@ -49,6 +49,8 @@
           <table class="table table-striped table-hover ">
               <thead>
                 <tr>
+                  <th scope="col">ID</th>
+                  <th scope="col">Certificate NO</th>
                   <th scope="col">Investment</th>
                   <th scope="col">% ROI</th>
                   <th scope="col">Frequency</th>
@@ -59,6 +61,8 @@
               </thead>
               <tbody>
                   <tr>
+                    <td><%=investor.investment[0].id%></td>
+                    <td><%=investor.investment[0].certificateNo%></td>
                     <td><%=investor.investment[0].currency%> <%=investor.investment[0].amount%></td>
                     <td><%=investor.investment[0].roiOption%>% <%=investor.investment[0].roiTime%></td>
                     <td><%=investor.investment[0].roiTime%></td>

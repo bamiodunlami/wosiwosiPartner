@@ -114,18 +114,20 @@ const createInvestor = async (req, res) => {
       roiTime:investor.roiTime,
       payout:0,
       status:true,
-      id:Math.floor(Math.random()*901215)
+      id:Math.floor(Math.random()*901215),
+      certificateNo:req.body.certificateNo
     }],
     bank:{
       sortCode:"",
       account:""
-  },
+    },
     upline:[],
     downline:[],
     active:true,
     passChange:false,
     role:"investor",
-    wosiwosiAs:investor.category
+    wosiwosiAs:investor.category,
+    kyc:false
   })
   // save investor
   const savedInvestor = await investorDetails.save();
