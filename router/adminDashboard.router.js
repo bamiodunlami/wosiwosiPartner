@@ -21,15 +21,17 @@ router
 
 .get('/interest/:request', dash.interestSectionOperation) //interest operation
 
-.post('/investorpage', dash.renderInvestorDash) //
+.post('/investorpage', dash.renderInvestorDash) // render investor dashboar
 
-.post('/investorpage/:operation', dash.investorPageOperation) //
+.post('/investorpage/:operation', dash.investorPageOperation) //operation
 
-.post('/generalmail', dash.generalMail) //
+.post('/generalmail', dash.generalMail) // send general mail
 
-.get('/kyc', dash.kycMail)
+.get('/kyc', dash.kycMail) //kyc mail
 
-.post('/updatekyc', dash.kycdone)
+.post('/updatekyc', dash.kycdone) //kyc done
+
+.get('/paid', dash.paymentMade)
 
 module.exports=router
 

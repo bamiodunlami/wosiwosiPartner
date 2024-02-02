@@ -55,6 +55,7 @@
                   <th scope="col">% ROI</th>
                   <th scope="col">Frequency</th>
                   <th scope="col">ROI</th>
+                  <th scope="col">ROI Received</th>
                   <th scope="col">Start Date</th>
                   <th scope="col">End Date</th>
                 </tr>
@@ -67,6 +68,7 @@
                     <td><%=investor.investment[0].roiOption%>% <%=investor.investment[0].roiTime%></td>
                     <td><%=investor.investment[0].roiTime%></td>
                     <td><%=investor.investment[0].currency%><%=investor.investment[0].interest%></td>
+                    <td><%=investor.investment[0].payout%></td>
                     <td><%=investor.investment[0].startDate%></td>
                     <td><%=investor.investment[0].endDate%></td>
                     <!-- <td ><=subscrber[i].interest.slice(0,2)></td> -->
@@ -75,6 +77,10 @@
                   </tr>
               </tbody>
           </table>
+          <!-- Payment notification -->
+            <div>
+              <a href="/paid?username=<%=investor.username%>&id=<%=investor.investment[0].id%>" class="btn btn-sm btn-success">Paid</a>
+            </div>
           </div>
       </div>
 
@@ -109,66 +115,66 @@
                     <div class="alert alert-secondary">
                       <div class="mb-2">
                         <label class="form-label">Account Number</label>
-                        <input type="text" class="form-control" id="exampleFormControlInput1"  value="<%=investor.bank.accountNo%>">
+                        <input type="text" class="form-control" id="exampleFormControlInput1"  value="<%=investor.bank.accountNo%>" disabled>
                       </div>
                       <div class="mb-2">
                         <label class="form-label">Sort Code</label>
-                        <input type="text" class="form-control" id="exampleFormControlTextarea1" value="<%=investor.bank.sortCode%>">
+                        <input type="text" class="form-control" id="exampleFormControlTextarea1" value="<%=investor.bank.sortCode%>" disabled>
                       </div>
         
                         <div class="mb-2">
                             <label class="form-label">Name on Account</label>
-                            <input type="text" class="form-control" id="exampleFormControlTextarea1" value="<%=investor.bank.accountName%>">
+                            <input type="text" class="form-control" id="exampleFormControlTextarea1" value="<%=investor.bank.accountName%>" disabled>
                           </div>
                     </div>
                     <!-- Profile -->
                         <div class="mb-2">
                             <label class="form-label">First Name</label>
-                            <input type="text" class="form-control" id="exampleFormControlInput1"  value="<%=investor.profile.fname%>">
+                            <input type="text" class="form-control" id="exampleFormControlInput1"  value="<%=investor.profile.fname%>" disabled>
                           </div>
                           <div class="mb-2">
                             <label class="form-label">Last Name</label>
-                            <input type="text" class="form-control" id="exampleFormControlTextarea1" value="<%=investor.profile.lname%>">
+                            <input type="text" class="form-control" id="exampleFormControlTextarea1" value="<%=investor.profile.lname%>" disabled>
                           </div>
             
                             <div class="mb-2">
                                 <label class="form-label">Date Of Birth</label>
-                                <input type="text" class="form-control" id="exampleFormControlTextarea1" value="<%=investor.profile.dob%>" maxlength="25">
+                                <input type="text" class="form-control" id="exampleFormControlTextarea1" value="<%=investor.profile.dob%>" maxlength="25" disabled>
                               </div>
             
                           <div class="mb-2">
                             <label class="form-label">Email</label>
-                            <input type="email" class="form-control" id="exampleFormControlTextarea1" value="<%=investor.username%>">
+                            <input type="email" class="form-control" id="exampleFormControlTextarea1" value="<%=investor.username%>" disabled>
                           </div>
                           <div class="mb-2">
                             <label class="form-label">Phone</label>
-                            <input type="text"  class="form-control" id="exampleFormControlTextarea1" value="<%=investor.profile.phone%>" maxlength="13">
+                            <input type="text"  class="form-control" id="exampleFormControlTextarea1" value="<%=investor.profile.phone%>" maxlength="13" disabled>
                           </div>
             
                           <div class="mb-2">
                             <label class="form-label">How do you identify yourself with Wosiwosi</label>
-                            <input type="text" class="form-control" id="exampleFormControlTextarea1" value="<%=investor.wosiwosiAs%>" >
+                            <input type="text" class="form-control" id="exampleFormControlTextarea1" value="<%=investor.wosiwosiAs%>" disabled>
                           </div>
             
             
                           <div class="mb-2">
                             <label class="form-label">Address</label>
-                            <input type="text" name="address" class="form-control" id="exampleFormControlTextarea1" value="<%=investor.profile.address%>"  maxlength="40">
+                            <input type="text" name="address" class="form-control" id="exampleFormControlTextarea1" value="<%=investor.profile.address%>"  maxlength="40" disabled>
                           </div>
             
                           <div class="mb-2">
                             <label class="form-label">Postcode/Zipcode</label>
-                            <input type="text" name="postcode" class="form-control" id="exampleFormControlTextarea1" value="<%=investor.profile.postcode%>"  maxlength="9">
+                            <input type="text" name="postcode" class="form-control" id="exampleFormControlTextarea1" value="<%=investor.profile.postcode%>"  maxlength="9" disabled>
                           </div>
             
                           <div class="mb-2">
                             <label class="form-label">City</label>
-                            <input type="text" name="city" class="form-control" id="exampleFormControlTextarea1" value="<%=investor.profile.city%>"  maxlength="9">
+                            <input type="text" name="city" class="form-control" id="exampleFormControlTextarea1" value="<%=investor.profile.city%>"  maxlength="9" disabled>
                           </div>
             
                           <div class="mb-2">
                             <label class="form-label">Country</label>
-                            <input type="text" class="form-control" id="exampleFormControlTextarea1" value="<%=investor.profile.country%>"  maxlength="20">
+                            <input type="text" class="form-control" id="exampleFormControlTextarea1" value="<%=investor.profile.country%>"  maxlength="20" disabled>
                           </div>
                             <!-- <button class="btn btn-success btn-sm" id="submitBtn">Submit</button> -->
                     </form>

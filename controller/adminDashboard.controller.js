@@ -117,7 +117,6 @@ const createInvestor = async (req, res) => {
       status:true,
       id:Math.floor(Math.random()*901215),
       certificateNo:req.body.certificateNo
-
     }],
     bank:{
       sortCode:"",
@@ -498,17 +497,33 @@ const generalMail = async (req, res)=>{
   }
 }
 
+// remind investor of kyc pending
 const kycMail = async (req, res) => {
   const investor = await UserDB.findOne({username:req.query.investor});
   mailer.kycReminder(investor.username, "bamidele@wosiwosi.co.uk", investor.profile.fname)
   res.redirect('/adashboard/editpartner')
 }
 
+// complete kyc
 const kycdone = async (req, res) => {
   const investor = await UserDB.updateOne({username:req.body.investor},{kyc:true});
   mailer.kycdone(req.body.investor, "bamidele@wosiwosi.co.uk")
   res.redirect('/adashboard/editpartner')
 }
+
+// payment made
+const paymentMade = async(req, res)=>{
+  console.log(req.query.id)
+  const investor = await UserDB.updateOne({username:req.query.username, "investment.id":req.query.id},{
+    $set: {
+      "investment.$.payout":1,
+    },
+  })
+  console.log(investor)
+  res.redirect('adashboard/editpartner')
+}
+
+
 
 
 module.exports = {
@@ -523,5 +538,6 @@ module.exports = {
   investorPageOperation:investorPageOperation,
   generalMail:generalMail,
   kycMail:kycMail,
-  kycdone:kycdone
+  kycdone:kycdone,
+  paymentMade:paymentMade
 };

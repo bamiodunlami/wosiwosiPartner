@@ -54,12 +54,10 @@
                   <th scope="col">KYC</th>
                   <th scope="col">Account</th>
                   <th scope="col">Investment</th>
-                  <th scope="col">% ROI</th>
                   <th scope="col">Frequency</th>
                   <th scope="col">ROI</th>
+                  <th scope="col">Received</th>
                   <th scope="col">Payout Day</th>
-                  <th scope="col">Start Date</th>
-                  <th scope="col">End Date</th>
                   <th class="scope">Action</th>
                 </tr>
               </thead>
@@ -73,20 +71,23 @@
                     <%}else{%>
                       <td><%=investor[i].kyc%></td>
                     <%}%>
-                    <td><%=investor[i].bank.accountNo%>-<%=investor[i].bank.sortCode%></td>
+                    <td>
+                      <%if(investor[i].bank.accountNo == ""){%>
+                        <p>-</p>
+                      <%}else{%>
+                        <p>true</p>
+                      <%}%>
+                    </td>
                     <td><%=investor[i].investment[0].currency%> <%=investor[i].investment[0].amount%></td>
-                    <td><%=investor[i].investment[0].roiOption%>%</td>
                     <td><%=investor[i].investment[0].roiTime%></td>
                     <td><%=investor[i].investment[0].currency%><%=investor[i].investment[0].interest%></td>
-
+                    <td><%=investor[i].investment[0].payout%></td>
                     <%if( investor[i].investment[0].payOutDay == 0){%>
                       <td>-</td>
                     <%}else{%>
                       <td><%=investor[i].investment[0].payOutDay%>th Monthly</td>
                     <%}%>
 
-                    <td><%=investor[i].investment[0].startDate%></td>
-                    <td><%=investor[i].investment[0].endDate%></td>
                     <td>
                       <form method="post" action="/investorpage">
                         <input type="hidden" name="email" value="<%=investor[i].username%>">
