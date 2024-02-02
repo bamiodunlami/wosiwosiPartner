@@ -89,6 +89,7 @@
                     </button>
                   </h2>
                   <div id="flush-collapseOne" class="accordion-collapse collapse" data-bs-parent="#accordionFlushExample">
+
                     <!-- kyc -->
                     <div class="alert alert-warning">
                       <% if(investor.kyc == false){%>
@@ -103,6 +104,24 @@
                     </div>
                     <!-- profile -->
                     <form action="/updateprofile" method="post">
+
+                    <!-- Bank Details -->
+                    <div class="alert alert-secondary">
+                      <div class="mb-2">
+                        <label class="form-label">Account Number</label>
+                        <input type="text" class="form-control" id="exampleFormControlInput1"  value="<%=investor.bank.accountNo%>">
+                      </div>
+                      <div class="mb-2">
+                        <label class="form-label">Sort Code</label>
+                        <input type="text" class="form-control" id="exampleFormControlTextarea1" value="<%=investor.bank.sortCode%>">
+                      </div>
+        
+                        <div class="mb-2">
+                            <label class="form-label">Name on Account</label>
+                            <input type="text" class="form-control" id="exampleFormControlTextarea1" value="<%=investor.bank.accountName%>">
+                          </div>
+                    </div>
+                    <!-- Profile -->
                         <div class="mb-2">
                             <label class="form-label">First Name</label>
                             <input type="text" class="form-control" id="exampleFormControlInput1"  value="<%=investor.profile.fname%>">
