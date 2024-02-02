@@ -26,17 +26,24 @@
                         </div>
                     <%}%> 
                 <ul class="list-group list-group-flush">
-                  <li class="list-group-item">Certificate No.: <span class="main-info">£<%=user.investment[i].certificateNo%></span></li>
+                  <li class="list-group-item">Certificate No.: <span class="main-info"><%=user.investment[i].certificateNo%></span></li>
                     <li class="list-group-item">Principal: <span class="main-info">£<%=user.investment[i].amount%></span></li>
                     <li class="list-group-item">ROI %: <span class="main-info"><%=user.investment[i].roiOption%>%</span></li>
                     <li class="list-group-item">ROI Frequency: <span class="main-info"><%=user.investment[i].roiTime%></span></li>
                   <li class="list-group-item">Expected ROI: <span class="main-info">£<%=user.investment[i].interest%></span></li>
+                  <%if(user.investment[i].roiTime == "Monthly"){%>
+                    <li class="list-group-item"> ROI Payday: <span class="main-info"><%=user.investment[i].payOutDay%>th of every month</span></li>
+                  <%}%>
                   <li class="list-group-item">Investment start date: <span class="main-info"><%=user.investment[i].startDate%></li>
                   <li class="list-group-item">Investment end date: <span class="main-info"><%=user.investment[i].endDate%></li>
                 </ul>
                 <div class="card-body">
-                  <button class="btn btn-sm btn-outline-secondary" disabled>Redeem Investment</button>
-                  <button class="btn btn-sm btn-outline-secondary" disabled>Re-investment</button>
+                  <%if(user.investment[i].roiTime == "Monthly"){%>
+                    <p class="alert alert-warning">We'll send payout automatically, you won't be able to reinvest on monthly subscription</p>
+                  <%}else{%>
+                    <button class="btn btn-sm btn-outline-secondary" disabled>Reinvest</button>
+                    <%}%>
+                    <button class="btn btn-sm btn-outline-secondary" disabled>Quit Investment</button>
                 </div>
               </div>
           </div>

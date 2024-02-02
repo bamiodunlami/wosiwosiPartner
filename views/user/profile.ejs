@@ -11,6 +11,10 @@
   <div class="row subscriber-row profile d-flex justify-content-center">
     <h5 class="">Your Profile</h5>
 
+    <% if(user.bank.accountNo == ""){%>
+      <p class="alert alert-warning">Kindly update your bank account details</p>
+    <%}%>
+
     <% if(user.profile.dob == ""){%>
       <p class="alert alert-warning">Kindly update your date of birth</p>
     <%}%>
@@ -19,17 +23,51 @@
       <p class="alert alert-warning">KYC pending, kindly send your <strong>proof of ID (Driving lisence, Passport or BRP) and proof of address (Utility or Bank statement dated 3 months)</strong> to <a href="mailTo:partners@wosiwosi.co.uk">partners@wosiwosi.co.uk</a></p>
     <%}%>
 
+    <!-- KYC -->
+    <% if(user.kyc == false){%>
+      <h6 class="alert alert-warning">KYC: Pending</h6>
+    <%}else{%>
+      <h6 class="alert alert-success">KYC: Completed</h6>
+      <%}%>
+
       <!-- subscribers -->
-
       <div class="interest-form">
-
-        <% if(user.kyc == false){%>
-          <h6 class="alert alert-warning">KYC: Pending</h6>
-        <%}else{%>
-          <h6 class="alert alert-success">KYC: Done</h6>
-          <%}%>
-
         <form action="/updateprofile" method="post">
+
+          <div class="alert alert-secondary">
+            <% if(user.bank.accountNo == ""){%>
+              <div class="mb-2">
+                  <label class="form-label">Account Number</label>
+                  <input type="text" name="accountNo" class="form-control" id="exampleFormControlTextarea1" required>
+                </div>
+
+                <div class="mb-2">
+                  <label class="form-label">Sort Code</label>
+                  <input type="text" name="sortCode" class="form-control" id="exampleFormControlTextarea1" required>
+                </div>
+
+                <div class="mb-2">
+                  <label class="form-label">Name On Account</label>
+                  <input type="text" name="accountName" class="form-control" id="exampleFormControlTextarea1" required>
+                </div>
+            <%}else{%>
+              <div class="mb-2">
+                <label class="form-label">Account Number</label>
+                <input type="text" name="accountNo" class="form-control" id="exampleFormControlTextarea1" value="<%=user.bank.accountNo%>" disabled>
+              </div>
+
+              <div class="mb-2">
+                <label class="form-label">Sort Code</label>
+                <input type="text" name="sortCode" class="form-control" id="exampleFormControlTextarea1" value="<%=user.bank.sortCode%>" disabled>
+              </div>
+
+              <div class="mb-2">
+                <label class="form-label">Name On Account</label>
+                <input type="text" name="accountName" class="form-control" id="exampleFormControlTextarea1" value="<%=user.bank.accountName%>" disabled>
+              </div>
+            <%}%>
+          </div>
+
             <div class="mb-2">
                 <label class="form-label">First Name</label>
                 <input type="text" class="form-control" id="exampleFormControlInput1"  value="<%=user.profile.fname%>" disabled>
@@ -85,7 +123,7 @@
                 <label class="form-label">Country</label>
                 <input type="text" class="form-control" id="exampleFormControlTextarea1" value="<%=user.profile.country%>"  maxlength="20" disabled>
               </div>
-              <% if(user.profile.dob == ""){%>
+              <% if(user.profile.dob == "" || user.bank.accountNo == ""){%>
                 <button class="btn btn-success btn-sm" id="submitBtn">Submit</button>
               <%}%>
         </form>

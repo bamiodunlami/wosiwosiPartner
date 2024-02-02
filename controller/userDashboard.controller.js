@@ -110,7 +110,10 @@ const updateProfile = async (req, res) =>{
   if (req.isAuthenticated()){
     const updatUser = await User.updateOne({username:req.user.username},{
         $set: {
-          "profile.dob":req.body.dob
+          "profile.dob":req.body.dob,
+          "bank.accountNo":req.body.accountNo,
+          "bank.sortCode":req.body.sortCode,
+          "bank.accountName":req.body.accountName
         },
     })
     if(updatUser.acknowledged == true){

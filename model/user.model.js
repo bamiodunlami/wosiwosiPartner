@@ -27,8 +27,9 @@ const userSchema = new mongoose.Schema({
         country:"string"
     },
     bank:{
-        sortCode:"string",
-        account:"string"
+      sortCode:String,
+      accountNo:String,
+      accountName:String,
     },
     investment:[],
     doc:[],
@@ -52,7 +53,11 @@ async function migrateUsers() {
       const mig = await User.find();
       // Update each user record with the new field
       for (let i=0; i<mig.length; i++) {
-        mig[i].kyc = false;
+        mig[i].bank = {
+          sortCode:"",
+          accountNo:"",
+          accountName:"",
+        };
         await mig[i].save()
       }
       // await mig.setPassword("AdeOgun078");// create password

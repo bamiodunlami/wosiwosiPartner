@@ -113,13 +113,16 @@ const createInvestor = async (req, res) => {
       roiOption:investor.roiOption,
       roiTime:investor.roiTime,
       payout:0,
+      payOutDay:req.body.payOutDay,
       status:true,
       id:Math.floor(Math.random()*901215),
       certificateNo:req.body.certificateNo
+
     }],
     bank:{
       sortCode:"",
-      account:""
+      accountNo:"",
+      accountName:""
     },
     upline:[],
     downline:[],
