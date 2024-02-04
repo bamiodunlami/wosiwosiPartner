@@ -513,14 +513,25 @@ const kycdone = async (req, res) => {
 
 // payment made
 const paymentMade = async(req, res)=>{
-  console.log(req.query.id)
-  const investor = await UserDB.updateOne({username:req.query.username, "investment.id":req.query.id},{
-    $set: {
-      "investment.$.payout":1,
-    },
-  })
-  console.log(investor)
-  res.redirect('adashboard/editpartner')
+  if(req.isAuthenticated()){
+    let currentPayout = req.query.currentPayOut
+    const id = Number(req.query.id)
+    let updatePayout =  Number(currentPayout) + 1
+    // console.log(updatePayout)
+    const updateUser = await UserDB.updateOne(
+      { username: req.query.username, "investment.id": id },
+      {
+        $set: {
+          "investment.$.payout": updatePayout,
+        },
+      }
+    );
+    mailer.payoutNotification(req.query.username, "seyiawo@wosiwosi.co.uk");
+    res.redirect('adashboard/editpartner')
+  }else{
+
+  }
+
 }
 
 

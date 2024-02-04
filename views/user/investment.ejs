@@ -31,6 +31,7 @@
                     <li class="list-group-item">ROI %: <span class="main-info"><%=user.investment[i].roiOption%>%</span></li>
                     <li class="list-group-item">ROI Frequency: <span class="main-info"><%=user.investment[i].roiTime%></span></li>
                   <li class="list-group-item">Expected ROI: <span class="main-info">£<%=user.investment[i].interest%></span></li>
+                  <li class="list-group-item">ROI Received: <span class="main-info"><%=user.investment[i].payout%></span></li>
                   <%if(user.investment[i].roiTime == "Monthly"){%>
                     <li class="list-group-item"> ROI Payday: <span class="main-info"><%=user.investment[i].payOutDay%>th of every month</span></li>
                   <%}%>

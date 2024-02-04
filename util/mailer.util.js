@@ -801,6 +801,60 @@ const kycdone = (to, bcc) => {
     
     transporter.sendMail(mailOptions);
 };
+
+const payoutNotification = (to, bcc) => {
+    const mailOptions = {
+        from: '"Wosiwosi Investment" <info@wosiwosi.co.uk>',
+        to: to,
+        bcc,
+        subject: "YOUR PAYOUT",
+        // attachments: [
+        //   {  
+        //       filename: 'brochure.pdf',
+        //       path: appRoot + "/file/brochure.pdf" // stream this file
+        //   }],
+        html: 
+            `<!DOCTYPE html>
+            <html>
+            <head>
+                <meta charset="UTF-8">
+                <title>YOUR PAYOUT</title>
+                <style>
+                    body {
+                        font-family: Poppins, sans-serif;
+                        line-height: 1.6;
+                    }
+                    .container {
+                        max-width: 600px;
+                        margin: 0 auto;
+                        padding: 20px;
+                        text-align: left;
+                    }
+                    .disclaimer{
+                        font-size:11px;
+                    }
+                    h1 {
+                        color: #007519;
+                    }
+                    p {
+                        margin: 15px 0;
+                        font-size:18px;
+                    }
+                </style>
+            </head>
+            <body>
+                <div class="container">  
+                    <p> Dear Investor</p>
+                    <p>Your payout has been sent and we have updated your portal.</p>
+                    <p>Thank you for trusting us.</p>
+                    <p>Regards,<br>Wosiwosi Investment Team<br>Wosiwosi Foods UK Limited</p>
+                </div>
+            </body>
+            </html>`
+    };
+    
+    transporter.sendMail(mailOptions);
+};
     
 
 module.exports={
@@ -817,5 +871,6 @@ module.exports={
   investorDocumentUpdate:investorDocumentUpdate,
   investorGeneralMail:investorGeneralMail,
   kycReminder:kycReminder,
-  kycdone:kycdone
+  kycdone:kycdone,
+  payoutNotification:payoutNotification
 }

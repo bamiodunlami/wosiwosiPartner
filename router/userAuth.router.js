@@ -18,7 +18,11 @@ router
 
 .post('/login', passport.authenticate("local", {failureRedirect:"/login", failureFlash:true}),(req, res)=>{
     // if it's admin
-        res.redirect('/udashboard')    
+    if(req.user.role == "admin"){
+        res.redirect('/adashboard')
+    }else{
+        res.redirect('/udashboard')       
+    }
 })
 
 // logout
