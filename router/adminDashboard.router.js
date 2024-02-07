@@ -33,5 +33,7 @@ router
 
 .get('/paid', dash.paymentMade)
 
+.get('/export', dash.exportCSV)
+
 module.exports=router
 

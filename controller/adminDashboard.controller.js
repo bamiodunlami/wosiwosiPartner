@@ -6,6 +6,8 @@ const path = require("path");
 const rootPath = path.resolve(process.cwd());
 appRoot.setPath(rootPath);
 
+const excelJS = require ('exceljs')
+
 const passport = require(appRoot + "/util/passport.util.js");
 const interestDB = require(appRoot + "/model/operation.model.js").InterestForm;
 const subscrberDB = require(appRoot +"/model/operation.model.js").SubscriptionForm;
@@ -534,7 +536,50 @@ const paymentMade = async(req, res)=>{
 
 }
 
-
+// export csv
+const exportCSV = async (req, res)=>{
+  const investor  = await UserDB.find({role:"investor"})
+  let User = []
+  // console.log(investor[0].investment[0].certificateNo)
+  for(let i=0; i<investor.length; i++){
+    User.push({
+      fname:investor[i].profile.fname,
+      lname:investor[i].profile.lname,
+      certificateNo:investor[i].investment[0].certificateNo,
+      investment:investor[i].investment[0].amount,
+      percentage:investor[i].investment[0].roiOption,
+      frequency:investor[i].investment[0].roiTime,
+      roi:investor[i].investment[0].interest,
+      payout:investor[i].investment[0].payout,
+      payday:investor[i].investment[0].payOutDay
+    })
+  }
+  // console.log(user)
+  const workbook = new excelJS.Workbook(); 
+  const worksheet = workbook.addWorksheet("Investors");
+  
+  // Define columns in the worksheet 
+  worksheet.columns = [ 
+  { header: "First Name", key: "fname", width: 15 }, 
+  { header: "Last Name", key: "lname", width: 15 }, 
+  { header: "Certificate NO", key: "certificateNo", width: 25 }, 
+  { header: "Investment", key: "investment", width: 10 }, 
+  { header: "% ROI", key: "percentage", width: 10 }, 
+  { header: "Frequency", key: "frequency", width: 10 }, 
+  { header: "ROI", key: "roi", width: 10 }, 
+  { header: "ROI Received", key: "payout", width: 10 }, 
+  { header: "Payment Date", key: "payday", width: 10 }, 
+  ];
+  
+  // Add data to the worksheet 
+  User.forEach(user => { worksheet.addRow(user); });
+  
+  // Set up the response headers 
+  res.setHeader("Content-Type", "application/vnd.openxmlformats-officedocument.spreadsheetml.sheet"); res.setHeader("Content-Disposition", "attachment; filename=" + "investor.xlsx");
+  
+  // Write the workbook to the response object 
+  workbook.xlsx.write(res).then(() => res.end());
+}
 
 
 module.exports = {
@@ -550,5 +595,6 @@ module.exports = {
   generalMail:generalMail,
   kycMail:kycMail,
   kycdone:kycdone,
-  paymentMade:paymentMade
+  paymentMade:paymentMade,
+  exportCSV:exportCSV,
 };
