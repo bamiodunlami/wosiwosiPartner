@@ -563,10 +563,10 @@ const exportCSV = async (req, res)=>{
   { header: "First Name", key: "fname", width: 15 }, 
   { header: "Last Name", key: "lname", width: 15 }, 
   { header: "Certificate NO", key: "certificateNo", width: 25 }, 
-  { header: "Investment", key: "investment", width: 10 }, 
+  { header: "Investment (£)", key: "investment", width: 10 }, 
   { header: "% ROI", key: "percentage", width: 10 }, 
   { header: "Frequency", key: "frequency", width: 10 }, 
-  { header: "ROI", key: "roi", width: 10 }, 
+  { header: "ROI (£)", key: "roi", width: 10 }, 
   { header: "ROI Received", key: "payout", width: 10 }, 
   { header: "Payment Date", key: "payday", width: 10 }, 
   ];
