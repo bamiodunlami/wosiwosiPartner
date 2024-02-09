@@ -108,6 +108,11 @@
                         <h6>KYC: Done</h6>
                         <%}%>
                     </div>
+
+                    <!-- reset password -->
+                    <div>
+                      <a href="/resetpass?username=<%=investor.username%>" class="btn btn-danger btn-sm alert alert-danger">Reset password</a>
+                    </div>
                     <!-- profile -->
                     <form action="/updateprofile" method="post">
 

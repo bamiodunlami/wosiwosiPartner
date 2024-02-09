@@ -35,5 +35,7 @@ router
 
 .get('/export', dash.exportCSV)
 
+.get('/resetpass', dash.resetPassword)
+
 module.exports=router
 

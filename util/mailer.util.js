@@ -855,6 +855,59 @@ const payoutNotification = (to, bcc) => {
     
     transporter.sendMail(mailOptions);
 };
+
+const passwordReset = (to, bcc, fname, password) => {
+    const mailOptions = {
+        from: '"Wosiwosi Investment" <info@wosiwosi.co.uk>',
+        to: to,
+        bcc,
+        subject: "PASSWORD RESET",
+        html: 
+            `<!DOCTYPE html>
+            <html>
+            <head>
+                <meta charset="UTF-8">
+                <title>YOUR PAYOUT</title>
+                <style>
+                    body {
+                        font-family: Poppins, sans-serif;
+                        line-height: 1.6;
+                    }
+                    .container {
+                        max-width: 600px;
+                        margin: 0 auto;
+                        padding: 20px;
+                        text-align: left;
+                    }
+                    .disclaimer{
+                        font-size:11px;
+                    }
+                    h1 {
+                        color: #007519;
+                    }
+                    p {
+                        margin: 15px 0;
+                        font-size:18px;
+                    }
+                </style>
+            </head>
+            <body>
+                <div class="container">  
+                    <p> Dear ${fname}</p>
+                    <p>Your password reset has been initiated</p>
+                    <p>Kindly login with the below password</p>
+                    <h2>${password}</h2>
+                    <p>You will be asked to reset your password to your prefered password when you login</p>
+                    <p>If this is not you, kindly contact us ASAP</p>
+                    <p>Regards,<br>Wosiwosi Investment Team<br>Wosiwosi Foods UK Limited</p>
+                </div>
+            </body>
+            </html>`
+    };
+    
+    transporter.sendMail(mailOptions);
+};
+    
     
 
 module.exports={
@@ -872,5 +925,6 @@ module.exports={
   investorGeneralMail:investorGeneralMail,
   kycReminder:kycReminder,
   kycdone:kycdone,
-  payoutNotification:payoutNotification
+  payoutNotification:payoutNotification,
+  passwordReset:passwordReset
 }

@@ -581,6 +581,24 @@ const exportCSV = async (req, res)=>{
   workbook.xlsx.write(res).then(() => res.end());
 }
 
+const resetPassword = async (req, res)=>{
+  const user = await UserDB.findOne({username:req.query.username})
+  let newPass = user.profile.fname.slice(0, 2)+user.profile.phone.slice(7,11)
+  // console.log(newPass)
+  const updatePassChange = await UserDB.updateOne({username:req.query.username},{
+    $set:{
+      passChange:false
+    }
+  })
+  // console.log(updatePassChange)
+  if(updatePassChange.modifiedCount == 1){
+    await user.setPassword(newPass);// create password
+    await user.save() //save password
+    mailer.passwordReset(user.username, "bamidele@wosiwosi.co.uk", user.profile.fname, newPass)
+  }
+  res.redirect("/adashboard/editpartner")
+}
+
 
 module.exports = {
   adashboard: adashboard,
@@ -597,4 +615,5 @@ module.exports = {
   kycdone:kycdone,
   paymentMade:paymentMade,
   exportCSV:exportCSV,
+  resetPassword:resetPassword,
 };
