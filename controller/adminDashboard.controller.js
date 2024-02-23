@@ -542,16 +542,36 @@ const exportCSV = async (req, res)=>{
   let User = []
   // console.log(investor[0].investment[0].certificateNo)
   for(let i=0; i<investor.length; i++){
+
+    let monthlyInterestDue
+    let myPayDay
+    let expectedEndPayment
+
+    if(investor[i].investment[0].roiTime == "Annually"){
+      monthlyInterestDue = investor[i].investment[0].amount * 0.016666
+      myPayDay = investor[i].investment[0].endDate
+      expectedEndPayment = Number(investor[i].investment[0].amount) + Number(investor[i].investment[0].interest)
+    }else if(investor[i].investment[0].roiTime == "Monthly"){
+      monthlyInterestDue = investor[i].investment[0].interest
+      myPayDay = investor[i].investment[0].payOutDay + "th monthly" 
+      expectedEndPayment =  investor[i].investment[0].amount;
+    }
+
+
+
     User.push({
       fname:investor[i].profile.fname,
       lname:investor[i].profile.lname,
       certificateNo:investor[i].investment[0].certificateNo,
       investment:investor[i].investment[0].amount,
-      percentage:investor[i].investment[0].roiOption,
+      startDate:investor[i].investment[0].startDate,
       frequency:investor[i].investment[0].roiTime,
-      roi:investor[i].investment[0].interest,
-      payout:investor[i].investment[0].payout,
-      payday:investor[i].investment[0].payOutDay
+      monthlyInterest:monthlyInterestDue,
+      totalPayable:monthlyInterestDue * 12,
+      interestPaid:investor[i].investment[0].payout * monthlyInterestDue,
+      interestDueDate: myPayDay, 
+      investmentExpire: investor[i].investment[0].endDate,
+      totalDueOnExpire:expectedEndPayment
     })
   }
   // console.log(user)
@@ -560,22 +580,25 @@ const exportCSV = async (req, res)=>{
   
   // Define columns in the worksheet 
   worksheet.columns = [ 
-  { header: "First Name", key: "fname", width: 15 }, 
-  { header: "Last Name", key: "lname", width: 15 }, 
+  { header: "First Name", key: "fname", width: 25 }, 
+  { header: "Last Name", key: "lname", width: 25 }, 
   { header: "Certificate NO", key: "certificateNo", width: 25 }, 
-  { header: "Investment (£)", key: "investment", width: 10 }, 
-  { header: "% ROI", key: "percentage", width: 10 }, 
-  { header: "Frequency", key: "frequency", width: 10 }, 
-  { header: "ROI (£)", key: "roi", width: 10 }, 
-  { header: "ROI Received", key: "payout", width: 10 }, 
-  { header: "Payment Date", key: "payday", width: 10 }, 
+  { header: "Investment Amount (£)", key: "investment", width: 25 }, 
+  { header: "Investment Start Date", key: "startDate", width: 25 }, 
+  { header: "Interest Frequency", key: "frequency", width: 25 }, 
+  { header: "Monthly Interest Due", key: "monthlyInterest", width: 25 }, 
+  { header: "Total Interest Payable", key: "totalPayable", width: 25 }, 
+  { header: "Interest Paid", key: "interestPaid", width: 25 }, 
+  { header: "Interest Due", key: "interestDueDate", width: 25 },
+  { header: "Investment Expiry Date", key: "investmentExpire", width: 25 },
+  { header: "Total Due on Expire", key: "totalDueOnExpire", width: 25 },
   ];
   
   // Add data to the worksheet 
   User.forEach(user => { worksheet.addRow(user); });
   
   // Set up the response headers 
-  res.setHeader("Content-Type", "application/vnd.openxmlformats-officedocument.spreadsheetml.sheet"); res.setHeader("Content-Disposition", "attachment; filename=" + "investor.xlsx");
+  res.setHeader("Content-Type", "acpplication/vnd.openxmlformats-officedocument.spreadsheetml.sheet"); res.setHeader("Content-Disposition", "attachment; filename=" + "investor.xlsx");
   
   // Write the workbook to the response object 
   workbook.xlsx.write(res).then(() => res.end());
