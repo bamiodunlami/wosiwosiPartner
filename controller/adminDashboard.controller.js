@@ -87,66 +87,100 @@ const adminOperation = async (req, res) => {
 
 // create user
 const createInvestor = async (req, res) => {
-  const investor = await subscrberDB.findOne({email:req.body.email})
-  const investmentAmount = investor.capital; // amount invested
-  const roiOption = investor.roiOption/100
-  const investmentInterest = investmentAmount * roiOption; //interest
-  // console.log(investmentInterest.toFixed(2))
-  const investorPass= `${investor.fname.slice(0,3)}${investor.lname.slice(0,3)}${investor.phone.slice(9,11)}` //pasword form
-  const investorDetails = new UserDB({
-    username:investor.email,
-    profile:{
-        fname:investor.fname,
-        lname:investor.lname,
-        dob:"",
-        phone:investor.phone,
-        address:investor.address,
-        city:investor.city,
-        state:"",
-        postcode:investor.postcode,
-        country:investor.country
-    },
-    investment:[{
-      amount:investmentAmount,
-      currency: investor.currency,
-      startDate:req.body.startDate,
-      endDate:req.body.endDate,
-      interest:investmentInterest.toFixed(2),
-      roiOption:investor.roiOption,
-      roiTime:investor.roiTime,
-      payout:0,
-      payOutDay:req.body.payOutDay,
-      status:true,
-      id:Math.floor(Math.random()*901215),
-      certificateNo:req.body.certificateNo
-    }],
-    bank:{
-      sortCode:"",
-      accountNo:"",
-      accountName:""
-    },
-    upline:[],
-    downline:[],
-    active:true,
-    passChange:false,
-    role:"investor",
-    wosiwosiAs:investor.category,
-    kyc:false
-  })
-  // save investor
-  const savedInvestor = await investorDetails.save();
-  // create investor password
-  const newInvestor = await UserDB.findOne({username:req.body.email});
-  await newInvestor.setPassword(investorPass);// create password
-  await newInvestor.save() //save password
-  if(newInvestor){
-     await subscrberDB.deleteOne({email:req.body.email})
-    //  console.log(newInvestor)
-     mailer.mailPortalDetails(newInvestor.username, "bamidele@wosiwosi.co.uk", newInvestor.profile.fname, newInvestor.username, investorPass)
-     mailer.paymentConfirmation(newInvestor.username, "bamidele@wosiwosi.co.uk", newInvestor.profile.fname, investor.currency, investmentAmount)
-     res.redirect(req.headers.referer)
-  }
 
+  // check if investor already has investment
+  // if investor already invested
+  const alreadyInvestor = await UserDB.findOne({username:req.body.email})
+  if(alreadyInvestor){
+    const investor = await subscrberDB.findOne({email:req.body.email})
+    const investmentAmount = investor.capital; // amount invested
+    const roiOption = investor.roiOption/100
+    const investmentInterest = investmentAmount * roiOption; //interest
+    const insertNewInvestment = await UserDB.updateOne({username:req.body.email},{
+      $push:{
+        investment:{
+          amount:investmentAmount,
+          currency: investor.currency,
+          startDate:req.body.startDate,
+          endDate:req.body.endDate,
+          interest:investmentInterest.toFixed(2),
+          roiOption:investor.roiOption,
+          roiTime:investor.roiTime,
+          payout:0,
+          payOutDay:req.body.payOutDay,
+          status:true,
+          id:Math.floor(Math.random()*901215),
+          certificateNo:req.body.certificateNo
+        }
+      }
+    })
+    await subscrberDB.deleteOne({email:alreadyInvestor.username})
+    mailer.additionalInvesmentUpdate(alreadyInvestor.username, "bamidele@wosiwosi.co.uk", alreadyInvestor.profile.fname)
+    mailer.paymentConfirmation(alreadyInvestor.username, "bamidele@wosiwosi.co.uk", alreadyInvestor.profile.fname, investor.currency, investmentAmount)
+    res.redirect(req.headers.referer)
+
+  }else{
+
+    const investor = await subscrberDB.findOne({email:req.body.email})
+    const investmentAmount = investor.capital; // amount invested
+    const roiOption = investor.roiOption/100
+    const investmentInterest = investmentAmount * roiOption; //interest
+    // console.log(investmentInterest.toFixed(2))
+    const investorPass= `${investor.fname.slice(0,3)}${investor.lname.slice(0,3)}${investor.phone.slice(9,11)}` //pasword form
+    const investorDetails = new UserDB({
+      username:investor.email,
+      profile:{
+          fname:investor.fname,
+          lname:investor.lname,
+          dob:"",
+          phone:investor.phone,
+          address:investor.address,
+          city:investor.city,
+          state:"",
+          postcode:investor.postcode,
+          country:investor.country
+      },
+      investment:[{
+        amount:investmentAmount,
+        currency: investor.currency,
+        startDate:req.body.startDate,
+        endDate:req.body.endDate,
+        interest:investmentInterest.toFixed(2),
+        roiOption:investor.roiOption,
+        roiTime:investor.roiTime,
+        payout:0,
+        payOutDay:req.body.payOutDay,
+        status:true,
+        id:Math.floor(Math.random()*901215),
+        certificateNo:req.body.certificateNo
+      }],
+      bank:{
+        sortCode:"",
+        accountNo:"",
+        accountName:""
+      },
+      upline:[],
+      downline:[],
+      active:true,
+      passChange:false,
+      role:"investor",
+      wosiwosiAs:investor.category,
+      kyc:false
+    })
+    // save investor
+    const savedInvestor = await investorDetails.save();
+    // create investor password
+    const newInvestor = await UserDB.findOne({username:req.body.email});
+    await newInvestor.setPassword(investorPass);// create password
+    await newInvestor.save() //save password
+    if(newInvestor){
+      await subscrberDB.deleteOne({email:req.body.email})
+      //  console.log(newInvestor)
+      mailer.mailPortalDetails(newInvestor.username, "bamidele@wosiwosi.co.uk", newInvestor.profile.fname, newInvestor.username, investorPass)
+      mailer.paymentConfirmation(newInvestor.username, "bamidele@wosiwosi.co.uk", newInvestor.profile.fname, investor.currency, investmentAmount)
+      res.redirect(req.headers.referer)
+    }
+  }
 };
 
 // fetch subsbccriber details

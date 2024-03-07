@@ -907,7 +907,56 @@ const passwordReset = (to, bcc, fname, password) => {
     
     transporter.sendMail(mailOptions);
 };
+
+const additionalInvesmentUpdate= (to, bcc, fname) => {
+    const mailOptions = {
+        from: '"Wosiwosi Investment" <info@wosiwosi.co.uk>',
+        to: to,
+        bcc,
+        subject: "NEW INVESTMENT PORTFOLIO",
+        html: 
+            `<!DOCTYPE html>
+            <html>
+            <head>
+                <meta charset="UTF-8">
+                <title>ADDITIONAL INVESTMENT UPDATE</title>
+                <style>
+                    body {
+                        font-family: Poppins, sans-serif;
+                        line-height: 1.6;
+                    }
+                    .container {
+                        max-width: 600px;
+                        margin: 0 auto;
+                        padding: 20px;
+                        text-align: left;
+                    }
+                    .disclaimer{
+                        font-size:11px;
+                    }
+                    h1 {
+                        color: #007519;
+                    }
+                    p {
+                        margin: 15px 0;
+                        font-size:18px;
+                    }
+                </style>
+            </head>
+            <body>
+                <div class="container">  
+                    <p> Dear ${fname}</p>
+                    <p>We have added another PORTFOLIO to your INVESTMENT</p>
+                    <p>Kindly log in to your portal to view the new investment details.</p>
+                    <p>If you need help or have any question, kindly send a response to partners@wosiwosi.co.uk</p>
+                    <p>Regards,<br>Wosiwosi Investment Team<br>Wosiwosi Foods UK Limited</p>
+                </div>
+            </body>
+            </html>`
+    };
     
+    transporter.sendMail(mailOptions);
+};
     
 
 module.exports={
@@ -926,5 +975,6 @@ module.exports={
   kycReminder:kycReminder,
   kycdone:kycdone,
   payoutNotification:payoutNotification,
-  passwordReset:passwordReset
+  passwordReset:passwordReset,
+  additionalInvesmentUpdate:additionalInvesmentUpdate
 }
