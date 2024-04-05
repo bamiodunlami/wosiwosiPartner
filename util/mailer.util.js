@@ -957,6 +957,54 @@ const additionalInvesmentUpdate= (to, bcc, fname) => {
     
     transporter.sendMail(mailOptions);
 };
+
+const sendPayOutReminder= (to, bcc, date, investor) => {
+    const mailOptions = {
+        from: '"Wosiwosi Investment" <info@wosiwosi.co.uk>',
+        to: to,
+        bcc,
+        subject: "INVESTOR PAYOUT REMINDER",
+        html: 
+            `<!DOCTYPE html>
+            <html>
+            <head>
+                <meta charset="UTF-8">
+                <title>INVESTOR PAYOUT REMINDER</title>
+                <style>
+                    body {
+                        font-family: Poppins, sans-serif;
+                        line-height: 1.6;
+                    }
+                    .container {
+                        max-width: 600px;
+                        margin: 0 auto;
+                        padding: 20px;
+                        text-align: left;
+                    }
+                    .disclaimer{
+                        font-size:11px;
+                    }
+                    h1 {
+                        color: #007519;
+                    }
+                    p {
+                        margin: 15px 0;
+                        font-size:18px;
+                    }
+                </style>
+            </head>
+            <body>
+                <div class="container">  
+                    <p> This is an INVESTOR PAYOUT REMINDER for ${date}th</p>
+                    <p>Investors to be paid includes ${investor}</p>
+                    <p>Regards,<br>Wosiwosi Investment Team<br>Wosiwosi Foods UK Limited</p>
+                </div>
+            </body>
+            </html>`
+    };
+    
+    transporter.sendMail(mailOptions);
+};
     
 
 module.exports={
@@ -976,5 +1024,6 @@ module.exports={
   kycdone:kycdone,
   payoutNotification:payoutNotification,
   passwordReset:passwordReset,
-  additionalInvesmentUpdate:additionalInvesmentUpdate
+  additionalInvesmentUpdate:additionalInvesmentUpdate,
+  sendPayOutReminder:sendPayOutReminder
 }
