@@ -58,30 +58,34 @@
                   <th scope="col">ROI Received</th>
                   <th scope="col">Start Date</th>
                   <th scope="col">End Date</th>
+                  <th scope="col">Action</th>
                 </tr>
               </thead>
               <tbody>
+                <% for(i=investor.investment.length-1; i>=0; i--){%>
                   <tr>
-                    <td><%=investor.investment[0].id%></td>
-                    <td><%=investor.investment[0].certificateNo%></td>
-                    <td><%=investor.investment[0].currency%> <%=investor.investment[0].amount%></td>
-                    <td><%=investor.investment[0].roiOption%>% <%=investor.investment[0].roiTime%></td>
-                    <td><%=investor.investment[0].roiTime%></td>
-                    <td><%=investor.investment[0].currency%><%=investor.investment[0].interest%></td>
-                    <td><%=investor.investment[0].payout%></td>
-                    <td><%=investor.investment[0].startDate%></td>
-                    <td><%=investor.investment[0].endDate%></td>
+                    <td><%=investor.investment[i].id%></td>
+                    <td><%=investor.investment[i].certificateNo%></td>
+                    <td><%=investor.investment[i].currency%> <%=investor.investment[i].amount%></td>
+                    <td><%=investor.investment[i].roiOption%>% <%=investor.investment[i].roiTime%></td>
+                    <td><%=investor.investment[i].roiTime%></td>
+                    <td><%=investor.investment[i].currency%><%=investor.investment[i].interest%></td>
+                    <td><%=investor.investment[i].payout%></td>
+                    <td><%=investor.investment[i].startDate%></td>
+                    <td><%=investor.investment[i].endDate%></td>
+                    <td>            
+                      <div>
+                      <a href="/paid?username=<%=investor.username%>&id=<%=investor.investment[i].id%>&currentPayOut=<%=investor.investment[i].payout%>" class="btn btn-sm btn-success">Paid</a>
+                      </div>
+                    </td>
                     <!-- <td ><=subscrber[i].interest.slice(0,2)></td> -->
                     <!-- Button trigger modal -->
                     <!-- <button type="button" class="btn btn-secondary btn-md" data-bs-toggle="modal" data-bs-target="#staticBackdrop">Add Partner</button> -->
                   </tr>
+                <%}%>
               </tbody>
           </table>
           <!-- Payment notification -->
-            <div>
-              <a href="/paid?username=<%=investor.username%>&id=<%=investor.investment[0].id%>&currentPayOut=<%=investor.investment[0].payout%>" class="btn btn-sm btn-success">Paid</a>
-            </div>
-          </div>
       </div>
 
       <!-- accorfion -->

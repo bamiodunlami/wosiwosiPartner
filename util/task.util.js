@@ -13,6 +13,7 @@ const investorDB = require (appRoot + "/model/user.model.js").User
 
 const mailer = require(appRoot + "/util/mailer.util.js");
 
+// function checks who to pay today
 async function readInvestorDate (){
     const investorDate = await investorDB.find({role:"investor"})
     for(let i=0; i<investorDate.length; i++){
