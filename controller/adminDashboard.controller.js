@@ -480,7 +480,7 @@ const renderInvestorPage= async (req, res)=>{
 const renderInvestorDash = async (req, res)=>{
 if(req.isAuthenticated()){
   const investor = await UserDB.findOne({username:req.body.email})
-  // console.log(investor)
+  // console.log(investor.investment[1])
   res.render('admin/investordash', {
     investor:investor,
     title:"Investor",
@@ -551,9 +551,9 @@ const kycdone = async (req, res) => {
 const paymentMade = async(req, res)=>{
   if(req.isAuthenticated()){
     let currentPayout = req.query.currentPayOut
-    const id = Number(req.query.id)
+    let id = Number(req.query.id)
     let updatePayout =  Number(currentPayout) + 1
-    // console.log(updatePayout)
+    // console.log(req.query.currentPayOut)
     const updateUser = await UserDB.updateOne(
       { username: req.query.username, "investment.id": id },
       {
@@ -562,7 +562,7 @@ const paymentMade = async(req, res)=>{
         },
       }
     );
-    mailer.payoutNotification(req.query.username, "seyiawo@wosiwosi.co.uk");
+    mailer.payoutNotification(req.query.username, "bamidele@wosiwosi.co.uk");
     res.redirect('adashboard/editpartner')
   }else{
 
