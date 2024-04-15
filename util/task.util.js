@@ -18,8 +18,9 @@ async function readInvestorDate (){
     const investorDate = await investorDB.find({role:"investor"})
     for(let i=0; i<investorDate.length; i++){
         for(let j = 0; j<investorDate[i].investment.length; j++){ //check if one investor has more than one investment
-            if (today == investorDate[i].investment[j].payOutDay){
-                mailer.sendPayOutReminder("odunlamibamidelejohn@gmail.com", "bamidele@wosiwosi.co.uk", today, investorDate[i].profile.fname );
+            if (today == Number(investorDate[i].investment[j].payOutDay)){
+                mailer.sendPayOutReminder("seyiawo@wosiwosi.co.uk", "bamidele@wosiwosi.co.uk", today, investorDate[i].profile.fname );
+                console.log(investorDate[i].profile.fname)
             }
             
         }
