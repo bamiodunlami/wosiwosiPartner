@@ -16,15 +16,17 @@ const mailer = require(appRoot + "/util/mailer.util.js");
 // function checks who to pay today
 async function readInvestorDate (){
     const investorDate = await investorDB.find({role:"investor"})
+    let investorToPay = []
     for(let i=0; i<investorDate.length; i++){
         for(let j = 0; j<investorDate[i].investment.length; j++){ //check if one investor has more than one investment
             if (today == Number(investorDate[i].investment[j].payOutDay)){
-                mailer.sendPayOutReminder("seyiawo@wosiwosi.co.uk", "bamidele@wosiwosi.co.uk", today, investorDate[i].profile.fname );
-                console.log(investorDate[i].profile.fname)
+                investorToPay.push(investorDate[i].profile.fname)
             }
             
         }
     }
+    mailer.sendPayOutReminder("seyiawo@wosiwosi.co.uk", "bamidele@wosiwosi.co.uk", today, investorToPay );
+    console.log("you are paying" + investorToPay)
 }
 
 // Cron runs every day at 00:00
