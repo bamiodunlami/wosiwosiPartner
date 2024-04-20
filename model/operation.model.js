@@ -3,39 +3,39 @@ const validator = require ('validator')
 module.exports=mongoose.connect('mongodb+srv://bamiodunlami:' + process.env.MONGODB_CODE + '@cluster0.cqoyphm.mongodb.net/?retryWrites=true&w=majority', {useNewUrlParser:true})
 
 
-const interestFormSchema = new mongoose.Schema({
-    fname:"string",
-    lname:"string",
-    email:"string",
-    phone:"string",
-    status:Boolean,
-    interest:"string",
-    address:"string",
-    postcode:"string",
-    country:"string",
-    startDate:"string",
-    action:"string",
-    comment:"string",
-    codeStatus:Boolean,
-    code:"string"
+// const interestFormSchema = new mongoose.Schema({
+//     fname:"string",
+//     lname:"string",
+//     email:"string",
+//     phone:"string",
+//     status:Boolean,
+//     interest:"string",
+//     address:"string",
+//     postcode:"string",
+//     country:"string",
+//     startDate:"string",
+//     action:"string",
+//     comment:"string",
+//     codeStatus:Boolean,
+//     code:"string"
 
-});
+// });
 
-const redundantSchema = new mongoose.Schema({
-  fname:"string",
-  lname:"string",
-  email:"string",
-  phone:"string",
-  interest:"string",
-  address:"string",
-  postcode:"string",
-  country:"string",
-  startDate:"string",
-  action:Boolean,
-  comment:"string",
-  codeStatus:Boolean,
-  code:"string"
-});
+// const redundantSchema = new mongoose.Schema({
+//   fname:"string",
+//   lname:"string",
+//   email:"string",
+//   phone:"string",
+//   interest:"string",
+//   address:"string",
+//   postcode:"string",
+//   country:"string",
+//   startDate:"string",
+//   action:Boolean,
+//   comment:"string",
+//   codeStatus:Boolean,
+//   code:"string"
+// });
 
 // const followupSchema = new mongoose.Schema({
 //     fname:"string",
@@ -98,9 +98,9 @@ const accessCodes = new mongoose.Schema({
 })
 
 
-const InterestForm = new mongoose.model('InterestForm', interestFormSchema);
+// const InterestForm = new mongoose.model('InterestForm', interestFormSchema);
 
-const RedundantDB = new mongoose.model('RedundantDB', redundantSchema);
+// const RedundantDB = new mongoose.model('RedundantDB', redundantSchema);
 
 const SubscriptionForm = new mongoose.model('SubscriptionForm', subscriptionFormSchema);
 
@@ -180,10 +180,10 @@ async function accessCodeGen(){
 
 module.exports = {
     mongoose:mongoose,
-    InterestForm:InterestForm,
-    SubscriptionForm:SubscriptionForm,
+    // InterestForm:InterestForm,
+    // SubscriptionForm:SubscriptionForm,
     // Followup:Followup,
     // Tosubscribe:Tosubscribe,
     AccessCode:AccessCode,
-    RedundantDB:RedundantDB
+    // RedundantDB:RedundantDB
 } 

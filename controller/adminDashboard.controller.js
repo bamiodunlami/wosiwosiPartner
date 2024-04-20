@@ -12,7 +12,7 @@ const passport = require(appRoot + "/util/passport.util.js");
 const interestDB = require(appRoot + "/model/operation.model.js").InterestForm;
 const subscrberDB = require(appRoot +"/model/operation.model.js").SubscriptionForm;
 const accessCodesDB = require(appRoot +"/model/operation.model.js").AccessCode;
-const UserDB = require(appRoot +"/model/user.model.js").User;
+const UserDB = require(appRoot +"/model/user.model.js");
 
 const mailer = require(appRoot + "/util/mailer.util.js");
 

@@ -9,7 +9,9 @@ const date = new Date()
 
 let today= date.getDate()
 
-const investorDB = require (appRoot + "/model/user.model.js").User
+const investorDB = require (appRoot + "/model/user.model.js")
+
+const influencer = require (appRoot + "/model/influence.model.js")
 
 const mailer = require(appRoot + "/util/mailer.util.js");
 
@@ -25,8 +27,15 @@ async function readInvestorDate (){
             
         }
     }
-    mailer.sendPayOutReminder("seyiawo@wosiwosi.co.uk", "bamidele@wosiwosi.co.uk", today, investorToPay );
-    console.log("you are paying" + investorToPay)
+
+    // when there is anyone to pay
+    if (investorToPay.length > 0){
+        mailer.sendPayOutReminder("seyiawo@wosiwosi.co.uk", "bamidele@wosiwosi.co.uk", today, investorToPay );
+        console.log("you are paying" + investorToPay)
+    }else{
+        console.log("NO one")
+    }
+
 }
 
 // Cron runs every day at 00:00

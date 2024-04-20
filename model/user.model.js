@@ -44,7 +44,8 @@ const userSchema = new mongoose.Schema({
 
 userSchema.plugin(passportLocalMongoose);
 
-const User = new mongoose.model('User', userSchema);
+// const User = new mongoose.model('User', userSchema);
+module.exports = new mongoose.model('User', userSchema);
 
 //  const investorPass= `${investor.fname.slice(0,3)}${investor.lname.slice(0,3)}${investor.phone.slice(9,11)}` //pasword form
 //DB Update and migration
@@ -74,10 +75,10 @@ async function migrateUsers() {
   }
   // migrateUsers();
 
-passport.use(User.createStrategy());
-passport.serializeUser(User.serializeUser());
-passport.deserializeUser(User.deserializeUser());
+// passport.use(User.createStrategy());
+// passport.serializeUser(User.serializeUser());
+// passport.deserializeUser(User.deserializeUser());
 
-module.exports = {
-    User:User,
-}
+// module.exports = {
+//     User:User,
+// }
