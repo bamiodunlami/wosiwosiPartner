@@ -39,7 +39,8 @@ const userSchema = new mongoose.Schema({
     role:"string",
     level:Number,
     kyc:Boolean,
-    wosiwosiAs:"string"
+    wosiwosiAs:"string",
+    id:String
 })
 
 userSchema.plugin(passportLocalMongoose);

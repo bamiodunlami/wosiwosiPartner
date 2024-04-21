@@ -20,8 +20,10 @@ router
     // if it's admin
     if(req.user.role == "admin"){
         res.redirect('/adashboard')
-    }else{
+    }else if(req.user.role == "investor"){
         res.redirect('/udashboard')       
+    }else{
+        res.redirect('/influencer')   
     }
 })
 

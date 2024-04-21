@@ -55,6 +55,9 @@ const adminDashboard =  require (appRoot + '/router/adminDashboard.router.js')
 // other operations
 const operation = require (appRoot + '/router/operation.router.js')
 
+// influencer router
+const influencer = require (appRoot + "/router/influencer.router.js")
+
 
 // Decalre router use
 app.use(userLoginRoute)
@@ -62,6 +65,7 @@ app.use(userDashboardRoute)
 app.use(masterAdminRegRoute)
 app.use(adminDashboard)
 app.use(operation)
+app.use(influencer)
 
 
 // 404

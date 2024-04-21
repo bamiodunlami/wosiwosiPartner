@@ -1,0 +1,34 @@
+<%- include("include/influencerHeader") -%>
+
+<div class="section default-padding">
+    <div class="container">
+        <div class="row">
+            <div class="col-sm-12">
+                <div class="influencer-intro">
+                    <h6 class="text-center influencer-name">Welcome</h6>
+                    <h6 class="text-center">Coupon code: <%=user.username%></h6>
+                    <h6 class="text-center">Percentage Off: <%=coupon.data.amount%>%</h6>
+                    <h6 class="text-center">Number of Usage: <%=coupon.data.usage_count%> </h6>
+                    
+                    <!-- Table -->
+                    <table class="table table-striped table-hover ">
+                        <thead>
+                          <tr>
+                            <th scope="col">SN</th>
+                            <th scope="col">Used by</th>
+                          </tr>
+                        </thead>
+                        <tbody>
+                          <% for (i=0; i<coupon.data.used_by.length; i++){%>
+                              <tr class="subscrber-details">
+                                <td><%=i+1%></td>
+                                <td><a href="order?number=<%=coupon.data.used_by[i]%>"><%=coupon.data.used_by[i]%></a></td>
+                              </tr>
+                          <%}%>
+                        </tbody>
+                    </table>
+                </div>
+            </div>
+
+<%- include("include/influencerFooter") -%>
+<%- include("include/footer") -%>

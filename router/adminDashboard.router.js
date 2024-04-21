@@ -37,5 +37,7 @@ router
 
 .get('/resetpass', dash.resetPassword)
 
+.post('/createinfluencer', dash.createInfluencer)
+
 module.exports=router
 

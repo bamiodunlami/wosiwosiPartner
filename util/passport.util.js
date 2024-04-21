@@ -8,7 +8,6 @@ const rootPath = path.resolve(process.cwd())
 appRoot.setPath(rootPath)
 
 const User = require (appRoot + '/model/user.model.js');
-const Influencer = require (appRoot + '/model/user.model.js');
 
 app.use(passport.initialize());
 
@@ -18,8 +17,6 @@ passport.use(User.createStrategy());
 passport.serializeUser(User.serializeUser());
 passport.deserializeUser(User.deserializeUser());
 
-passport.use(Influencer.createStrategy());
-passport.serializeUser(Influencer.serializeUser());
-passport.deserializeUser(Influencer.deserializeUser());
+
 
 module.exports = passport

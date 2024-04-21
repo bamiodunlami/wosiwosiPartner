@@ -11,8 +11,6 @@ let today= date.getDate()
 
 const investorDB = require (appRoot + "/model/user.model.js")
 
-const influencer = require (appRoot + "/model/influence.model.js")
-
 const mailer = require(appRoot + "/util/mailer.util.js");
 
 // function checks who to pay today
