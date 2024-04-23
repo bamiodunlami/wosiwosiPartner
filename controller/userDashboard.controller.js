@@ -8,7 +8,7 @@ const passport = require(appRoot + "/util/passport.util.js");
 
 const mailer = require(appRoot + "/util/mailer.util.js");
 
-const User = require(appRoot + "/model/user.model.js").User;
+const User = require(appRoot + "/model/user.model.js");
 
 // render user dashboard
 const userDashboard = (req, res) => {
@@ -80,6 +80,7 @@ const renderChangePassword = async (req, res) =>{
 
 const changePassword = async (req, res)=>{
   if(req.isAuthenticated()){
+    // console.log(req.body.username)
     const user= await User.findOne({username:req.body.username});
     await user.setPassword(req.body.password);
     const passSaved = await user.save(); //password reset

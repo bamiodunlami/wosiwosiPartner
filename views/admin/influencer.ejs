@@ -25,6 +25,7 @@
                       <tr>
                         <th scope="col">SN</th>
                         <th scope="col">Username</th>
+                        <th scope="col">Coupon</th>
                         <th scope="col">Usage</th>
                         <th scope="col">Accumulated</th>
                       </tr>
@@ -34,6 +35,7 @@
                           <tr>
                             <td><%=i+1%></td>
                             <td><%=influencer[i].username%></td>
+                            <td><%=influencer[i].coupon%></td>
                             <td></td>
                             <td></td>
                           </tr>
@@ -49,15 +51,24 @@
             <h6 class="text-center alert alert-dark">Create influencer</h6>
             <div>
               <form action="/createinfluencer" method="post">
+
+                <div class="mb-3">
+                  <label for="exampleFormControlTextarea1" class="form-label">Username</label>
+                  <input type="email" class="form-control" name="username" autocapitalize="Off">
+                </div>
+
+                <div class="mb-3">
+                  <label for="exampleFormControlTextarea1" class="form-label">Coupon Code</label>
+                  <input type="text" class="form-control" name="coupon" autocapitalize="Off">
+                </div>
+
                 <div class="mb-3">
                   <label for="exampleFormControlInput1" class="form-label">Influencer ID</label>
                   <input type="number" class="form-control" name="id" autocomplete="off">
                 </div>
-                <div class="mb-3">
-                  <label for="exampleFormControlTextarea1" class="form-label">Username</label>
-                  <input type="text" class="form-control" name="username" autocapitalize="Off">
-                </div>
+
                 <button type="submit" class="btn btn-md btn-success">Create</button>
+
               </form>
             </div>
           </div>

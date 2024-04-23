@@ -13,13 +13,17 @@ const woo= require (appRoot + "/util/woo.util.js")
 // influencer dashboard
 const influencerDashboard = async (req, res)=>{
     if(req.isAuthenticated()){
-        const coupon = await woo.get(`coupons/${33528}`,{
-        })
-        res.render('influencer/dashboard', {
-            title:"Influencer",
-            user:req.user,
-            coupon:coupon
-        })
+        if(req.user.passChange == true){
+            const coupon = await woo.get(`coupons/${33528}`,{
+            })
+            res.render('influencer/dashboard', {
+                title:"Influencer",
+                user:req.user,
+                coupon:coupon
+            })
+        }else{
+            res.redirect('/changepass')
+        }
     }else{
         res.redirect("/login")
     }

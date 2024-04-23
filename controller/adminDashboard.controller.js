@@ -718,22 +718,26 @@ const createInfluencer = async (req, res) => {
   if (req.isAuthenticated()) {
     const influencerUsername = req.body.username;
     const influencerId = req.body.id;
+    const coupon = req.body.coupon
 
-    const influnecerPassword = `${influencerUsername}${influencerId}`;
+    const influnecerPassword = `${coupon}${influencerId}`;
 
     const saveInfluencer = new UserDB({
       username: influencerUsername,
       id: influencerId,
       role: "influencer",
+      passChange:false,
+      coupon:coupon
     });
     const saveInfluencerDetails = await saveInfluencer.save();
 
-    const newInfluencer = await UserDB.findOne({username: influencerUsername});
+    const newInfluencer = await UserDB.findOne({username: influencerUsername, role:"influencer"});
     await newInfluencer.setPassword(influnecerPassword); // create password
     await newInfluencer.save(); //save password
 
     if (newInfluencer) {
       res.redirect(req.headers.referer);
+      mailer.mailPortalDetails(influencerUsername, "media@wosiwosi.co.uk", coupon, influencerUsername, influnecerPassword)
     } else {
     }
 

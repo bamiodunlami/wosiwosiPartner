@@ -7,7 +7,7 @@
             <!-- coupon details -->
                 <div class="col-md-6 col-sm-12 alert alert-light">
                     <h6 class="">Date creates: <%=coupon.data.date_created_gmt.slice(0,10)%></h6>
-                    <h6 class="">Coupon code: <%=user.username%></h6>
+                    <h6 class="">Coupon code: <%=user.coupon%></h6>
                     <h6 class="">Percentage Off: <%=coupon.data.amount%>%</h6>
                 </div>      
                 
@@ -40,6 +40,12 @@
                     </div>
                 </div>
         </div>
+
+        <div class="text-center" style="margin-top: 10px;">
+            <a href="/logout" class="btn btn-danger btn-md">Logout</a>  
+        </div>
+
+
     </div>
 </div>
 
