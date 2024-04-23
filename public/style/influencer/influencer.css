@@ -50,6 +50,11 @@ h6{
     color: #00884d;
 }
 
+.influencer-data-table{
+    height: 60vh;
+    overflow-y: scroll;
+}
+
 
 
   /* mobile */

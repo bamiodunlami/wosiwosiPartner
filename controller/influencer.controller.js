@@ -13,9 +13,8 @@ const woo= require (appRoot + "/util/woo.util.js")
 // influencer dashboard
 const influencerDashboard = async (req, res)=>{
     if(req.isAuthenticated()){
-        const coupon = await woo.get(`coupons/${req.user.id}`,{
+        const coupon = await woo.get(`coupons/${33528}`,{
         })
-        console.log(coupon.data._links.collection)
         res.render('influencer/dashboard', {
             title:"Influencer",
             user:req.user,
@@ -26,18 +25,19 @@ const influencerDashboard = async (req, res)=>{
     }
 }
 
-// coupoin used by
+// coupon used by
 const usedBy = async (req, res)=>{
     if(req.isAuthenticated()){
-        console.log(req.query.number)
-        // try{
-            const order = await woo.get(`orders/${req.query.number}`)
-            console.log(order)
+        // console.log(req.query.number)
+        try{
+            const customer = await woo.get(`customers/${req.query.number}`)
             res.render("influencer/order",{
-                title:"Order",
-                order:order
+                title:"Used By",
+                customer:customer
             })
-        // }catch(e){}
+        }catch(e){
+            res.redirect(req.headers.referer)
+        }
 
     }else{
         res.redirect("/login")

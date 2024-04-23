@@ -13,15 +13,13 @@ router
 
 .get ('/adashboard/:operation', dash.adminOperation) //each routh after the path
 
-.post('/createInvestor', dash.createInvestor) //create user
+.post('/createInvestor', dash.createInvestor) //create user (Investor)
 
-.post('/idetails', dash.fetchInvestorDetails) //subscriber details fetch
+.post('/idetails', dash.fetchInvestorDetails) //subscriber details fetch to be converted into investor
 
-.post('/interest/:request', dash.interestOperation) //interest operation
+.post('/interest/:request', dash.interestOperation) //interest operation post method
 
-.get('/interest/:request', dash.interestSectionOperation) //interest operation
-
-.post('/investorpage', dash.renderInvestorDash) // render investor dashboar
+.get('/interest/:request', dash.interestOperationGet) //interest operation get method
 
 .post('/investorpage/:operation', dash.investorPageOperation) //operation
 
@@ -31,13 +29,13 @@ router
 
 .post('/updatekyc', dash.kycdone) //kyc done
 
-.get('/paid', dash.paymentMade)
+.get('/paid', dash.paymentMade) //payment made
 
-.get('/export', dash.exportCSV)
+.get('/export', dash.exportCSV) //export investor
 
-.get('/resetpass', dash.resetPassword)
+.get('/resetpass', dash.resetPassword) //investor password reset
 
-.post('/createinfluencer', dash.createInfluencer)
+.post('/createinfluencer', dash.createInfluencer) //create influencer
 
 module.exports=router
 

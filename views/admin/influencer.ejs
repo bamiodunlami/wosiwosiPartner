@@ -14,6 +14,7 @@
         </div>
 
         <div class="row">
+          <!-- influencer list -->
           <div class="col-md-6 influencer-col">
             <h6 class="text-center alert alert-dark">Influencer Monitor</h6>
             <div class="interest-page-bar">
@@ -29,24 +30,32 @@
                       </tr>
                     </thead>
                     <tbody>
-
+                      <% for (i=0; i<influencer.length; i++){%>
+                          <tr>
+                            <td><%=i+1%></td>
+                            <td><%=influencer[i].username%></td>
+                            <td></td>
+                            <td></td>
+                          </tr>
+                        <%}%>
                     </tbody>
                   </table>
                 </div>
             </div>
           </div>
 
+          <!-- create influencer -->
           <div class="col-md-6 influencer-col">
             <h6 class="text-center alert alert-dark">Create influencer</h6>
             <div>
               <form action="/createinfluencer" method="post">
                 <div class="mb-3">
                   <label for="exampleFormControlInput1" class="form-label">Influencer ID</label>
-                  <input type="number" class="form-control" name="id">
+                  <input type="number" class="form-control" name="id" autocomplete="off">
                 </div>
                 <div class="mb-3">
                   <label for="exampleFormControlTextarea1" class="form-label">Username</label>
-                  <input type="text" class="form-control" name="username">
+                  <input type="text" class="form-control" name="username" autocapitalize="Off">
                 </div>
                 <button type="submit" class="btn btn-md btn-success">Create</button>
               </form>
