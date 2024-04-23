@@ -47,5 +47,5 @@ const usedBy = async (req, res)=>{
 
 module.exports={
     influencerDashboard:influencerDashboard,
-    usedBy:usedBy
+    usedBy:usedBy,
 }
