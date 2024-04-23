@@ -737,7 +737,7 @@ const createInfluencer = async (req, res) => {
 
     if (newInfluencer) {
       res.redirect(req.headers.referer);
-      mailer.mailPortalDetails(influencerUsername, "media@wosiwosi.co.uk", coupon, influencerUsername, influnecerPassword)
+      mailer.mailInfluencerDetails(influencerUsername, "media@wosiwosi.co.uk", coupon, influencerUsername, influnecerPassword)
     } else {
     }
 
