@@ -14,7 +14,7 @@ const woo= require (appRoot + "/util/woo.util.js")
 const influencerDashboard = async (req, res)=>{
     if(req.isAuthenticated()){
         if(req.user.passChange == true){
-            const coupon = await woo.get(`coupons/${33528}`,{
+            const coupon = await woo.get(`coupons/${req.user.id}`,{
             })
             res.render('influencer/dashboard', {
                 title:"Influencer",
