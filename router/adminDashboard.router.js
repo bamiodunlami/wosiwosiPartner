@@ -13,13 +13,15 @@ router
 
 .get ('/adashboard/:operation', dash.adminOperation) //each routh after the path
 
-.post('/createInvestor', dash.createInvestor) //create user (Investor)
-
-.post('/idetails', dash.fetchInvestorDetails) //subscriber details fetch to be converted into investor
-
 .post('/interest/:request', dash.interestOperation) //interest operation post method
 
 .get('/interest/:request', dash.interestOperationGet) //interest operation get method
+
+.post('/idetails', dash.fetchInvestorDetails) //subscriber details fetch to be converted into investor
+
+.post('/createInvestor', dash.createInvestor) //create user (Investor)
+
+.post ('/investopage', dash.renderInvestorDash) //render individual investor page
 
 .post('/investorpage/:operation', dash.investorPageOperation) //operation
 
