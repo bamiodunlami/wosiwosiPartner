@@ -21,7 +21,7 @@ router
 
 .post('/createInvestor', dash.createInvestor) //create user (Investor)
 
-.post ('/investopage', dash.renderInvestorDash) //render individual investor page
+.post ('/investorpage', dash.renderInvestorDash) //render individual investor page
 
 .post('/investorpage/:operation', dash.investorPageOperation) //operation
 
