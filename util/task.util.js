@@ -29,7 +29,7 @@ async function readInvestorDate (){
     // when there is anyone to pay
     if (investorToPay.length > 0){
         mailer.sendPayOutReminder("seyiawo@wosiwosi.co.uk", "bamidele@wosiwosi.co.uk", today, investorToPay );
-        console.log("you are paying" + investorToPay)
+        // console.log("you are paying" + investorToPay)
     }else{
         console.log("NO one")
     }
