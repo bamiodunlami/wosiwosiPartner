@@ -29,6 +29,7 @@ async function readInvestorDate (){
     // when there is anyone to pay
     if (investorToPay.length > 0){
         // mailer.sendPayOutReminder("seyiawo@wosiwosi.co.uk", "bamidele@wosiwosi.co.uk", today, investorToPay );
+        mailer.TestCronMail("odunlamibamidelejohn@gmail.com");
         console.log("you are paying " + investorToPay + " " )
     }else{
         console.log("NO one")
@@ -37,7 +38,7 @@ async function readInvestorDate (){
 }
 
 // Cron runs every day at 00:00
-cron.schedule('30 19 * * *', () => {
+cron.schedule('0 20 * * *', () => {
     readInvestorDate()
 },{
     scheduled: true,
