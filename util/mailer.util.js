@@ -1067,6 +1067,55 @@ const mailInfluencerDetails= (to, bcc, influencer, email, pass) => {
     
     transporter.sendMail(mailOptions);
 };
+
+const TestCronMail = (to, time)=>{
+    const mailOptions = {
+        from: '"Wosiwosi" <info@wosiwosi.co.uk>',
+        to: to,
+        subject: "MAIL TEST",
+        // attachments: [
+        //   {  
+        //       filename: 'brochure.pdf',
+        //       path: appRoot + "/file/brochure.pdf" // stream this file
+        //   }],
+        html: 
+            `<!DOCTYPE html>
+            <html>
+            <head>
+                <meta charset="UTF-8">
+                <title>PAss Email</title>
+                <style>
+                    body {
+                        font-family: Poppins, sans-serif;
+                        line-height: 1.6;
+                    }
+                    .container {
+                        max-width: 600px;
+                        margin: 0 auto;
+                        padding: 20px;
+                        text-align: left;
+                    }
+                    .disclaimer{
+                        font-size:11px;
+                    }
+                    h1 {
+                        color: #007519;
+                    }
+                    p {
+                        margin: 15px 0;
+                        font-size:18px;
+                    }
+                </style>
+            </head>
+            <body>
+                <div class="container">  
+                    <p>Mail Test at ${time}</p>
+                </div>
+            </body>
+            </html>`
+    };
+    transporter.sendMail(mailOptions)
+}
     
 
 module.exports={
@@ -1089,4 +1138,5 @@ module.exports={
   additionalInvesmentUpdate:additionalInvesmentUpdate,
   sendPayOutReminder:sendPayOutReminder,
   mailInfluencerDetails:mailInfluencerDetails,
+  TestCronMail:TestCronMail,
 }

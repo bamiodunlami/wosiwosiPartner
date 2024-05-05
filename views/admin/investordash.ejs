@@ -55,6 +55,7 @@
                   <th scope="col">% ROI</th>
                   <th scope="col">Frequency</th>
                   <th scope="col">ROI</th>
+                  <th scope="col">Pay Day</th>
                   <th scope="col">ROI Received</th>
                   <th scope="col">Start Date</th>
                   <th scope="col">End Date</th>
@@ -67,9 +68,14 @@
                     <td><%=investor.investment[i].id%></td>
                     <td><%=investor.investment[i].certificateNo%></td>
                     <td><%=investor.investment[i].currency%> <%=investor.investment[i].amount%></td>
-                    <td><%=investor.investment[i].roiOption%>% <%=investor.investment[i].roiTime%></td>
+                    <td><%=investor.investment[i].roiOption%></td>
                     <td><%=investor.investment[i].roiTime%></td>
                     <td><%=investor.investment[i].currency%><%=investor.investment[i].interest%></td>
+                    <%if( investor.investment[i].payOutDay == 0){%>
+                      <td>-</td>
+                    <%}else{%>
+                      <td><%=investor.investment[i].payOutDay%>th Monthly</td>
+                    <%}%>
                     <td><%=investor.investment[i].payout%></td>
                     <td><%=investor.investment[i].startDate%></td>
                     <td><%=investor.investment[i].endDate%></td>
