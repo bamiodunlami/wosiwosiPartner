@@ -619,34 +619,39 @@ const exportCSV = async (req, res) => {
     let myPayDay;
     let expectedEndPayment;
 
-    if (investor[i].investment[0].roiTime == "Annually") {
-      monthlyInterestDue = investor[i].investment[0].amount * 0.016666;
-      myPayDay = investor[i].investment[0].endDate;
-      expectedEndPayment =
-        Number(investor[i].investment[0].amount) +
-        Number(investor[i].investment[0].interest);
-    } else if (investor[i].investment[0].roiTime == "Monthly") {
-      monthlyInterestDue = investor[i].investment[0].interest;
-      myPayDay = investor[i].investment[0].payOutDay + "th monthly";
-      expectedEndPayment = investor[i].investment[0].amount;
-    }
+    for (const investment of investor[i].investment){
+      // console.log(investment)
+    
+      if (investment.roiTime == "Annually") {
+        monthlyInterestDue = investment.amount * 0.016666;
+        myPayDay = investment.endDate;
+        expectedEndPayment =
+          Number(investment.amount) +
+          Number(investment.interest);
+      } else if (investment.roiTime == "Monthly") {
+        monthlyInterestDue = investment.interest;
+        myPayDay = investment.payOutDay + "th monthly";
+        expectedEndPayment = investment.amount;
+      }
 
-    User.push({
-      fname: investor[i].profile.fname,
-      lname: investor[i].profile.lname,
-      certificateNo: investor[i].investment[0].certificateNo,
-      investment: investor[i].investment[0].amount,
-      startDate: investor[i].investment[0].startDate,
-      frequency: investor[i].investment[0].roiTime,
-      monthlyInterest: monthlyInterestDue,
-      totalPayable: monthlyInterestDue * 12,
-      interestPaid: investor[i].investment[0].payout * monthlyInterestDue,
-      interestDueDate: myPayDay,
-      investmentExpire: investor[i].investment[0].endDate,
-      totalDueOnExpire: expectedEndPayment,
-    });
+      User.push({
+        fname: investor[i].profile.fname,
+        lname: investor[i].profile.lname,
+        certificateNo: investment.certificateNo,
+        investment: investment.amount,
+        startDate: investment.startDate,
+        frequency: investment.roiTime,
+        monthlyInterest: monthlyInterestDue,
+        totalPayable: monthlyInterestDue * 12,
+        interestPaid: investment.payout * monthlyInterestDue,
+        interestDueDate: myPayDay,
+        investmentExpire: investment.endDate,
+        totalDueOnExpire: expectedEndPayment,
+      });
+    }
   }
   // console.log(user)
+  // convert to excel
   const workbook = new excelJS.Workbook();
   const worksheet = workbook.addWorksheet("Investors");
 
