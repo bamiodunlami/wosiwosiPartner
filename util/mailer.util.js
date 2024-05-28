@@ -352,7 +352,7 @@ const paymentConfirmation = (to, bcc, fname, currency, amount) => {
             </html>`
     };
   
-    transporter.sendMail(mailOptions);
+    transporter.sendMail(mailOptions)
   };
   
 const ceoWelcoming = (to, bcc, fname) => {

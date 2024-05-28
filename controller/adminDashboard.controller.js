@@ -10,7 +10,8 @@ const excelJS = require("exceljs");
 
 const passport = require(appRoot + "/util/passport.util.js");
 const interestDB = require(appRoot + "/model/operation.model.js").InterestForm;
-const subscrberDB = require(appRoot + "/model/operation.model.js").SubscriptionForm;
+const subscrberDB = require(appRoot +
+  "/model/operation.model.js").SubscriptionForm;
 const UserDB = require(appRoot + "/model/user.model.js");
 
 const mailer = require(appRoot + "/util/mailer.util.js");
@@ -68,7 +69,7 @@ const adminOperation = async (req, res) => {
         // console.log(influence)
         res.render("admin/influencer", {
           title: "Influencer",
-          influencer:influence
+          influencer: influence,
         });
         break;
 
@@ -364,7 +365,6 @@ const interestOperationGet = async (req, res) => {
   }
 };
 
-
 // fetch subsbcriber details to be sent via ajax
 const fetchInvestorDetails = async (req, res) => {
   if (req.isAuthenticated()) {
@@ -498,7 +498,6 @@ const createInvestor = async (req, res) => {
   }
 };
 
-
 // render individual investor dashboard to admin
 const renderInvestorDash = async (req, res) => {
   if (req.isAuthenticated()) {
@@ -619,15 +618,14 @@ const exportCSV = async (req, res) => {
     let myPayDay;
     let expectedEndPayment;
 
-    for (const investment of investor[i].investment){
+    for (const investment of investor[i].investment) {
       // console.log(investment)
-    
+
       if (investment.roiTime == "Annually") {
         monthlyInterestDue = investment.amount * 0.016666;
         myPayDay = investment.endDate;
         expectedEndPayment =
-          Number(investment.amount) +
-          Number(investment.interest);
+          Number(investment.amount) + Number(investment.interest);
       } else if (investment.roiTime == "Monthly") {
         monthlyInterestDue = investment.interest;
         myPayDay = investment.payOutDay + "th monthly";
@@ -695,25 +693,22 @@ const resetPassword = async (req, res) => {
   const user = await UserDB.findOne({ username: req.query.username });
   let newPass =
     user.profile.fname.slice(0, 2) + user.profile.phone.slice(7, 11);
-  // console.log(newPass)
+  console.log(newPass);
   const updatePassChange = await UserDB.updateOne(
-    { username: req.query.username },
+    {username: req.query.username},
     {
       $set: {
         passChange: false,
       },
-    }
-  );
-  // console.log(updatePassChange)
+  });
+  // console.log(updatePassChange);
   if (updatePassChange.modifiedCount == 1) {
+    console.log("Changed")
     await user.setPassword(newPass); // create password
     await user.save(); //save password
-    mailer.passwordReset(
-      user.username,
-      "bamidele@wosiwosi.co.uk",
-      user.profile.fname,
-      newPass
-    );
+    mailer.passwordReset( user.username, "bamidele@wosiwosi.co.uk", user.profile.fname, newPass);
+  } else {
+    console.log("not change");
   }
   res.redirect("/adashboard/editpartner");
 };
@@ -723,7 +718,7 @@ const createInfluencer = async (req, res) => {
   if (req.isAuthenticated()) {
     const influencerUsername = req.body.username;
     const influencerId = req.body.id;
-    const coupon = req.body.coupon
+    const coupon = req.body.coupon;
 
     const influnecerPassword = `${coupon}${influencerId}`;
 
@@ -731,21 +726,29 @@ const createInfluencer = async (req, res) => {
       username: influencerUsername,
       id: influencerId,
       role: "influencer",
-      passChange:false,
-      coupon:coupon
+      passChange: false,
+      coupon: coupon,
     });
     const saveInfluencerDetails = await saveInfluencer.save();
 
-    const newInfluencer = await UserDB.findOne({username: influencerUsername, role:"influencer"});
+    const newInfluencer = await UserDB.findOne({
+      username: influencerUsername,
+      role: "influencer",
+    });
     await newInfluencer.setPassword(influnecerPassword); // create password
     await newInfluencer.save(); //save password
 
     if (newInfluencer) {
       res.redirect(req.headers.referer);
-      mailer.mailInfluencerDetails(influencerUsername, "media@wosiwosi.co.uk", coupon, influencerUsername, influnecerPassword)
+      mailer.mailInfluencerDetails(
+        influencerUsername,
+        "media@wosiwosi.co.uk",
+        coupon,
+        influencerUsername,
+        influnecerPassword
+      );
     } else {
     }
-
   } else {
     res.redirect("/login");
   }
