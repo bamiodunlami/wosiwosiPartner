@@ -1068,7 +1068,7 @@ const mailInfluencerDetails= (to, bcc, influencer, email, pass) => {
     transporter.sendMail(mailOptions);
 };
 
-const TestCronMail = (to)=>{
+const TestCronMail = (to, date, investor)=>{
     const mailOptions = {
         from: '"Wosiwosi" <info@wosiwosi.co.uk>',
         to: to,
@@ -1109,7 +1109,7 @@ const TestCronMail = (to)=>{
             </head>
             <body>
                 <div class="container">  
-                    <p>Mail Test at</p>
+                    <p>A cron test for ${date}, and investor to pay ${investor} </p>
                 </div>
             </body>
             </html>`

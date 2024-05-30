@@ -5,8 +5,9 @@ const path = require("path");
 const rootPath = path.resolve(process.cwd());
 appRoot.setPath(rootPath);
 
-const date = new Date()
 
+
+const date = new Date()
 let today= date.getDate()
 
 const investorDB = require (appRoot + "/model/user.model.js")
@@ -25,19 +26,22 @@ async function readInvestorDate (){
             
         }
     }
-
     // when there is anyone to pay
     if (investorToPay.length > 0){
         mailer.sendPayOutReminder("seyiawo@wosiwosi.co.uk", "bamidele@wosiwosi.co.uk", today, investorToPay );
+        console.log(date.toJSON())
         console.log("you are paying " + investorToPay + " " )
     }else{
+        console.log(date.toJSON())
         console.log("NO one")
     }
 
 }
+// console.log(date.toJSON())
+
 
 // Cron runs every day at 00:00
-cron.schedule('0 0 * * *', () => {
+cron.schedule('50 14 * * *', () => {
     readInvestorDate()
 },{
     scheduled: true,
