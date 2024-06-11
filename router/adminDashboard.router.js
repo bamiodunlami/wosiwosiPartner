@@ -37,7 +37,6 @@ router
 
 .get('/resetpass', dash.resetPassword) //investor password reset
 
-.post('/createinfluencer', dash.createInfluencer) //create influencer
 
 module.exports=router
 

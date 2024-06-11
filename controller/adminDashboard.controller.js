@@ -713,46 +713,6 @@ const resetPassword = async (req, res) => {
   res.redirect("/adashboard/editpartner");
 };
 
-// create influencer
-const createInfluencer = async (req, res) => {
-  if (req.isAuthenticated()) {
-    const influencerUsername = req.body.username;
-    const influencerId = req.body.id;
-    const coupon = req.body.coupon;
-
-    const influnecerPassword = `${coupon}${influencerId}`;
-
-    const saveInfluencer = new UserDB({
-      username: influencerUsername,
-      id: influencerId,
-      role: "influencer",
-      passChange: false,
-      coupon: coupon,
-    });
-    const saveInfluencerDetails = await saveInfluencer.save();
-
-    const newInfluencer = await UserDB.findOne({
-      username: influencerUsername,
-      role: "influencer",
-    });
-    await newInfluencer.setPassword(influnecerPassword); // create password
-    await newInfluencer.save(); //save password
-
-    if (newInfluencer) {
-      res.redirect(req.headers.referer);
-      mailer.mailInfluencerDetails(
-        influencerUsername,
-        "media@wosiwosi.co.uk",
-        coupon,
-        influencerUsername,
-        influnecerPassword
-      );
-    } else {
-    }
-  } else {
-    res.redirect("/login");
-  }
-};
 
 module.exports = {
   adashboard: adashboard,
@@ -770,5 +730,4 @@ module.exports = {
   paymentMade: paymentMade,
   exportCSV: exportCSV,
   resetPassword: resetPassword,
-  createInfluencer: createInfluencer,
 };
