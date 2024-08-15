@@ -635,6 +635,7 @@ const exportCSV = async (req, res) => {
       User.push({
         fname: investor[i].profile.fname,
         lname: investor[i].profile.lname,
+        relationship:investor[i].wosiwosiAs,
         certificateNo: investment.certificateNo,
         investment: investment.amount,
         startDate: investment.startDate,
@@ -657,6 +658,7 @@ const exportCSV = async (req, res) => {
   worksheet.columns = [
     { header: "First Name", key: "fname", width: 25 },
     { header: "Last Name", key: "lname", width: 25 },
+    {header: "Relationship", key:"relationship", with:25},
     { header: "Certificate NO", key: "certificateNo", width: 25 },
     { header: "Investment Amount (£)", key: "investment", width: 25 },
     { header: "Investment Start Date", key: "startDate", width: 25 },
@@ -691,8 +693,7 @@ const exportCSV = async (req, res) => {
 // reset investor password
 const resetPassword = async (req, res) => {
   const user = await UserDB.findOne({ username: req.query.username });
-  let newPass =
-    user.profile.fname.slice(0, 2) + user.profile.phone.slice(7, 11);
+  let newPass = user.profile.fname.slice(0, 2) + user.profile.phone.slice(7, 11);
   console.log(newPass);
   const updatePassChange = await UserDB.updateOne(
     {username: req.query.username},
