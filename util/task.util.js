@@ -39,7 +39,7 @@ async function readInvestorDate (){
 
 
 // Cron runs every day at 00:00
-cron.schedule('0 8 * * *', () => {
+cron.schedule('* 8 * * *', () => {
     readInvestorDate();
 },{
     scheduled: true,

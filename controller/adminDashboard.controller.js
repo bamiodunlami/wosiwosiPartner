@@ -635,6 +635,8 @@ const exportCSV = async (req, res) => {
       User.push({
         fname: investor[i].profile.fname,
         lname: investor[i].profile.lname,
+        phone: investor[i].profile.phone,
+        email: investor[i].username,
         relationship:investor[i].wosiwosiAs,
         certificateNo: investment.certificateNo,
         investment: investment.amount,
@@ -658,6 +660,8 @@ const exportCSV = async (req, res) => {
   worksheet.columns = [
     { header: "First Name", key: "fname", width: 25 },
     { header: "Last Name", key: "lname", width: 25 },
+    { header: "Phone", key: "phone", width: 25 },
+    { header: "Email", key: "email", width: 25 },
     {header: "Relationship", key:"relationship", with:25},
     { header: "Certificate NO", key: "certificateNo", width: 25 },
     { header: "Investment Amount (£)", key: "investment", width: 25 },
