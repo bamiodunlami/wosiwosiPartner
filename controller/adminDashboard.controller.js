@@ -251,7 +251,7 @@ const interestOperation = async (req, res) => {
 
       // resend subscription form
       case "tosubscribed":
-        mailer.sendSubscriptionForm(req.body.email, "tinukeawo@wosiwosi.co.uk");
+        mailer.sendSubscriptionForm(req.body.email, "bamidele@wosiwosi.co.uk");
         res.redirect(req.headers.referer);
         // const checkTosub = await toSubscribeDB.findOne({ email: req.body.email })
         // if(checkTosub){
