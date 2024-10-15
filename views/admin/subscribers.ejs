@@ -3,168 +3,133 @@
 <div class="interest-page-dashboard">
   <div class="container">
 
-        <div class="row">
-          <div class="user-details">
-              <div class="d-flex flex-row justify-content-center">
-                  <div class="">
-                    <a class="btn btn-dark btn-sm" href="/adashboard/interest"><i class="fa-solid fa-arrow-left fa-lg"></i> Back</a>
-                  </div>
-                <!-- <div class="">
-                  <a class="btn btn-success btn-sm" href="/interest/subscribers">Interested</a>
-                </div> -->
-              </div>
-          </div>
-        </div>
-
     <div class="row">
       <div class="col-sm-12">
         <div class="interest-page-bar">
-          <br>
-          <h6 class="text-center">Subscribed and awaiting payment</h6>
-          <br>
+
+          <p class="text-center alert alert-dark">Subscribed awaiting payment</p>
+
             <div class="interest-table">
               <table class="table table-striped table-hover ">
                 <thead>
                   <tr>
-                    <th scope="col">SN</th>
                     <th scope="col">First Name</th>
                     <th scope="col">Last Name</th>
                     <th scope="col">Email</th>
                     <th class="scope">Phone</th>
-                    <!-- <th class="scope">Address</th> -->
-                    <th class="scope">Comment</th>
-                      <th class="scope">Action</th>
-                      <th class="scope">Action</th>
-                      <th class="scope">Action</th>
+                    <th class="scope">Action</th>
+                    <th class="scope">Action</th>
                   </tr>
                 </thead>
                 <tbody>
                   <% for (i=int.length-1; i>=0; i--){%>
                       <tr class="subscrber-details">
-                        <td><%=i+1%></td>
                         <td><%=int[i].fname%></td>
                         <td><%=int[i].lname%></td>
-                       <td><%=int[i].email%></td>
+                        <td><%=int[i].email%></td>
                         <td><%=int[i].phone%></td>
-                        <!-- <td><=int[i].address> <=int[i].postcode%> <=int[i].country></td> -->
-                        <td><%=int[i].comment%></td>
-                        <td>
-                          <form action="/interest/deleteinterest" method="post">
-                            <input type="hidden" name="email" value="<%=int[i].email%>">
-                            <button type="submit" class="btn btn-danger btn-sm">Delete</button>
-                          </form>
-                        </td>
+                        
+                        <td><a href="/delete-subscriber?id=<%=int[i].email%>" class="btn btn-danger btn-sm">Delete</button></td>
   
-                        <td>         
-                          <form action="/interest/subscriber_comment" method="post">
-                          <div class="row">
-                              <div class="col-6">
-                                <input type="hidden" name="email" value="<%=int[i].email%>">
-                                <input class="form-control" type=" text " name="comment" required placeholder="comment">
-                              </div>
-                              <div class="col-6">
-                                <button type="submit" class="btn btn-warning btn-sm">Update</button> 
-                              </div>
-                            </div>
-                          </form>
-                        </td>
-
-                        <td>         
-                          <button data-bs-toggle="modal" data-bs-target="#staticBackdrop" type="submit" class="btn btn-success btn-sm">View</button> 
-                        </td>
+                        <td><button data-bs-toggle="modal" data-bs-target="#staticBackdrop" type="submit" class="btn btn-success btn-sm">View</button></td>
   
-                                <!-- Modal -->
-                            <div class="modal fade" id="staticBackdrop" data-bs-backdrop="static" data-bs-keyboard="false" tabindex="-1" aria-labelledby="staticBackdropLabel" aria-hidden="true">
-                                  <div class="modal-dialog">
-                                  <div class="modal-content">
-                                      <div class="modal-header">
-                                      <h1 class="modal-title fs-5" id="staticBackdropLabel">Investor</h1>
-                                      <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
-                                      </div>
-                                      <div class="modal-body">
-                                        <!-- loading -->
-                                          <div class="text-center" id="loading">
-                                            <div class="spinner-border" style="width: 3rem; height: 3rem;" role="status">
-                                              <span class="visually-hidden">Loading...</span>
-                                            </div>
-                                          </div>
-                                          <!--  -->
-                                        <div class="text-start hidden" id="detailsBar">
-                                          <form action="/createInvestor" method="post">
-                                              <div class="mb-2">
-                                                  <label for="exampleFormControlInput1" class="form-label">First Name</label>
-                                                  <h6 id="fname"></h6>
-                                                </div>
-                                                <div class="mb-2">
-                                                  <label for="exampleFormControlTextarea1" class="form-label">Last Name</label>
-                                                  <h6 id="lname"></h6>
-                                                </div>
-                                                <div class="mb-2">
-                                                  <label for="exampleFormControlTextarea1" class="form-label">Email</label>
-                                                  <h6 id="email"></h6>
-                                                </div>
-                                                <div class="mb-2">
-                                                  <label for="exampleFormControlTextarea1" class="form-label">Phone number</label>
-                                                  <h6 id="phone"></h6>
-                                                </div>
-                                                <div class="mb-2">
-                                                  <label for="exampleFormControlTextarea1" class="form-label">Address</label>
-                                                  <h6 id="address"></h6>
-                                                </div>
-                                                <hr>
-                                                
-                                                <div class="mb-2">
-                                                  <label for="exampleFormControlTextarea1" class="form-label">Interest</label>
-                                                  <h6><span id="currency"></span><span id="interest"></span></h6>
-                                                </div>
-
-                                                <div class="mb-2">
-                                                  <label for="exampleFormControlTextarea1" class="form-label">ROI Option</label>
-                                                  <h6><span id="roiOption"></span>%</h6>
-                                                </div>
-
-                                                <div class="mb-2">
-                                                  <label for="exampleFormControlTextarea1" class="form-label">ROI Cellection</label>
-                                                  <h6><span id="rioTime"></span></h6>
-                                                </div>
-
-                                                <div class="mb-2">
-                                                  <label for="exampleFormControlTextarea1" class="form-label">Start Date</label>
-                                                  <input type="date" class="form-control" name="startDate" required>
-                                                </div>
-
-                                                <div class="mb-2">
-                                                  <label for="exampleFormControlTextarea1" class="form-label">End Date</label>
-                                                  <input type="date" class="form-control" name="endDate" required>
-                                                </div>
-
-                                                <div class="mb-2">
-                                                  <label for="exampleFormControlTextarea1" class="form-label">Certificate Number</label>
-                                                  <input type="text" class="form-control" name="certificateNo" required>
-                                                </div>
-
-                                                <div class="mb-2">
-                                                  <label for="exampleFormControlTextarea1" class="form-label">Payout Day</label>
-                                                  <input type="number" class="form-control" name="payOutDay" required>
-                                                </div>
-
-                                                  <input type="hidden" name="email" class="form-control" id="emailTag"> 
-                                                  <button type="submit"  class="btn btn-success btn-sm">Add to investor</button>
-                                          </form>    
+                        <!-- Modal -->
+                        <div class="modal fade" id="staticBackdrop" data-bs-backdrop="static" data-bs-keyboard="false" tabindex="-1" aria-labelledby="staticBackdropLabel" aria-hidden="true">
+                              <div class="modal-dialog">
+                              <div class="modal-content">
+                                  <div class="modal-header">
+                                  <h1 class="modal-title fs-5" id="staticBackdropLabel">Investor</h1>
+                                  <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                                  </div>
+                                  <div class="modal-body">
+                                    <!-- loading -->
+                                      <div class="text-center" id="loading">
+                                        <div class="spinner-border" style="width: 3rem; height: 3rem;" role="status">
+                                          <span class="visually-hidden">Loading...</span>
                                         </div>
                                       </div>
-                                      <!-- <div class="modal-footer text-start">
-                                      <button type="button"  class="btn btn-success" data-bs-dismiss="modal">Create partner</button>
-                                      </div> -->
+                                      <!--  -->
+                                    <div class="text-start hidden" id="detailsBar">
+                                      <form action="/createInvestor" method="post">
+                                          <div class="mb-2">
+                                              <label for="exampleFormControlInput1" class="form-label">First Name</label>
+                                              <h6 id="fname"></h6>
+                                            </div>
+                                            <div class="mb-2">
+                                              <label for="exampleFormControlTextarea1" class="form-label">Last Name</label>
+                                              <h6 id="lname"></h6>
+                                            </div>
+                                            <div class="mb-2">
+                                              <label for="exampleFormControlTextarea1" class="form-label">Email</label>
+                                              <h6 id="email"></h6>
+                                            </div>
+                                            <div class="mb-2">
+                                              <label for="exampleFormControlTextarea1" class="form-label">Phone number</label>
+                                              <h6 id="phone"></h6>
+                                            </div>
+                                            <div class="mb-2">
+                                              <label for="exampleFormControlTextarea1" class="form-label">Address</label>
+                                              <h6 id="address"></h6>
+                                            </div>
+                                            <hr>
+                                            
+                                            <div class="mb-2">
+                                              <label for="exampleFormControlTextarea1" class="form-label">Interest</label>
+                                              <h6><span id="currency"></span><span id="interest"></span></h6>
+                                            </div>
+
+                                            <div class="mb-2">
+                                              <label for="exampleFormControlTextarea1" class="form-label">ROI Option</label>
+                                              <h6><span id="roiOption"></span>%</h6>
+                                            </div>
+
+                                            <div class="mb-2">
+                                              <label for="exampleFormControlTextarea1" class="form-label">ROI Cellection</label>
+                                              <h6><span id="rioTime"></span></h6>
+                                            </div>
+
+                                            <div class="mb-2">
+                                              <label for="exampleFormControlTextarea1" class="form-label">Start Date</label>
+                                              <input type="date" class="form-control" name="startDate" required>
+                                            </div>
+
+                                            <div class="mb-2">
+                                              <label for="exampleFormControlTextarea1" class="form-label">End Date</label>
+                                              <input type="date" class="form-control" name="endDate" required>
+                                            </div>
+
+                                            <div class="mb-2">
+                                              <label for="exampleFormControlTextarea1" class="form-label">Certificate Number</label>
+                                              <input type="text" class="form-control" name="certificateNo" required>
+                                            </div>
+
+                                            <div class="mb-2">
+                                              <label for="exampleFormControlTextarea1" class="form-label">Payout Day</label>
+                                              <input type="number" class="form-control" name="payOutDay" required>
+                                            </div>
+
+                                              <input type="hidden" name="email" class="form-control" id="emailTag"> 
+                                              <button type="submit"  class="btn btn-success btn-sm">Add to investor</button>
+                                      </form>    
+                                    </div>
                                   </div>
-                                  </div>
-                            </div>
+                                  <!-- <div class="modal-footer text-start">
+                                  <button type="button"  class="btn btn-success" data-bs-dismiss="modal">Create partner</button>
+                                  </div> -->
+                              </div>
+                              </div>
+                        </div>
                       
                       </tr>
                   <%}%>
                 </tbody>
               </table>
             </div>
+
+            <div class="">
+              <a class="btn btn-secondary btn-sm" href="/adashboard/interest"></i> Back</a>
+            </div>
+
         </div>
       </div>
     </div>
@@ -173,5 +138,5 @@
 </div>
 
 <%-include('include/adminFooter') -%>
-<script src="/min/editi.js"></script>
+<script src="/min/subscriber.js"></script>
 <%-include('include/footer') -%>

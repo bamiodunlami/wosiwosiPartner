@@ -53,10 +53,10 @@ module.exports = new mongoose.model('User', userSchema);
 //DB Update and migration
 async function migrateUsers() {
     try {
-      const mig = await User.find();
+      const mig = await User.find({role:"investor"});
       // Update each user record with the new field
       for (let i=0; i<mig.length; i++) {
-        mig[i].bank = {
+        mig[i].inves = {
           sortCode:"",
           accountNo:"",
           accountName:"",

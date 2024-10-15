@@ -13,9 +13,13 @@ router
 
 .get ('/adashboard/:operation', dash.adminOperation) //each routh after the path
 
-.post('/interest/:request', dash.interestOperation) //interest operation post method
+.get("/delete-interest", dash.deleteInterest) // delete inerest
 
-.get('/interest/:request', dash.interestOperationGet) //interest operation get method
+.get("/send-subscription-form", dash.sendSubscriptionForm) // delete inerest
+
+.get('/subscriber', dash.renderSubscriberPage) //render subscriber page
+
+.get('/delete-subscriber', dash.deleteSubscriber) //Delete subscriber
 
 .post('/idetails', dash.fetchInvestorDetails) //subscriber details fetch to be converted into investor
 

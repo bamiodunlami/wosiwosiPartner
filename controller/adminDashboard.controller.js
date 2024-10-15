@@ -10,8 +10,7 @@ const excelJS = require("exceljs");
 
 const passport = require(appRoot + "/util/passport.util.js");
 const interestDB = require(appRoot + "/model/operation.model.js").InterestForm;
-const subscrberDB = require(appRoot +
-  "/model/operation.model.js").SubscriptionForm;
+const subscrberDB = require(appRoot +"/model/operation.model.js").SubscriptionForm;
 const UserDB = require(appRoot + "/model/user.model.js");
 
 const mailer = require(appRoot + "/util/mailer.util.js");
@@ -63,16 +62,6 @@ const adminOperation = async (req, res) => {
         });
         break;
 
-      // access codes
-      case "influencer":
-        const influence = await UserDB.find({ role: "influencer" });
-        // console.log(influence)
-        res.render("admin/influencer", {
-          title: "Influencer",
-          influencer: influence,
-        });
-        break;
-
       // default
       default:
         console.log("nooo");
@@ -83,282 +72,57 @@ const adminOperation = async (req, res) => {
   }
 };
 
-// insterest/subscribe  action operation (POST Methods)
-const interestOperation = async (req, res) => {
+//delete interest
+const deleteInterest = async (req, res) => {
   if (req.isAuthenticated()) {
-    switch (req.params.request) {
-      // not interested
-      case "deleteinterest":
-        await mailer.accessRevoke(req.body.email);
-        await accessCodesDB.deleteOne({ userMail: req.body.email });
-        await interestDB.deleteOne({ email: req.body.email });
-        await subscrberDB.deleteOne({ email: req.body.email });
-        res.redirect(req.headers.referer);
-        break;
-
-      // update interest comment
-      case "interest_comment":
-        // safe comment
-        const saveComment = await subscrberDB.updateOne(
-          { email: req.body.email },
-          {
-            $set: {
-              comment: req.body.comment,
-            },
-          }
-        );
-        res.redirect(req.headers.referer);
-
-        // first confirm if the email is already in followup
-        // const checkFollowup = await followupDB.findOne({ email: req.body.email })
-        // if(checkFollowup){
-        //   console.log("already available");
-        //     // update tosubbscribe db to false
-        //     await toSubscribeDB.updateOne({ email: req.body.email },
-        //       {
-        //         $set: {
-        //           action: false,
-        //         },
-        //       });
-        //       // update followup db to true
-        //     await followupDB.updateOne({ email: req.body.email },
-        //       {
-        //         $set: {
-        //           action: true,
-        //         },
-        //       });
-        //       res.redirect(req.headers.referer);
-        // }else{
-        //   console.log("not exist")
-        //   // update interestDB to false
-        //   const updateInterest = await interestDB.updateOne({ email: req.body.email },
-        //     {
-        //       $set: {
-        //         action: false,
-        //       },
-        //     });
-        //     // update tosubbscribe db to false
-        //     await toSubscribeDB.updateOne({ email: req.body.email },
-        //       {
-        //         $set: {
-        //           action: false,
-        //         },
-        //       });
-        //   if (updateInterest) {
-        //     const details = await interestDB.findOne({ email: req.body.email });
-        //     // console.log(updateInterest);
-        //     const saveFollowup = new followupDB({
-        //       fname: details.fname,
-        //       lname: details.lname,
-        //       email: details.email,
-        //       phone: details.phone,
-        //       // interest:req.body.interest,
-        //       address: details.address,
-        //       postcode: details.postcode,
-        //       country: details.country,
-        //       // startDate:req.body.startDate
-        //       action: details.action,
-        //       comment: req.body.comment,
-        //     });
-        //     await saveFollowup.save();
-        //     // update followup db to true
-        //     await followupDB.updateOne({ email: req.body.email },
-        //       {
-        //         $set: {
-        //           action: true,
-        //         },
-        //       });
-        //     res.redirect(req.headers.referer);
-        // }}
-        break;
-
-      // update subscriber comment
-      case "subscriber_comment":
-        // console.log(req.body)
-        // safe comment
-        const saveSubscriverComment = await subscrberDB.updateOne(
-          { email: req.body.email },
-          {
-            $set: {
-              comment: req.body.comment,
-            },
-          }
-        );
-        res.redirect(req.headers.referer);
-
-        // first confirm if the email is already in followup
-        // const checkFollowup = await followupDB.findOne({ email: req.body.email })
-        // if(checkFollowup){
-        //   console.log("already available");
-        //     // update tosubbscribe db to false
-        //     await toSubscribeDB.updateOne({ email: req.body.email },
-        //       {
-        //         $set: {
-        //           action: false,
-        //         },
-        //       });
-        //       // update followup db to true
-        //     await followupDB.updateOne({ email: req.body.email },
-        //       {
-        //         $set: {
-        //           action: true,
-        //         },
-        //       });
-        //       res.redirect(req.headers.referer);
-        // }else{
-        //   console.log("not exist")
-        //   // update interestDB to false
-        //   const updateInterest = await interestDB.updateOne({ email: req.body.email },
-        //     {
-        //       $set: {
-        //         action: false,
-        //       },
-        //     });
-        //     // update tosubbscribe db to false
-        //     await toSubscribeDB.updateOne({ email: req.body.email },
-        //       {
-        //         $set: {
-        //           action: false,
-        //         },
-        //       });
-        //   if (updateInterest) {
-        //     const details = await interestDB.findOne({ email: req.body.email });
-        //     // console.log(updateInterest);
-        //     const saveFollowup = new followupDB({
-        //       fname: details.fname,
-        //       lname: details.lname,
-        //       email: details.email,
-        //       phone: details.phone,
-        //       // interest:req.body.interest,
-        //       address: details.address,
-        //       postcode: details.postcode,
-        //       country: details.country,
-        //       // startDate:req.body.startDate
-        //       action: details.action,
-        //       comment: req.body.comment,
-        //     });
-        //     await saveFollowup.save();
-        //     // update followup db to true
-        //     await followupDB.updateOne({ email: req.body.email },
-        //       {
-        //         $set: {
-        //           action: true,
-        //         },
-        //       });
-        //     res.redirect(req.headers.referer);
-        // }}
-        break;
-
-      // resend subscription form
-      case "tosubscribed":
-        mailer.sendSubscriptionForm(req.body.email, "bamidele@wosiwosi.co.uk");
-        res.redirect(req.headers.referer);
-        // const checkTosub = await toSubscribeDB.findOne({ email: req.body.email })
-        // if(checkTosub){
-        //   console.log("already available");
-        //   console.log(checkTosub.email);
-        //     // update tosubbscribe db to false
-        //     await toSubscribeDB.updateOne({ email: req.body.email },
-        //       {
-        //         $set: {
-        //           action: true,
-        //         },
-        //       });
-        //       // update followup db to true
-        //     await followupDB.updateOne({ email: req.body.email },
-        //       {
-        //         $set: {
-        //           action: false,
-        //         },
-        //       });
-        //       mailer.sendSubscriptionForm(
-        //         checkTosub.email,
-        //         "tinukeawo@wosiwosi.co.uk",
-        //         checkTosub.fname
-        //       );
-        //     res.redirect(req.headers.referer);
-        // }else{
-        //   //  update inerest db false
-        //   const updateInterestTwo = await interestDB.updateOne({ email: req.body.email},
-        //     {
-        //       $set: {
-        //         action: false,
-        //       },
-        //     });
-        //     // update follow up db to false
-        //     await followupDB.updateOne({ email: req.body.email },
-        //       {
-        //         $set: {
-        //           action: false,
-        //         },
-        //     });
-
-        //     if(updateInterestTwo){
-        //       const toSubscribDetails = await interestDB.findOne({email: req.body.email});
-        //       const saveToSubscribe = new toSubscribeDB({
-        //         fname: toSubscribDetails.fname,
-        //         lname: toSubscribDetails.lname,
-        //         email: toSubscribDetails.email,
-        //         phone: toSubscribDetails.phone,
-        //         // interest:req.body.interest,
-        //         address: toSubscribDetails.address,
-        //         postcode: toSubscribDetails.postcode,
-        //         country: toSubscribDetails.country,
-        //         // startDate:req.body.startDate
-        //         action: toSubscribDetails.action,
-        //         comment: req.body.comment,
-        //       });
-        //       const toSubscribeResponse = await saveToSubscribe.save();
-        //       mailer.sendSubscriptionForm(
-        //         toSubscribeResponse.email,
-        //         "tinukeawo@wosiwosi.co.uk",
-        //         toSubscribeResponse.fname
-        //       );
-        //       // update to subscribe truw
-        //       await toSubscribeDB.updateOne({ email: req.body.email},
-        //         {
-        //           $set: {
-        //             action: true,
-        //           },
-        //       });
-        //       res.redirect(req.headers.referer);
-        //     }
-        //   }
-        break;
-
-      // resend contract
-      // case "resend":
-      //   const tosubscribe = await interestDB.findOne({email: req.body.email});
-      //   mailer.sendSubscriptionForm(
-      //     req.body.email ,
-      //     "tinukeawo@wosiwosi.co.uk"
-      //   );
-      //   res.redirect(req.headers.referer);
-      // break;
-
-      default:
-        break;
+    const isDeleted = await interestDB.deleteOne({email:req.query.id})
+    if(isDeleted.deletedCount == 1){
+      mailer.accessRevoke(req.query.id)
+      res.redirect(req.headers.referer)
+    }else{
+      console.log("error")
     }
   } else {
     res.redirect("/adminlogin");
   }
 };
 
-// Interest/Subscribe action operation (Get Method)
-const interestOperationGet = async (req, res) => {
+const sendSubscriptionForm = async (req, res) => {
   if (req.isAuthenticated()) {
-    switch (req.params.request) {
-      case "subscribers":
+    const isInterest = await interestDB.findOne({email:req.query.id})
+    if(isInterest){
+      mailer.sendSubscriptionForm(req.query.id, "bamidele@wosiwosi.co.uk")
+      res.redirect(req.headers.referer)
+    }else{
+      res.redirect(req.headers.referer)
+    }
+  } else {
+    res.redirect("/adminlogin");
+  }
+};
+
+// Render subscriber page
+const renderSubscriberPage = async (req, res) => {
+  if (req.isAuthenticated()) {
         const toSubscribeResponse = await subscrberDB.find();
         res.render("admin/subscribers", {
           int: toSubscribeResponse,
-          removeButton: true,
           title: "Subscribers",
         });
-        break;
+  } else {
+    res.redirect("/adminlogin");
+  }
+};
 
-      default:
-        break;
+//Delete subscriber
+const deleteSubscriber = async (req, res) => {
+  if (req.isAuthenticated()) {
+    const isDeleted = await subscrberDB.deleteOne({email:req.query.id})
+    if(isDeleted.deletedCount == 1){
+      mailer.accessRevoke(req.query.id)
+      res.redirect(req.headers.referer)
+    }else{
+      console.log("error")
     }
   } else {
     res.redirect("/adminlogin");
@@ -723,10 +487,11 @@ module.exports = {
   adashboard: adashboard,
   adminOperation: adminOperation,
   createInvestor: createInvestor,
+  deleteInterest:deleteInterest,
+  sendSubscriptionForm:sendSubscriptionForm,
+  deleteSubscriber: deleteSubscriber,
+  renderSubscriberPage: renderSubscriberPage,
   fetchInvestorDetails: fetchInvestorDetails,
-  interestOperation: interestOperation,
-  interestOperationGet: interestOperationGet,
-  // renderInvestorPage: renderInvestorPage,
   renderInvestorDash: renderInvestorDash,
   investorPageOperation: investorPageOperation,
   generalMail: generalMail,

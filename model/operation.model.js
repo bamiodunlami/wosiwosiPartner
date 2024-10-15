@@ -21,50 +21,6 @@ const interestFormSchema = new mongoose.Schema({
 
 });
 
-// const redundantSchema = new mongoose.Schema({
-//   fname:"string",
-//   lname:"string",
-//   email:"string",
-//   phone:"string",
-//   interest:"string",
-//   address:"string",
-//   postcode:"string",
-//   country:"string",
-//   startDate:"string",
-//   action:Boolean,
-//   comment:"string",
-//   codeStatus:Boolean,
-//   code:"string"
-// });
-
-// const followupSchema = new mongoose.Schema({
-//     fname:"string",
-//     lname:"string",
-//     email:"string",
-//     phone:"string",
-//     interest:"string",
-//     address:"string",
-//     postcode:"string",
-//     country:"string",
-//     startDate:"string",
-//     action:Boolean,
-//     comment:"string"
-// });
-
-// const toSubscribeSchema = new mongoose.Schema({
-//     fname:"string",
-//     lname:"string",
-//     email:"string",
-//     phone:"string",
-//     interest:"string",
-//     address:"string",
-//     postcode:"string",
-//     country:"string",
-//     startDate:"string",
-//     action:Boolean,
-//     comment:"string"
-// });
-
 const subscriptionFormSchema = new mongoose.Schema({
     fname:String,
     lname:String,
@@ -97,14 +53,23 @@ const accessCodes = new mongoose.Schema({
   }
 })
 
+const investmentSchema = new mongoose.Schema({
+  id:Number,
+  name:String,
+  annual_roi:Number,
+  monthly_roi:Number,
+  status:Boolean
+})
+
+
 
 const InterestForm = new mongoose.model('InterestForm', interestFormSchema);
-
-// const RedundantDB = new mongoose.model('RedundantDB', redundantSchema);
 
 const SubscriptionForm = new mongoose.model('SubscriptionForm', subscriptionFormSchema);
 
 const AccessCode = new mongoose.model('AccessCode', accessCodes);
+
+const Investment = new mongoose.model("Investment", investmentSchema)
 
 
 //DB Update and migration
@@ -176,14 +141,24 @@ async function accessCodeGen(){
 }
 // accessCodeGen()
 
+async function investment(){
+  const saveInestment = new Investment({
+    id:7650934,
+    name:"Container 20 Feets",
+    annual_roi:19.5,
+    monthly_roi:1.625,
+    status:true
+  })
+  await saveInestment.save()
+}
+// investment()
+
 
 
 module.exports = {
-    mongoose:mongoose,
+    // mongoose:mongoose,
     InterestForm:InterestForm,
     SubscriptionForm:SubscriptionForm,
-    // Followup:Followup,
-    // Tosubscribe:Tosubscribe,
     AccessCode:AccessCode,
-    // RedundantDB:RedundantDB
+    Investment:Investment
 } 
