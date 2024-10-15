@@ -6,8 +6,8 @@
             <div class="col-12">
                 <div>
                   <!-- <p class="error" style="color: red;">Service Error E309C. Contact provider</p> -->
-                  <h5> Wosiwosi Investment Bond subscription form</h5>
-                    <p>Thank you for showing interest in Wosiwosi investment, kindly fill the below subscription form.</p>
+                  <h5> Wosiwosi Investment Form</h5>
+                    <p>kindly fill the below subscription form.</p>
                 </div>
                 <div class="interest-form">
                     <form action="/esubscribe" method="post">
@@ -67,20 +67,20 @@
                             </select>
                           </div>
 
-                          <div class="mb-3">
-                            <label>How would you like to get your ROI</label>
-                            <select class="form-select" name="roiOption" id="returns">
-                              <option value="20">20% Yearly Returns</option>
-                              <option value="1.666">1.666% Monthly Returns</option>
-                              <!-- <option value="N">Naira (N)</option> -->
-                            </select>
-                          </div>
-
+                          <p class="alert alert-secondary">£25,000 minimun investment amount</p>
                           <div class="mb-3">
                             <label class="form-label">How much would you be willing to invest?</label>
                             <input type="number" name="capital" class="form-control" id="capital" min="2000" max="100000"  required>
                           </div>
-                          
+
+                          <div class="mb-3">
+                            <label>Select ROI % and duration</label>
+                            <select class="form-select" name="roiOption" id="returns">
+                              <option value="2.166">2.166% Monthly</option>
+                              <option value="26">26% Yearly</option>
+                            </select>
+                          </div>
+
                           <input type="hidden" name="roiTime"  id="roiCollectionTime">
 
                           <div class="alert alert-light">
