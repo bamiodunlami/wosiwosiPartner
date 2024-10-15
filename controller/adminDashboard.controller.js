@@ -164,6 +164,7 @@ const createInvestor = async (req, res) => {
             status: true,
             id: Math.floor(Math.random() * 901215),
             certificateNo: req.body.certificateNo,
+            investmentType:req.body.investmentType
           },
         },
       }
@@ -188,10 +189,7 @@ const createInvestor = async (req, res) => {
     const roiOption = investor.roiOption / 100;
     const investmentInterest = investmentAmount * roiOption; //interest
     // console.log(investmentInterest.toFixed(2))
-    const investorPass = `${investor.fname.slice(0, 3)}${investor.lname.slice(
-      0,
-      3
-    )}${investor.phone.slice(9, 11)}`; //pasword form
+    const investorPass = `${investor.fname.slice(0, 3)}${investor.lname.slice(0,3)}${investor.phone.slice(9, 11)}`; //pasword form
     const investorDetails = new UserDB({
       username: investor.email,
       profile: {
@@ -219,6 +217,7 @@ const createInvestor = async (req, res) => {
           status: true,
           id: Math.floor(Math.random() * 901215),
           certificateNo: req.body.certificateNo,
+          investmentType:req.body.investmentType
         },
       ],
       bank: {
