@@ -12,9 +12,9 @@ const dashboard = require(appRoot + '/controller/operation.controller.js')
 
 router
 
-// .get('/interest', dashboard.interestForm)
+.get('/einterest', dashboard.interestForm)
 
-// .post('/interest', dashboard.interestFormSubmitted)
+.post('/einterest', dashboard.interestFormSubmitted)
 
 .get('/esubscribe', dashboard.subscriptionForm)
 

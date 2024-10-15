@@ -151,7 +151,7 @@ async function investment(){
   })
   await saveInestment.save()
 }
-// investment()
+// investment();
 
 
 
