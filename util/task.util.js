@@ -7,8 +7,12 @@ appRoot.setPath(rootPath);
 
 
 
-const date = new Date()
-let today= date.getDate()
+const dateObject = new Date();
+
+let convertToUkTimeZone = new Intl.DateTimeFormat('en-GB', {timeZone: 'Europe/London'}).format(dateObject);
+
+// convert date to YY--MM--DD
+let today = convertToUkTimeZone.slice(0, 2)
 
 const investorDB = require (appRoot + "/model/user.model.js")
 
@@ -39,7 +43,7 @@ async function readInvestorDate (){
 
 
 // Cron runs every day at 00:00
-cron.schedule('* 8 * * *', () => {
+cron.schedule('0 8 * * *', () => {
     readInvestorDate();
 },{
     scheduled: true,
