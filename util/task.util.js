@@ -18,6 +18,7 @@ const investorDB = require (appRoot + "/model/user.model.js")
 
 const mailer = require(appRoot + "/util/mailer.util.js");
 
+
 // function checks who to pay today
 async function readInvestorDate (){
     const investorDate = await investorDB.find({role:"investor"})
@@ -32,7 +33,8 @@ async function readInvestorDate (){
     }
     // when there is anyone to pay
     if (investorToPay.length > 0){
-        mailer.sendPayOutReminder("seyiawo@wosiwosi.co.uk", "bamidele@wosiwosi.co.uk", today, investorToPay );
+        let investorToPayString = investorToPay.map((name) => (name)).join(", ")
+        mailer.sendPayOutReminder("seyiawo@wosiwosi.co.uk", "bamidele@wosiwosi.co.uk", today, investorToPayString );
         console.log("you are paying " + investorToPay + " " )
     }else{
         console.log("NO one")
